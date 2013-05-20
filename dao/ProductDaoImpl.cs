@@ -22,7 +22,7 @@ namespace haisan.dao
         public static ProductDaoImpl getInstance()
         {
             if (null == productDaoImpl)
-                return new ProductDaoImpl();
+                productDaoImpl = new ProductDaoImpl();
             return productDaoImpl;
         }
 

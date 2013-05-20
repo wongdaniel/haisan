@@ -35,6 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.labelTitle = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.labelStatus = new System.Windows.Forms.Label();
             this.buttonImport = new System.Windows.Forms.Button();
             this.buttonSaveTable = new System.Windows.Forms.Button();
             this.buttonPrint = new System.Windows.Forms.Button();
@@ -44,7 +45,6 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeViewCategory = new System.Windows.Forms.TreeView();
             this.dataGridViewProd = new System.Windows.Forms.DataGridView();
-            this.labelStatus = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.报表打印ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.报表预览ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -123,6 +123,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(672, 38);
             this.panel2.TabIndex = 1;
+            // 
+            // labelStatus
+            // 
+            this.labelStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelStatus.AutoSize = true;
+            this.labelStatus.Location = new System.Drawing.Point(593, 14);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(59, 12);
+            this.labelStatus.TabIndex = 6;
+            this.labelStatus.Text = "共x条记录";
             // 
             // buttonImport
             // 
@@ -222,16 +232,6 @@
             this.dataGridViewProd.Size = new System.Drawing.Size(505, 295);
             this.dataGridViewProd.TabIndex = 0;
             // 
-            // labelStatus
-            // 
-            this.labelStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelStatus.AutoSize = true;
-            this.labelStatus.Location = new System.Drawing.Point(593, 14);
-            this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(59, 12);
-            this.labelStatus.TabIndex = 6;
-            this.labelStatus.Text = "共x条记录";
-            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -239,7 +239,7 @@
             this.报表预览ToolStripMenuItem,
             this.导出到ExcelToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(142, 70);
             // 
             // 报表打印ToolStripMenuItem
             // 
@@ -253,6 +253,7 @@
             this.报表预览ToolStripMenuItem.Name = "报表预览ToolStripMenuItem";
             this.报表预览ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.报表预览ToolStripMenuItem.Text = "报表预览";
+            this.报表预览ToolStripMenuItem.Click += new System.EventHandler(this.报表预览ToolStripMenuItem_Click);
             // 
             // 导出到ExcelToolStripMenuItem
             // 

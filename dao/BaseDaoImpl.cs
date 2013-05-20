@@ -20,7 +20,7 @@ namespace haisan.dao
         public static BaseDaoImpl getInstance()
         {
             if (null == baseDaoImpl)
-                return new BaseDaoImpl();
+                baseDaoImpl = new BaseDaoImpl();
             return baseDaoImpl;
         }
 

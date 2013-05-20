@@ -36,8 +36,8 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.账套参数ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.商品资料OToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.往来单位PToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ProductOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.companyPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.部门资料QToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.员工资料RToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.仓库资料SToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -133,8 +133,8 @@
             // dToolStripMenuItem
             // 
             this.dToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.商品资料OToolStripMenuItem,
-            this.往来单位PToolStripMenuItem,
+            this.ProductOToolStripMenuItem,
+            this.companyPToolStripMenuItem,
             this.部门资料QToolStripMenuItem,
             this.员工资料RToolStripMenuItem,
             this.仓库资料SToolStripMenuItem,
@@ -147,18 +147,18 @@
             this.dToolStripMenuItem.Size = new System.Drawing.Size(63, 21);
             this.dToolStripMenuItem.Text = "资 料(&T)";
             // 
-            // 商品资料OToolStripMenuItem
+            // ProductOToolStripMenuItem
             // 
-            this.商品资料OToolStripMenuItem.Name = "商品资料OToolStripMenuItem";
-            this.商品资料OToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.商品资料OToolStripMenuItem.Text = "商品资料(&O)";
-            this.商品资料OToolStripMenuItem.Click += new System.EventHandler(this.商品资料OToolStripMenuItem_Click);
+            this.ProductOToolStripMenuItem.Name = "ProductOToolStripMenuItem";
+            this.ProductOToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.ProductOToolStripMenuItem.Text = "商品资料(&O)";
+            this.ProductOToolStripMenuItem.Click += new System.EventHandler(this.商品资料OToolStripMenuItem_Click);
             // 
-            // 往来单位PToolStripMenuItem
+            // companyPToolStripMenuItem
             // 
-            this.往来单位PToolStripMenuItem.Name = "往来单位PToolStripMenuItem";
-            this.往来单位PToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.往来单位PToolStripMenuItem.Text = "往来单位(&P)";
+            this.companyPToolStripMenuItem.Name = "companyPToolStripMenuItem";
+            this.companyPToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.companyPToolStripMenuItem.Text = "往来单位(&P)";
             // 
             // 部门资料QToolStripMenuItem
             // 
@@ -390,8 +390,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem 账套参数ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 商品资料OToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 往来单位PToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ProductOToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem companyPToolStripMenuItem;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;

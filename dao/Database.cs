@@ -88,7 +88,7 @@ namespace haisan.dao
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show(e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return -1;
             }
             finally

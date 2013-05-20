@@ -18,6 +18,8 @@ namespace haisan.frame.document.product
         private BaseDao baseDao = BaseDaoImpl.getInstance();
         private CategoryDao categoryDao = CategoryDaoImpl.getInstance();
 
+        private DataSet dataset = null;
+
         private int categoryId = 0;
  //       private TreeNode selectedNode = null;
 
@@ -157,7 +159,7 @@ namespace haisan.frame.document.product
 
         private void refreshDataGridView()
         {
-            DataSet dataset = productDao.getAllProduct(textBoxQuery.Text, categoryId);
+            dataset = productDao.getAllProduct(textBoxQuery.Text, categoryId);
             dataGridViewProd.DataSource = dataset.Tables[0].DefaultView;
             labelStatus.Text = "共" + dataset.Tables[1].Rows[0]["total"].ToString() + "条记录";
         }
@@ -197,6 +199,14 @@ namespace haisan.frame.document.product
         private void 报表打印ToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void 报表预览ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CrystalReportProduct ccrp = new CrystalReportProduct();
+            ccrp.SetDataSource(dataset.Tables[0]);
+            CReprotFrm crfrm = new CReprotFrm(ccrp);
+            crfrm.Show();
         }
     }
 }

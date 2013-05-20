@@ -22,7 +22,7 @@ namespace haisan.dao
         public static UserDaoImpl getInstance()
         {
             if(null == userDaoImpl)
-                return new UserDaoImpl();
+                userDaoImpl = new UserDaoImpl();
             return userDaoImpl;
         }
 

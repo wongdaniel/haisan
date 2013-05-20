@@ -22,7 +22,7 @@ namespace haisan.dao
         public static CategoryDaoImpl getInstance()
         {
             if(null == categoryDaoImpl)
-                return new CategoryDaoImpl();
+                categoryDaoImpl = new CategoryDaoImpl();
             return categoryDaoImpl;
         }
 
