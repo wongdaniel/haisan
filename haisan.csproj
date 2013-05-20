@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3CDD7E2B-89AB-4AD7-ACB3-78C2876F18A2}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>haisan</RootNamespace>
+    <AssemblyName>haisan</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="dao\BaseDao.cs" />
+    <Compile Include="dao\BaseDaoImpl.cs" />
+    <Compile Include="dao\CategoryDao.cs" />
+    <Compile Include="dao\CategoryDaoImpl.cs" />
+    <Compile Include="dao\Database.cs" />
+    <Compile Include="dao\ProductDao.cs" />
+    <Compile Include="dao\ProductDaoImpl.cs" />
+    <Compile Include="dao\SessionFactory.cs" />
+    <Compile Include="dao\UserDao.cs" />
+    <Compile Include="dao\UserDaoImpl.cs" />
+    <Compile Include="domain\Product.cs" />
+    <Compile Include="domain\Provider.cs" />
+    <Compile Include="frame\document\category\AddCategoryFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frame\document\category\AddCategoryFrm.Designer.cs">
+      <DependentUpon>AddCategoryFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frame\document\category\CategoryFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frame\document\category\CategoryFrm.Designer.cs">
+      <DependentUpon>CategoryFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="domain\Category.cs" />
+    <Compile Include="domain\User.cs" />
+    <Compile Include="frame\document\category\ModifyCategoryFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frame\document\category\ModifyCategoryFrm.Designer.cs">
+      <DependentUpon>ModifyCategoryFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frame\document\product\AddProductFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frame\document\product\AddProductFrm.Designer.cs">
+      <DependentUpon>AddProductFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frame\document\product\ProductFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frame\document\product\ProductFrm.Designer.cs">
+      <DependentUpon>ProductFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginFrm.Designer.cs">
+      <DependentUpon>LoginFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainFrm.Designer.cs">
+      <DependentUpon>MainFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="util\Code.cs" />
+    <Compile Include="util\MessageLocal.cs" />
+    <Compile Include="util\Parameter.cs" />
+    <Compile Include="util\Util.cs" />
+    <EmbeddedResource Include="frame\document\category\AddCategoryFrm.resx">
+      <DependentUpon>AddCategoryFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frame\document\category\CategoryFrm.resx">
+      <DependentUpon>CategoryFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frame\document\category\ModifyCategoryFrm.resx">
+      <DependentUpon>ModifyCategoryFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frame\document\product\AddProductFrm.resx">
+      <DependentUpon>AddProductFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frame\document\product\ProductFrm.resx">
+      <DependentUpon>ProductFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginFrm.resx">
+      <DependentUpon>LoginFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainFrm.resx">
+      <DependentUpon>MainFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\page_not_found.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\未命名.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\procedure\delete_category_recursive.sql" />
+    <Content Include="Resources\procedure\del_categoryOfProduct.sql" />
+    <Content Include="Resources\procedure\del_categoryOfUnit.sql" />
+    <Content Include="Resources\procedure\del_categoryOfUnit.sql.sql" />
+    <Content Include="Resources\procedure\getAllUsers.sql" />
+    <Content Include="Resources\procedure\get_productById.sql" />
+    <Content Include="Resources\procedure\get_productByQueryStr.sql" />
+    <Content Include="Resources\procedure\login.sql" />
+    <Content Include="Resources\procedure\sampleOfunique.sql" />
+    <Content Include="Resources\procedure\saveOrUpdate_Product.sql" />
+    <Content Include="Resources\procedure\saveOrUpdate_table.sql" />
+    <Content Include="Resources\procedure\save_categoryOfProduct.sql" />
+    <Content Include="Resources\procedure\save_categoryOfUnit.sql" />
+    <Content Include="Resources\procedure\save_product.sql" />
+    <Content Include="Resources\procedure\select_user_email.sql" />
+    <Content Include="Resources\procedure\testLogin.sql" />
+    <Content Include="Resources\procedure\update_categoryOfProduct.sql" />
+    <Content Include="Resources\procedure\update_categoryOfUnit.sql" />
+    <Content Include="Resources\procedure\update_product.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
