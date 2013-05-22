@@ -157,5 +157,11 @@ namespace haisan.dao
 
             return msg;
         }
+
+        public DataSet getAllEntities(string table)
+        {
+            string sql = "SELECT * FROM " + table;
+            return database.RunProcReturn(sql, table);
+        }
     }
 }

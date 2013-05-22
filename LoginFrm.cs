@@ -16,7 +16,7 @@ namespace haisan
     public partial class LoginFrm : Form
     {
         private static UserDao userDao = UserDaoImpl.getInstance();
-        private User user;
+        private bool isOpenMain = true;
 
         public LoginFrm()
         {
@@ -33,21 +33,26 @@ namespace haisan
                 return;
             }
             
-            user = new User(username.Text, password.Text);
-            Parameter.user = user;
+            User user = new User(username.Text, password.Text); ;
 
             haisan.util.MessageLocal msg = userDao.login(user);
             if (!msg.IsSucess)
             {
                 errorLabel.Text = msg.Message;
+                Parameter.user = null;
                 return;
             }
 
-            MainFrm main = new MainFrm();
-            main.user = user;
-            this.Visible = false;
+            Parameter.user = user;
 
-            main.ShowDialog();
+            if (isOpenMain)
+            {
+                MainFrm main = new MainFrm();
+                this.Visible = false;
+
+                main.ShowDialog();
+            }
+ 
             this.Close();
         }
 
@@ -59,7 +64,12 @@ namespace haisan
 
         private void LoginFrm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            userDao.loginOut(user);
+         //   userDao.loginOut(Parameter.user);
+        }
+
+        public void setIsOpenMain(bool value)
+        {
+            isOpenMain = value;
         }
     }
 }

@@ -37,11 +37,14 @@ namespace haisan.frame.document.product
         {
             labelTitle.Left = (this.Width - labelTitle.Width) / 2;
 
+            DateTime begin = DateTime.Now;
             //fill the category of product to tree view
             refreshTreeView();
 
             refreshDataGridView();
             ProductListHeadText();
+            DateTime mid = DateTime.Now;
+            Console.WriteLine("read date cost time:" + (mid - begin));
 
             MessageLocal msg = baseDao.fillDataGridView(Parameter.user, "tb_product", dataGridViewProd);
             if (!msg.IsSucess)
@@ -49,6 +52,8 @@ namespace haisan.frame.document.product
                 MessageBox.Show(msg.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            DateTime end = DateTime.Now;
+            Console.WriteLine("read date cost time:" + (end - mid));
         }
 
         //设置DataGridView标题

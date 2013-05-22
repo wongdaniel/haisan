@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3CDD7E2B-89AB-4AD7-ACB3-78C2876F18A2}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>haisan</RootNamespace>
     <AssemblyName>haisan</AssemblyName>
@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
@@ -60,6 +63,8 @@
     <Compile Include="dao\BaseDaoImpl.cs" />
     <Compile Include="dao\CategoryDao.cs" />
     <Compile Include="dao\CategoryDaoImpl.cs" />
+    <Compile Include="dao\ConfigureDao.cs" />
+    <Compile Include="dao\ConfigureDaoImpl.cs" />
     <Compile Include="dao\Database.cs" />
     <Compile Include="dao\LogDao.cs" />
     <Compile Include="dao\LogDaoImpl.cs" />
@@ -119,6 +124,24 @@
     <Compile Include="frame\document\product\ProductFrm.Designer.cs">
       <DependentUpon>ProductFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="frame\system\ChangePwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frame\system\ChangePwd.Designer.cs">
+      <DependentUpon>ChangePwd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frame\system\ConfigureFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frame\system\ConfigureFrm.Designer.cs">
+      <DependentUpon>ConfigureFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frame\system\LogFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frame\system\LogFrm.Designer.cs">
+      <DependentUpon>LogFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +181,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frame\document\product\ProductFrm.resx">
       <DependentUpon>ProductFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frame\system\ChangePwd.resx">
+      <DependentUpon>ChangePwd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frame\system\ConfigureFrm.resx">
+      <DependentUpon>ConfigureFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frame\system\LogFrm.resx">
+      <DependentUpon>LogFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginFrm.resx">
       <DependentUpon>LoginFrm.cs</DependentUpon>

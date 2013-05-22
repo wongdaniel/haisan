@@ -13,5 +13,6 @@ namespace haisan.dao
     {
         MessageLocal login(User user);
         int loginOut(User user);
+        MessageLocal updatePwd(User user);
     }
 }

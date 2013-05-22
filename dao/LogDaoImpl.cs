@@ -32,5 +32,40 @@ namespace haisan.dao
 
             database.RunProc("INSERT INTO tb_log(operator, [time], module) VALUES(@operator,@time,@module)", prams);
         }
+
+        public DataSet getLog(string module, string oper, DateTime begin, DateTime end)
+        {
+            string condition = "";
+            LinkedList<SqlParameter> prams = new LinkedList<SqlParameter>();
+            if (!"".Equals(oper))
+            {
+                prams.AddLast(database.MakeInParam("@operator", SqlDbType.NVarChar, 20, oper));
+                condition = "operator = @operator AND ";
+            }
+            prams.AddLast(database.MakeInParam("@module", SqlDbType.NVarChar, 20, "%" + module + "%"));
+            prams.AddLast(database.MakeInParam("@begin", SqlDbType.DateTime, 0, begin));
+            prams.AddLast(database.MakeInParam("@end", SqlDbType.DateTime, 0, end));
+
+            return database.RunProcReturn("SELECT * FROM tb_log WHERE (" + condition + "module LIKE @module AND " +
+                   "([time] BETWEEN @begin AND @end))", prams.ToArray<SqlParameter>(), "tb_log");
+        }
+
+        public void delLog(string module, string oper, DateTime begin, DateTime end)
+        {
+            string condition = "";
+            LinkedList<SqlParameter> prams = new LinkedList<SqlParameter>();
+            if (!"".Equals(oper))
+            {
+                prams.AddLast(database.MakeInParam("@operator", SqlDbType.NVarChar, 20, oper));
+                condition = "operator = @operator AND ";
+            }
+            prams.AddLast(database.MakeInParam("@module", SqlDbType.NVarChar, 20, "%" + module + "%"));
+            prams.AddLast(database.MakeInParam("@begin", SqlDbType.DateTime, 0, begin));
+            prams.AddLast(database.MakeInParam("@end", SqlDbType.DateTime, 0, end));
+
+            database.RunProc("DELETE FROM tb_log WHERE (" + condition + "module LIKE @module AND " +
+                   "([time] BETWEEN @begin AND @end))", prams.ToArray<SqlParameter>(), CommandType.Text);
+        }
+
     }
 }

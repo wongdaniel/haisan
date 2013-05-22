@@ -123,6 +123,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(672, 38);
             this.panel2.TabIndex = 1;
+            this.panel2.UseWaitCursor = true;
             // 
             // labelStatus
             // 
@@ -133,6 +134,7 @@
             this.labelStatus.Size = new System.Drawing.Size(59, 12);
             this.labelStatus.TabIndex = 6;
             this.labelStatus.Text = "共x条记录";
+            this.labelStatus.UseWaitCursor = true;
             // 
             // buttonImport
             // 
@@ -142,6 +144,7 @@
             this.buttonImport.TabIndex = 5;
             this.buttonImport.Text = "从Excel导入";
             this.buttonImport.UseVisualStyleBackColor = true;
+            this.buttonImport.UseWaitCursor = true;
             // 
             // buttonSaveTable
             // 
@@ -151,6 +154,7 @@
             this.buttonSaveTable.TabIndex = 4;
             this.buttonSaveTable.Text = "表格保存";
             this.buttonSaveTable.UseVisualStyleBackColor = true;
+            this.buttonSaveTable.UseWaitCursor = true;
             this.buttonSaveTable.Click += new System.EventHandler(this.buttonSaveTable_Click);
             // 
             // buttonPrint
@@ -161,6 +165,7 @@
             this.buttonPrint.TabIndex = 3;
             this.buttonPrint.Text = "打印";
             this.buttonPrint.UseVisualStyleBackColor = true;
+            this.buttonPrint.UseWaitCursor = true;
             this.buttonPrint.MouseDown += new System.Windows.Forms.MouseEventHandler(this.buttonPrint_MouseDown);
             // 
             // buttonDel
@@ -171,6 +176,7 @@
             this.buttonDel.TabIndex = 2;
             this.buttonDel.Text = "删除";
             this.buttonDel.UseVisualStyleBackColor = true;
+            this.buttonDel.UseWaitCursor = true;
             this.buttonDel.Click += new System.EventHandler(this.buttonDel_Click);
             // 
             // buttonModify
@@ -181,6 +187,7 @@
             this.buttonModify.TabIndex = 1;
             this.buttonModify.Text = "修改";
             this.buttonModify.UseVisualStyleBackColor = true;
+            this.buttonModify.UseWaitCursor = true;
             this.buttonModify.Click += new System.EventHandler(this.buttonModify_Click);
             // 
             // buttonNew
@@ -191,6 +198,7 @@
             this.buttonNew.TabIndex = 0;
             this.buttonNew.Text = "新增";
             this.buttonNew.UseVisualStyleBackColor = true;
+            this.buttonNew.UseWaitCursor = true;
             this.buttonNew.Click += new System.EventHandler(this.buttonNew_Click);
             // 
             // splitContainer1
@@ -244,21 +252,21 @@
             // 报表打印ToolStripMenuItem
             // 
             this.报表打印ToolStripMenuItem.Name = "报表打印ToolStripMenuItem";
-            this.报表打印ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.报表打印ToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.报表打印ToolStripMenuItem.Text = "报表打印";
             this.报表打印ToolStripMenuItem.Click += new System.EventHandler(this.报表打印ToolStripMenuItem_Click);
             // 
             // 报表预览ToolStripMenuItem
             // 
             this.报表预览ToolStripMenuItem.Name = "报表预览ToolStripMenuItem";
-            this.报表预览ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.报表预览ToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.报表预览ToolStripMenuItem.Text = "报表预览";
             this.报表预览ToolStripMenuItem.Click += new System.EventHandler(this.报表预览ToolStripMenuItem_Click);
             // 
             // 导出到ExcelToolStripMenuItem
             // 
             this.导出到ExcelToolStripMenuItem.Name = "导出到ExcelToolStripMenuItem";
-            this.导出到ExcelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.导出到ExcelToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.导出到ExcelToolStripMenuItem.Text = "导出到Excel";
             // 
             // ProductFrm
