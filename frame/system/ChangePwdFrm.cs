@@ -11,11 +11,11 @@ using haisan.dao;
 
 namespace haisan.frame.system
 {
-    public partial class ChangePwd : Form
+    public partial class ChangePwdFrm : Form
     {
         UserDao userDao = UserDaoImpl.getInstance();
 
-        public ChangePwd()
+        public ChangePwdFrm()
         {
             InitializeComponent();
         }

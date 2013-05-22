@@ -70,6 +70,7 @@
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
             this.currentTimeLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -97,6 +98,7 @@
             this.系统SToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.重新登录LToolStripMenuItem,
             this.更换口令KToolStripMenuItem,
+            this.toolStripMenuItem1,
             this.操作员及权限ToolStripMenuItem,
             this.toolStripSeparator1,
             this.账套参数ToolStripMenuItem,
@@ -110,52 +112,52 @@
             // 重新登录LToolStripMenuItem
             // 
             this.重新登录LToolStripMenuItem.Name = "重新登录LToolStripMenuItem";
-            this.重新登录LToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.重新登录LToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.重新登录LToolStripMenuItem.Text = "重新登录(&L)";
             this.重新登录LToolStripMenuItem.Click += new System.EventHandler(this.重新登录LToolStripMenuItem_Click);
             // 
             // 更换口令KToolStripMenuItem
             // 
             this.更换口令KToolStripMenuItem.Name = "更换口令KToolStripMenuItem";
-            this.更换口令KToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.更换口令KToolStripMenuItem.Text = "修改密码(&K)";
+            this.更换口令KToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.更换口令KToolStripMenuItem.Text = "修改密码(&M)";
             this.更换口令KToolStripMenuItem.Click += new System.EventHandler(this.更换口令KToolStripMenuItem_Click);
             // 
             // 操作员及权限ToolStripMenuItem
             // 
             this.操作员及权限ToolStripMenuItem.Name = "操作员及权限ToolStripMenuItem";
-            this.操作员及权限ToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.操作员及权限ToolStripMenuItem.Text = "操作员及权限(&M)";
+            this.操作员及权限ToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.操作员及权限ToolStripMenuItem.Text = "用户组管理(&O)";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(165, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(151, 6);
             // 
             // 账套参数ToolStripMenuItem
             // 
             this.账套参数ToolStripMenuItem.Name = "账套参数ToolStripMenuItem";
-            this.账套参数ToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.账套参数ToolStripMenuItem.Text = "账套参数(&N)";
+            this.账套参数ToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.账套参数ToolStripMenuItem.Text = "账套参数(&P)";
             this.账套参数ToolStripMenuItem.Click += new System.EventHandler(this.账套参数ToolStripMenuItem_Click);
             // 
             // 打印设置OToolStripMenuItem
             // 
             this.打印设置OToolStripMenuItem.Name = "打印设置OToolStripMenuItem";
-            this.打印设置OToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.打印设置OToolStripMenuItem.Text = "打印设置(&O)";
+            this.打印设置OToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.打印设置OToolStripMenuItem.Text = "打印设置(&Q)";
             // 
             // 系统日志PToolStripMenuItem
             // 
             this.系统日志PToolStripMenuItem.Name = "系统日志PToolStripMenuItem";
-            this.系统日志PToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.系统日志PToolStripMenuItem.Text = "系统日志(&P)";
+            this.系统日志PToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.系统日志PToolStripMenuItem.Text = "系统日志(&R)";
             this.系统日志PToolStripMenuItem.Click += new System.EventHandler(this.系统日志PToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(165, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(151, 6);
             // 
             // dToolStripMenuItem
             // 
@@ -382,6 +384,13 @@
             this.currentTimeLabel.Name = "currentTimeLabel";
             this.currentTimeLabel.Size = new System.Drawing.Size(0, 17);
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(154, 22);
+            this.toolStripMenuItem1.Text = "用户管理(&N)";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -451,5 +460,6 @@
         private System.Windows.Forms.ToolStripMenuItem 打印设置OToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 系统日志PToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }

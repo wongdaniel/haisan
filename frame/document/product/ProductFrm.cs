@@ -10,6 +10,7 @@ using haisan.dao;
 using haisan.util;
 using haisan.domain;
 
+// 因为产品的数据量比较大，删除和修改是否对datagridView全部刷新，未定！！
 namespace haisan.frame.document.product
 {
     public partial class ProductFrm : Form
@@ -148,7 +149,6 @@ namespace haisan.frame.document.product
                 baseDao.deleteEntities("tb_product", ids.ToString());
                 this.Enabled = true;
             }
-
         }
 
         private void refreshTreeView()

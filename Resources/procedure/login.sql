@@ -13,6 +13,7 @@ IF EXISTS (SELECT * FROM tb_user WHERE (username = @username AND password = @pas
 		RETURN -1;
 	END
 	--UPDATE tb_user SET isOnline = 1 WHERE (username = @username AND password = @password)
+	UPDATE tb_user SET lastLoginTime = (select getdate()) WHERE (username = @username AND password = @password)
 	SELECT TOP 1 * FROM tb_user WHERE (username = @username AND password = @password)
 		SET @message = 'µÇÂ¼³É¹¦£¡'
 	RETURN 0

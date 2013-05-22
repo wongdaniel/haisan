@@ -63,6 +63,7 @@
     <Compile Include="dao\BaseDaoImpl.cs" />
     <Compile Include="dao\CategoryDao.cs" />
     <Compile Include="dao\CategoryDaoImpl.cs" />
+    <Compile Include="dao\CommonDaoImpl.cs" />
     <Compile Include="dao\ConfigureDao.cs" />
     <Compile Include="dao\ConfigureDaoImpl.cs" />
     <Compile Include="dao\Database.cs" />
@@ -78,6 +79,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetProduct.xsd</DependentUpon>
     </Compile>
+    <Compile Include="domain\Group.cs" />
     <Compile Include="domain\Product.cs" />
     <Compile Include="domain\Provider.cs" />
     <Compile Include="frame\document\category\AddCategoryFrm.cs">
@@ -124,11 +126,11 @@
     <Compile Include="frame\document\product\ProductFrm.Designer.cs">
       <DependentUpon>ProductFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="frame\system\ChangePwd.cs">
+    <Compile Include="frame\system\ChangePwdFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frame\system\ChangePwd.Designer.cs">
-      <DependentUpon>ChangePwd.cs</DependentUpon>
+    <Compile Include="frame\system\ChangePwdFrm.Designer.cs">
+      <DependentUpon>ChangePwdFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="frame\system\ConfigureFrm.cs">
       <SubType>Form</SubType>
@@ -141,6 +143,18 @@
     </Compile>
     <Compile Include="frame\system\LogFrm.Designer.cs">
       <DependentUpon>LogFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frame\system\user\AddUserFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frame\system\user\AddUserFrm.Designer.cs">
+      <DependentUpon>AddUserFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frame\system\user\UserFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frame\system\user\UserFrm.Designer.cs">
+      <DependentUpon>UserFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginFrm.cs">
       <SubType>Form</SubType>
@@ -182,14 +196,20 @@
     <EmbeddedResource Include="frame\document\product\ProductFrm.resx">
       <DependentUpon>ProductFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frame\system\ChangePwd.resx">
-      <DependentUpon>ChangePwd.cs</DependentUpon>
+    <EmbeddedResource Include="frame\system\ChangePwdFrm.resx">
+      <DependentUpon>ChangePwdFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frame\system\ConfigureFrm.resx">
       <DependentUpon>ConfigureFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frame\system\LogFrm.resx">
       <DependentUpon>LogFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frame\system\user\AddUserFrm.resx">
+      <DependentUpon>AddUserFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frame\system\user\UserFrm.resx">
+      <DependentUpon>UserFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginFrm.resx">
       <DependentUpon>LoginFrm.cs</DependentUpon>
@@ -246,6 +266,7 @@
     <Content Include="Resources\procedure\get_productByQueryStr.sql" />
     <Content Include="Resources\procedure\login.sql" />
     <Content Include="Resources\procedure\sampleOfunique.sql" />
+    <Content Include="Resources\procedure\saveOrUpdate_configure.sql" />
     <Content Include="Resources\procedure\saveOrUpdate_Product.sql" />
     <Content Include="Resources\procedure\saveOrUpdate_table.sql" />
     <Content Include="Resources\procedure\save_categoryOfProduct.sql" />
@@ -256,6 +277,7 @@
     <Content Include="Resources\procedure\update_categoryOfProduct.sql" />
     <Content Include="Resources\procedure\update_categoryOfUnit.sql" />
     <Content Include="Resources\procedure\update_product.sql" />
+    <Content Include="Resources\procedure\update_pwd_user.sql" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />

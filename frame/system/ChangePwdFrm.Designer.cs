@@ -1,6 +1,6 @@
 ﻿namespace haisan.frame.system
 {
-    partial class ChangePwd
+    partial class ChangePwdFrm
     {
         /// <summary>
         /// Required designer variable.

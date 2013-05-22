@@ -18,6 +18,8 @@ namespace haisan.dao
         MessageLocal fillDataGridView(User user, string table, DataGridView dataGridView);
         MessageLocal runProcedure(string procedure, SqlParameter[] prams, string table);
         MessageLocal deleteEntities(string table, string ids);
+
+        //@table is the true table name
         DataSet getAllEntities(string table);
     }
 }

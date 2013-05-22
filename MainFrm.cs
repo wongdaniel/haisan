@@ -14,6 +14,7 @@ using haisan.frame;
 using haisan.frame.document.category;
 using haisan.frame.document.product;
 using haisan.frame.system;
+using haisan.frame.system.user;
 
 namespace haisan
 {
@@ -121,7 +122,7 @@ namespace haisan
             string title = getTitleFromMenuItem(sender);
             logDao.saveLog(Parameter.user, title);
 
-            ChangePwd cpFrm = new ChangePwd();
+            ChangePwdFrm cpFrm = new ChangePwdFrm();
             // conFrm.MdiParent = this;
             cpFrm.Text = title;
             cpFrm.ShowDialog();
@@ -151,6 +152,16 @@ namespace haisan
             {
                 refreshUserStatus();
             }
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string title = getTitleFromMenuItem(sender);
+            logDao.saveLog(Parameter.user, title);
+
+            UserFrm userFrm = new UserFrm();
+            userFrm.Text = title;
+            userFrm.ShowDialog();
         }
     }
 }

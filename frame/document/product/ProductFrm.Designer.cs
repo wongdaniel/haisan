@@ -74,7 +74,7 @@
             // buttonQuery
             // 
             this.buttonQuery.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonQuery.Location = new System.Drawing.Point(304, 44);
+            this.buttonQuery.Location = new System.Drawing.Point(370, 43);
             this.buttonQuery.Name = "buttonQuery";
             this.buttonQuery.Size = new System.Drawing.Size(75, 23);
             this.buttonQuery.TabIndex = 3;
@@ -86,7 +86,7 @@
             // 
             this.textBoxQuery.Location = new System.Drawing.Point(135, 45);
             this.textBoxQuery.Name = "textBoxQuery";
-            this.textBoxQuery.Size = new System.Drawing.Size(144, 21);
+            this.textBoxQuery.Size = new System.Drawing.Size(199, 21);
             this.textBoxQuery.TabIndex = 2;
             // 
             // label2
@@ -123,7 +123,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(672, 38);
             this.panel2.TabIndex = 1;
-            this.panel2.UseWaitCursor = true;
             // 
             // labelStatus
             // 
@@ -134,7 +133,6 @@
             this.labelStatus.Size = new System.Drawing.Size(59, 12);
             this.labelStatus.TabIndex = 6;
             this.labelStatus.Text = "共x条记录";
-            this.labelStatus.UseWaitCursor = true;
             // 
             // buttonImport
             // 
@@ -144,7 +142,6 @@
             this.buttonImport.TabIndex = 5;
             this.buttonImport.Text = "从Excel导入";
             this.buttonImport.UseVisualStyleBackColor = true;
-            this.buttonImport.UseWaitCursor = true;
             // 
             // buttonSaveTable
             // 
@@ -154,7 +151,6 @@
             this.buttonSaveTable.TabIndex = 4;
             this.buttonSaveTable.Text = "表格保存";
             this.buttonSaveTable.UseVisualStyleBackColor = true;
-            this.buttonSaveTable.UseWaitCursor = true;
             this.buttonSaveTable.Click += new System.EventHandler(this.buttonSaveTable_Click);
             // 
             // buttonPrint
@@ -165,7 +161,6 @@
             this.buttonPrint.TabIndex = 3;
             this.buttonPrint.Text = "打印";
             this.buttonPrint.UseVisualStyleBackColor = true;
-            this.buttonPrint.UseWaitCursor = true;
             this.buttonPrint.MouseDown += new System.Windows.Forms.MouseEventHandler(this.buttonPrint_MouseDown);
             // 
             // buttonDel
@@ -176,7 +171,6 @@
             this.buttonDel.TabIndex = 2;
             this.buttonDel.Text = "删除";
             this.buttonDel.UseVisualStyleBackColor = true;
-            this.buttonDel.UseWaitCursor = true;
             this.buttonDel.Click += new System.EventHandler(this.buttonDel_Click);
             // 
             // buttonModify
@@ -187,7 +181,6 @@
             this.buttonModify.TabIndex = 1;
             this.buttonModify.Text = "修改";
             this.buttonModify.UseVisualStyleBackColor = true;
-            this.buttonModify.UseWaitCursor = true;
             this.buttonModify.Click += new System.EventHandler(this.buttonModify_Click);
             // 
             // buttonNew
@@ -198,7 +191,6 @@
             this.buttonNew.TabIndex = 0;
             this.buttonNew.Text = "新增";
             this.buttonNew.UseVisualStyleBackColor = true;
-            this.buttonNew.UseWaitCursor = true;
             this.buttonNew.Click += new System.EventHandler(this.buttonNew_Click);
             // 
             // splitContainer1
@@ -231,11 +223,14 @@
             // 
             // dataGridViewProd
             // 
+            this.dataGridViewProd.AllowUserToAddRows = false;
+            this.dataGridViewProd.AllowUserToDeleteRows = false;
             this.dataGridViewProd.AllowUserToOrderColumns = true;
             this.dataGridViewProd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewProd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewProd.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewProd.Name = "dataGridViewProd";
+            this.dataGridViewProd.ReadOnly = true;
             this.dataGridViewProd.RowTemplate.Height = 23;
             this.dataGridViewProd.Size = new System.Drawing.Size(505, 295);
             this.dataGridViewProd.TabIndex = 0;
@@ -271,6 +266,7 @@
             // 
             // ProductFrm
             // 
+            this.AcceptButton = this.buttonQuery;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(672, 406);

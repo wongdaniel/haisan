@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace haisan.dao
 {
-    class ProductDaoImpl : ProductDao
+    class ProductDaoImpl : CommonDaoImpl, ProductDao  
     {
         private static Database database = Database.getInstance();
         private static BaseDao baseDao = BaseDaoImpl.getInstance();
@@ -51,7 +51,7 @@ namespace haisan.dao
 			};
             try
             {
-                DataSet dataset = database.RunProcReturn("get_productById", prams, "tb_categoryOfProduct", CommandType.StoredProcedure);
+                DataSet dataset = database.RunProcReturn("get_productById", prams, "tb_product", CommandType.StoredProcedure);
                 if (null != dataset && dataset.Tables[0].Rows.Count > 0)
                 {
                     pro.Name = getValue(dataset, "name");
@@ -111,9 +111,6 @@ namespace haisan.dao
             return prams;
         }
 
-        string getValue(DataSet dataset, string name)
-        {
-            return dataset.Tables[0].Rows[0][name].ToString();
-        }
+
     }
 }
