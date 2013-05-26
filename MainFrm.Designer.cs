@@ -48,6 +48,9 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.商品类别TToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.往来单位类型UToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.费用类型VToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.其它ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,9 +74,6 @@
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
             this.currentTimeLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -240,6 +240,27 @@
             this.往来单位类型UToolStripMenuItem.Text = "往来单位类型(&U)";
             this.往来单位类型UToolStripMenuItem.Click += new System.EventHandler(this.往来单位类型UToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(165, 22);
+            this.toolStripMenuItem2.Text = "石材类型(&V)";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(165, 22);
+            this.toolStripMenuItem3.Text = "产品名称(&W)";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(165, 22);
+            this.toolStripMenuItem4.Text = "加工类型(&X)";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
+            // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
@@ -264,19 +285,19 @@
             // 进货订单KToolStripMenuItem
             // 
             this.进货订单KToolStripMenuItem.Name = "进货订单KToolStripMenuItem";
-            this.进货订单KToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.进货订单KToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.进货订单KToolStripMenuItem.Text = "进货订单(&K)";
             // 
             // 进货入单LToolStripMenuItem
             // 
             this.进货入单LToolStripMenuItem.Name = "进货入单LToolStripMenuItem";
-            this.进货入单LToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.进货入单LToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.进货入单LToolStripMenuItem.Text = "进货入单(&L)";
             // 
             // 进货退货MToolStripMenuItem
             // 
             this.进货退货MToolStripMenuItem.Name = "进货退货MToolStripMenuItem";
-            this.进货退货MToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.进货退货MToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.进货退货MToolStripMenuItem.Text = "进货退货(&M)";
             // 
             // 财务VToolStripMenuItem
@@ -397,26 +418,6 @@
             // 
             this.currentTimeLabel.Name = "currentTimeLabel";
             this.currentTimeLabel.Size = new System.Drawing.Size(0, 17);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(165, 22);
-            this.toolStripMenuItem2.Text = "石材类型(&V)";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(165, 22);
-            this.toolStripMenuItem3.Text = "产品名称(&W)";
-            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(165, 22);
-            this.toolStripMenuItem4.Text = "加工类型表&X)";
             // 
             // MainFrm
             // 

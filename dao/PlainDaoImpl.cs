@@ -12,7 +12,7 @@ namespace haisan.dao
     class PlainDaoImpl: CommonDaoImpl, PlainDao
     {
 
-         private static Database database = Database.getInstance();
+        private static Database database = Database.getInstance();
         private static BaseDao baseDao = BaseDaoImpl.getInstance();
 
         private static PlainDaoImpl plainDaoImpl = null;

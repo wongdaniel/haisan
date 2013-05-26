@@ -42,7 +42,7 @@ namespace haisan.frame.document.plain
         {
             AddPlainFrm addFrm = new AddPlainFrm();
             addFrm.Text = "新增" + Text;
-            addFrm.setLabelName(Text + "名称");
+            addFrm.setLabelName(Text);
             addFrm.setTableName(tableName);
 
             addFrm.ShowDialog();
@@ -63,8 +63,8 @@ namespace haisan.frame.document.plain
             AddPlainFrm addFrm = new AddPlainFrm();
             addFrm.setPlainId(int.Parse(dataGridViewPlain.Rows[index].Cells["Id"].Value.ToString()));
             addFrm.setPlainName(dataGridViewPlain.Rows[index].Cells["name"].Value.ToString());
-            addFrm.Text = "修改" + Text +"名称";
-            addFrm.setLabelName(Text + "名称");
+            addFrm.Text = "修改" + Text;
+            addFrm.setLabelName(Text);
             addFrm.setTableName(tableName); 
             addFrm.ShowDialog();
             refreshDataGridView();

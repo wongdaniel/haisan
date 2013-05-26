@@ -17,6 +17,7 @@ using haisan.frame.system;
 using haisan.frame.system.user;
 using haisan.frame.system.group;
 using haisan.frame.document.plain;
+using haisan.frame.document.typeOfProcess;
 
 namespace haisan
 {
@@ -252,6 +253,17 @@ namespace haisan
             plainFrm.setTableName("tb_product_name");
             plainFrm.Text = title;
             plainFrm.Show();
+        }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            string title = getTitleFromMenuItem(sender);
+            logDao.saveLog(Parameter.user, title);
+
+            TypeOfProcessFrm typeFrm = new TypeOfProcessFrm();
+            typeFrm.MdiParent = this;
+            typeFrm.Text = title;
+            typeFrm.Show();
         }
     }
 }

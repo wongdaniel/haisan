@@ -100,7 +100,7 @@ namespace haisan.frame.system.user
             textBoxPhone.Text = user.Phone;
             checkBoxIsLock.Checked = user.IsLock;
             textBoxDescription.Text = user.Description;
-            comboBoxGroup.SelectedIndex = comboBoxGroup.FindString(user.Group.Name); ;
+            comboBoxGroup.SelectedIndex = comboBoxGroup.FindString(user.Group.Name); 
         }
 
         private void clearFieds()

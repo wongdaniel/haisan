@@ -78,6 +78,8 @@
     <Compile Include="dao\ProductDao.cs" />
     <Compile Include="dao\ProductDaoImpl.cs" />
     <Compile Include="dao\SessionFactory.cs" />
+    <Compile Include="dao\TypeOfProcessDao.cs" />
+    <Compile Include="dao\TypeOfProcessDaoImpl.cs" />
     <Compile Include="dao\UserDao.cs" />
     <Compile Include="dao\UserDaoImpl.cs" />
     <Compile Include="DataSetProduct.Designer.cs">
@@ -91,6 +93,7 @@
     <Compile Include="domain\Plain.cs" />
     <Compile Include="domain\Product.cs" />
     <Compile Include="domain\Provider.cs" />
+    <Compile Include="domain\TypeOfProcess.cs" />
     <Compile Include="frame\document\category\AddCategoryFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +149,18 @@
     </Compile>
     <Compile Include="frame\document\product\ProductFrm.Designer.cs">
       <DependentUpon>ProductFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frame\document\typeOfProcess\AddTypeOfProcessFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frame\document\typeOfProcess\AddTypeOfProcessFrm.Designer.cs">
+      <DependentUpon>AddTypeOfProcessFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frame\document\typeOfProcess\TypeOfProcessFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frame\document\typeOfProcess\TypeOfProcessFrm.Designer.cs">
+      <DependentUpon>TypeOfProcessFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="frame\system\ChangePwdFrm.cs">
       <SubType>Form</SubType>
@@ -243,6 +258,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frame\document\product\ProductFrm.resx">
       <DependentUpon>ProductFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frame\document\typeOfProcess\AddTypeOfProcessFrm.resx">
+      <DependentUpon>AddTypeOfProcessFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frame\document\typeOfProcess\TypeOfProcessFrm.resx">
+      <DependentUpon>TypeOfProcessFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frame\system\ChangePwdFrm.resx">
       <DependentUpon>ChangePwdFrm.cs</DependentUpon>
