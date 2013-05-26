@@ -38,6 +38,8 @@ namespace haisan.frame.document.product
         {
             labelTitle.Left = (this.Width - labelTitle.Width) / 2;
 
+            if (!buttonQuery.Enabled)
+                return;
             DateTime begin = DateTime.Now;
             //fill the category of product to tree view
             refreshTreeView();
@@ -78,21 +80,6 @@ namespace haisan.frame.document.product
         private void ProductFrm_SizeChanged(object sender, EventArgs e)
         {
             labelTitle.Left = (this.Width - labelTitle.Width) / 2;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            int i = 0;
-            string name = "";
-            for (i = 0; i < dataGridViewProd.Columns.Count; i++)
-            {
-                name += dataGridViewProd.Columns[i].HeaderText + "[" + dataGridViewProd.Columns[i].Width+ "],";
-            }
-            MessageBox.Show(name);
-
-            MessageBox.Show(dataGridViewProd.Columns[0].DisplayIndex.ToString());
-            dataGridViewProd.Columns[0].DisplayIndex += 1;
-            dataGridViewProd.Columns[0].Width += 50;
         }
 
         private void buttonSaveTable_Click(object sender, EventArgs e)
@@ -167,12 +154,14 @@ namespace haisan.frame.document.product
             dataset = productDao.getAllProduct(textBoxQuery.Text, categoryId);
             dataGridViewProd.DataSource = dataset.Tables[0].DefaultView;
             labelStatus.Text = "共" + dataset.Tables[1].Rows[0]["total"].ToString() + "条记录";
+            Console.WriteLine("product:" + labelStatus.Text);
         }
 
         private void treeViewCategory_AfterSelect(object sender, TreeViewEventArgs e)
         {
             categoryId = ((Category)e.Node.Tag).Id;
-            buttonQuery_Click(null, null);
+            if(buttonQuery.Enabled )
+                buttonQuery_Click(null, null);
         }
 
         private void treeViewCategory_Leave(object sender, EventArgs e)
@@ -212,6 +201,66 @@ namespace haisan.frame.document.product
             ccrp.SetDataSource(dataset.Tables[0]);
             CReprotFrm crfrm = new CReprotFrm(ccrp);
             crfrm.Show();
+        }
+
+        public void initPermission(User user)
+        {
+            disableAllComponent();
+            Dictionary<Module, Permission> permissions = user.Group.Permissions;
+            checkPermissionOfProudct(permissions, Parameter.MODULE_DOC);
+        }
+
+
+        private void checkPermissionOfProudct(Dictionary<Module, Permission> permissions, String module)
+        {
+            Permission per = permissions[new Module(module)];
+            if (Parameter.CHECKED == per.Query)
+            {
+                Console.WriteLine("Open permission of ProductFrm : " + buttonQuery.Text);
+                buttonQuery.Enabled = true;
+            }
+
+            if (Parameter.CHECKED == per.Add)
+            {
+                Console.WriteLine("Open permission of ProductFrm : " + buttonNew.Text);
+                buttonNew.Enabled = true;
+                buttonImport.Enabled = true;
+            }
+
+            if (Parameter.CHECKED == per.Modify)
+            {
+                Console.WriteLine("Open permission of ProductFrm : " + buttonModify.Text);
+                buttonModify.Enabled = true;
+            }
+
+            if (Parameter.CHECKED == per.Delete)
+            {
+                Console.WriteLine("Open permission of ProductFrm : " + buttonDel.Text);
+                buttonDel.Enabled = true;
+            }
+
+            if (Parameter.CHECKED == per.SaveTable)
+            {
+                Console.WriteLine("Open permission of ProductFrm : " + buttonSaveTable.Text);
+                buttonSaveTable.Enabled = true;
+            }
+
+            if (Parameter.CHECKED == per.Print)
+            {
+                Console.WriteLine("Open permission of ProductFrm : " + buttonPrint.Text);
+                buttonPrint.Enabled = true;
+            }
+        }
+
+        private void disableAllComponent()
+        {
+            buttonQuery.Enabled = false;
+            buttonNew.Enabled = false;
+            buttonModify.Enabled = false;
+            buttonDel.Enabled = false;
+            buttonSaveTable.Enabled = false;
+            buttonPrint.Enabled = false;
+            buttonImport.Enabled = false;
         }
     }
 }

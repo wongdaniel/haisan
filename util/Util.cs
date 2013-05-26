@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Drawing.Imaging;
+using System.Windows.Forms;
 
 namespace haisan.util
 {
@@ -64,5 +65,19 @@ namespace haisan.util
             return (input >= '0' && input <= '9') || input == '.' || input == 8;
         }
      
+        public static string constructIds(DataGridView dataGridView)
+        {
+            StringBuilder ids = new StringBuilder();
+            foreach (DataGridViewRow row in dataGridView.SelectedRows)
+            {
+                ids.Append(row.Cells["Id"].Value + ",");
+            }
+
+            if (ids.Length > 0)
+                ids.Remove(ids.Length - 1, 1);
+
+            return ids.ToString();
+        }
+
     }
 }

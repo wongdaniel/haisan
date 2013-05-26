@@ -16,6 +16,8 @@ namespace haisan
     public partial class LoginFrm : Form
     {
         private static UserDao userDao = UserDaoImpl.getInstance();
+        private static GroupDao groupDao = GroupDaoImpl.getInstance();
+
         private bool isOpenMain = true;
 
         public LoginFrm()
@@ -42,12 +44,14 @@ namespace haisan
                 Parameter.user = null;
                 return;
             }
+            user.Group.Permissions = groupDao.getAllPermissions(user.Group);
 
             Parameter.user = user;
 
             if (isOpenMain)
             {
                 MainFrm main = new MainFrm();
+                main.initPermission(Parameter.user);
                 this.Visible = false;
 
                 main.ShowDialog();

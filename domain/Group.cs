@@ -9,11 +9,25 @@ namespace haisan.domain
     {
         private int id;
         private string name;
+        private Dictionary<Module, Permission> permissions = new Dictionary<Module, Permission>();
+
+        internal Dictionary<Module, Permission> Permissions
+        {
+            get { return permissions; }
+            set { permissions = value; }
+        }
 
         public Group()
         {
             name = "";
         }
+
+        public Group(int id)
+        {
+            this.id = id;
+            name = "";
+        }
+
         public Group(string name)
         {
             this.name = name;
@@ -40,6 +54,5 @@ namespace haisan.domain
         {
             return name;
         }
-        
     }
 }

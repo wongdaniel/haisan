@@ -32,6 +32,7 @@
             this.系统SToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.重新登录LToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.更换口令KToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.操作员及权限ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.账套参数ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,7 +71,9 @@
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
             this.currentTimeLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -123,11 +126,19 @@
             this.更换口令KToolStripMenuItem.Text = "修改密码(&M)";
             this.更换口令KToolStripMenuItem.Click += new System.EventHandler(this.更换口令KToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(154, 22);
+            this.toolStripMenuItem1.Text = "用户管理(&N)";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
             // 操作员及权限ToolStripMenuItem
             // 
             this.操作员及权限ToolStripMenuItem.Name = "操作员及权限ToolStripMenuItem";
             this.操作员及权限ToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.操作员及权限ToolStripMenuItem.Text = "用户组管理(&O)";
+            this.操作员及权限ToolStripMenuItem.Click += new System.EventHandler(this.操作员及权限ToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -170,6 +181,9 @@
             this.toolStripSeparator3,
             this.商品类别TToolStripMenuItem,
             this.往来单位类型UToolStripMenuItem,
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3,
+            this.toolStripMenuItem4,
             this.toolStripSeparator4,
             this.费用类型VToolStripMenuItem});
             this.dToolStripMenuItem.Name = "dToolStripMenuItem";
@@ -235,7 +249,7 @@
             // 
             this.费用类型VToolStripMenuItem.Name = "费用类型VToolStripMenuItem";
             this.费用类型VToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.费用类型VToolStripMenuItem.Text = "费用类型(&V)";
+            this.费用类型VToolStripMenuItem.Text = "费用类型";
             // 
             // 其它ToolStripMenuItem
             // 
@@ -384,12 +398,25 @@
             this.currentTimeLabel.Name = "currentTimeLabel";
             this.currentTimeLabel.Size = new System.Drawing.Size(0, 17);
             // 
-            // toolStripMenuItem1
+            // toolStripMenuItem2
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(154, 22);
-            this.toolStripMenuItem1.Text = "用户管理(&N)";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(165, 22);
+            this.toolStripMenuItem2.Text = "石材类型(&V)";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(165, 22);
+            this.toolStripMenuItem3.Text = "产品名称(&W)";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(165, 22);
+            this.toolStripMenuItem4.Text = "加工类型表&X)";
             // 
             // MainFrm
             // 
@@ -461,5 +488,8 @@
         private System.Windows.Forms.ToolStripMenuItem 系统日志PToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
     }
 }

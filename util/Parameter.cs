@@ -19,5 +19,38 @@ namespace haisan.util
         public static readonly string COMPANY_PHONE = "company_phone";
         public static readonly string COMPANY_POSTAL_CODE = "company_postal_code";
         public static readonly string COMPANY_ADDRESS = "company_address";
+
+        //
+        public static readonly string SUPER_ADMISTRATOR = "超级管理员";
+
+
+
+
+        //For 权限管理， 通过游标打印tb_module 自动生成代码
+        public static readonly string MODULE_DEPARMENT = "module_deparment";//部门资料
+        public static readonly string MODULE_PROVIDER = "module_provider";//供应商资料
+        public static readonly string MODULE_EMPLOYEE = "module_employee";//员工资料
+        public static readonly string MODULE_STOREHOUSE = "module_storehouse";//仓库资料
+        public static readonly string MODULE_DOC = "module_doc";//商品资料
+        public static readonly string MODULE_STOCK = "module_stock";//期初库存
+        public static readonly string MODULE_RELOGIN = "module_relogin";//重新登录
+        public static readonly string MODULE_CHGPWD = "module_chgpwd";//修改密码
+        public static readonly string MODULE_CONFIGURE = "module_configure";//账套参数
+        public static readonly string MODULE_USER_MGR = "module_user_mgr";//用户管理
+        public static readonly string MODULE_GROUP_MGR = "module_group_mgr";//用户组管理
+        public static readonly string MODULE_DELIVER_GOODS = "module_deliver_goods";//销售出库单
+        public static readonly string MODULE_REJECT_GOODS = "module_reject_goods";//销售退货单
+        public static readonly string MODULE_ORDER_GOODS = "module_order_goods";//销售订货单
+        public static readonly string MODULE_CATE_PROD = "module_cate_prod";//商品类型
+        public static readonly string MODULE_CATE_PRD = "module_cate_prd";//往来单位类型
+        public static readonly string MODULE_CATE_STONE = "module_cate_stone";//石材类型
+        public static readonly string MDOULE_NAME_PROD = "mdoule_name_prod";//产品名称
+
+
+        public static readonly short UNCHECKED = 0;
+        public static readonly short CHECKED = 1;
+        public static readonly short INDETERMINATE = 2;
+        
+
     }
 }

@@ -15,6 +15,8 @@ using haisan.frame.document.category;
 using haisan.frame.document.product;
 using haisan.frame.system;
 using haisan.frame.system.user;
+using haisan.frame.system.group;
+using haisan.frame.document.plain;
 
 namespace haisan
 {
@@ -81,10 +83,9 @@ namespace haisan
 
             ProductFrm docFrm = new ProductFrm();
             docFrm.MdiParent = this;
+            docFrm.initPermission(Parameter.user);
             docFrm.Text = title;
             docFrm.Show();
-
-            
         }
 
         private string getTitleFromMenuItem(object sender)
@@ -162,6 +163,95 @@ namespace haisan
             UserFrm userFrm = new UserFrm();
             userFrm.Text = title;
             userFrm.ShowDialog();
+        }
+
+        private void 操作员及权限ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string title = getTitleFromMenuItem(sender);
+            logDao.saveLog(Parameter.user, title);
+
+            GroupFrm grpFrm = new GroupFrm();
+            grpFrm.Text = title;
+            grpFrm.ShowDialog();
+        }
+
+        public void initPermission(User user)
+        {
+           disableAllComponent();
+           Dictionary<Module, Permission> permissions = user.Group.Permissions;
+
+           checkPermissionOfMenuItem(permissions, Parameter.MODULE_RELOGIN, 重新登录LToolStripMenuItem);
+           checkPermissionOfMenuItem(permissions, Parameter.MODULE_CHGPWD, 更换口令KToolStripMenuItem);
+           checkPermissionOfMenuItem(permissions, Parameter.MODULE_USER_MGR, toolStripMenuItem1);
+           checkPermissionOfMenuItem(permissions, Parameter.MODULE_GROUP_MGR, 操作员及权限ToolStripMenuItem);
+           checkPermissionOfMenuItem(permissions, Parameter.MODULE_CONFIGURE, 账套参数ToolStripMenuItem);
+
+           checkPermissionOfMenuItem(permissions, Parameter.MODULE_DOC, ProductOToolStripMenuItem);
+           checkPermissionOfMenuItem(permissions, Parameter.MODULE_PROVIDER, companyPToolStripMenuItem);
+           checkPermissionOfMenuItem(permissions,Parameter.MODULE_EMPLOYEE, 员工资料RToolStripMenuItem);
+           checkPermissionOfMenuItem(permissions, Parameter.MODULE_STOREHOUSE, 仓库资料SToolStripMenuItem);
+           checkPermissionOfMenuItem(permissions, Parameter.MODULE_DEPARMENT, 部门资料QToolStripMenuItem);
+
+           checkPermissionOfMenuItem(permissions, Parameter.MODULE_CATE_PROD, 商品类别TToolStripMenuItem);
+           checkPermissionOfMenuItem(permissions, Parameter.MODULE_CATE_PRD, 往来单位类型UToolStripMenuItem);
+           checkPermissionOfMenuItem(permissions, Parameter.MODULE_CATE_STONE, toolStripMenuItem2);
+           checkPermissionOfMenuItem(permissions, Parameter.MDOULE_NAME_PROD, toolStripMenuItem3);
+        }
+
+        public void disableAllComponent()
+        {
+            Console.WriteLine("Close all Component");
+            重新登录LToolStripMenuItem.Enabled = false;
+            更换口令KToolStripMenuItem.Enabled = false;
+            toolStripMenuItem1.Enabled = false;
+            操作员及权限ToolStripMenuItem.Enabled = false;
+            账套参数ToolStripMenuItem.Enabled = false;
+
+            ProductOToolStripMenuItem.Enabled = false;
+            companyPToolStripMenuItem.Enabled = false;
+            员工资料RToolStripMenuItem.Enabled = false;
+            仓库资料SToolStripMenuItem.Enabled = false;
+            部门资料QToolStripMenuItem.Enabled = false;
+
+            商品类别TToolStripMenuItem.Enabled = false;
+            往来单位类型UToolStripMenuItem.Enabled = false;
+            toolStripMenuItem2.Enabled = false;
+            toolStripMenuItem3.Enabled = false;
+        }
+
+        private void checkPermissionOfMenuItem(Dictionary<Module, Permission> permissions,
+    String module, ToolStripMenuItem menuItem)
+        {
+            Permission per = permissions[new Module(module)];
+            if (Parameter.CHECKED == per.Run)
+            {
+                Console.WriteLine("Open permission : " + menuItem.Text);
+                menuItem.Enabled = true;
+            }
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            string title = getTitleFromMenuItem(sender);
+            logDao.saveLog(Parameter.user, title);
+
+            PlainFrm plainFrm = new PlainFrm();
+            plainFrm.MdiParent = this;
+            plainFrm.setTableName("tb_category_stone");
+            plainFrm.Text = title;
+            plainFrm.Show();
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            string title = getTitleFromMenuItem(sender);
+            logDao.saveLog(Parameter.user, title);
+
+            PlainFrm plainFrm = new PlainFrm();
+            plainFrm.MdiParent = this;
+            plainFrm.setTableName("tb_product_name");
+            plainFrm.Text = title;
+            plainFrm.Show();
         }
     }
 }

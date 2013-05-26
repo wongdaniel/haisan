@@ -50,7 +50,7 @@ namespace haisan.dao
                 user.Id = int.Parse(dataset.Tables[0].Rows[0]["id"].ToString());
                 user.Email = dataset.Tables[0].Rows[0]["email"].ToString();
                 user.Phone = dataset.Tables[0].Rows[0]["phone"].ToString();
-
+                user.Group = new Group(int.Parse(getValue(dataset, "group")), getValue(dataset, "group_name"));
                 msg.IsSucess = true;
             }
              msg.Message = prams[2].Value.ToString();
