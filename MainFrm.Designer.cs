@@ -74,6 +74,7 @@
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
             this.currentTimeLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -92,7 +93,7 @@
             this.帮助ZToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(881, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(930, 25);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -184,6 +185,7 @@
             this.toolStripMenuItem2,
             this.toolStripMenuItem3,
             this.toolStripMenuItem4,
+            this.toolStripMenuItem5,
             this.toolStripSeparator4,
             this.费用类型VToolStripMenuItem});
             this.dToolStripMenuItem.Name = "dToolStripMenuItem";
@@ -285,19 +287,20 @@
             // 进货订单KToolStripMenuItem
             // 
             this.进货订单KToolStripMenuItem.Name = "进货订单KToolStripMenuItem";
-            this.进货订单KToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.进货订单KToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.进货订单KToolStripMenuItem.Text = "进货订单(&K)";
+            this.进货订单KToolStripMenuItem.Click += new System.EventHandler(this.进货订单KToolStripMenuItem_Click);
             // 
             // 进货入单LToolStripMenuItem
             // 
             this.进货入单LToolStripMenuItem.Name = "进货入单LToolStripMenuItem";
-            this.进货入单LToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.进货入单LToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.进货入单LToolStripMenuItem.Text = "进货入单(&L)";
             // 
             // 进货退货MToolStripMenuItem
             // 
             this.进货退货MToolStripMenuItem.Name = "进货退货MToolStripMenuItem";
-            this.进货退货MToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.进货退货MToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.进货退货MToolStripMenuItem.Text = "进货退货(&M)";
             // 
             // 财务VToolStripMenuItem
@@ -339,7 +342,7 @@
             this.toolStripButton2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 25);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(881, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(930, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -373,9 +376,9 @@
             this.toolStripStatusLabel5,
             this.toolStripStatusLabel6,
             this.currentTimeLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 526);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 570);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(881, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(930, 22);
             this.statusStrip1.TabIndex = 6;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -419,11 +422,18 @@
             this.currentTimeLabel.Name = "currentTimeLabel";
             this.currentTimeLabel.Size = new System.Drawing.Size(0, 17);
             // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(165, 22);
+            this.toolStripMenuItem5.Text = "加工图(&Y)";
+            this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
+            // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(881, 548);
+            this.ClientSize = new System.Drawing.Size(930, 592);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -492,5 +502,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
     }
 }

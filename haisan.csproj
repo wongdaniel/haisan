@@ -75,6 +75,8 @@
     <Compile Include="dao\ModuleDaoImpl.cs" />
     <Compile Include="dao\PlainDao.cs" />
     <Compile Include="dao\PlainDaoImpl.cs" />
+    <Compile Include="dao\ProcessingImageDao.cs" />
+    <Compile Include="dao\ProcessingImageDaoImpl.cs" />
     <Compile Include="dao\ProductDao.cs" />
     <Compile Include="dao\ProductDaoImpl.cs" />
     <Compile Include="dao\SessionFactory.cs" />
@@ -91,6 +93,7 @@
     <Compile Include="domain\Module.cs" />
     <Compile Include="domain\Permission.cs" />
     <Compile Include="domain\Plain.cs" />
+    <Compile Include="domain\ProcessingImage.cs" />
     <Compile Include="domain\Product.cs" />
     <Compile Include="domain\Provider.cs" />
     <Compile Include="domain\TypeOfProcess.cs" />
@@ -113,6 +116,12 @@
     </Compile>
     <Compile Include="frame\document\category\ModifyCategoryFrm.Designer.cs">
       <DependentUpon>ModifyCategoryFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frame\document\image\ImageFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frame\document\image\ImageFrm.Designer.cs">
+      <DependentUpon>ImageFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="frame\document\plain\AddPlainFrm.cs">
       <SubType>Form</SubType>
@@ -161,6 +170,12 @@
     </Compile>
     <Compile Include="frame\document\typeOfProcess\TypeOfProcessFrm.Designer.cs">
       <DependentUpon>TypeOfProcessFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frame\pdm\purchase\PurchaseOrderFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frame\pdm\purchase\PurchaseOrderFrm.Designer.cs">
+      <DependentUpon>PurchaseOrderFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="frame\system\ChangePwdFrm.cs">
       <SubType>Form</SubType>
@@ -240,6 +255,9 @@
     <EmbeddedResource Include="frame\document\category\ModifyCategoryFrm.resx">
       <DependentUpon>ModifyCategoryFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frame\document\image\ImageFrm.resx">
+      <DependentUpon>ImageFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frame\document\plain\AddPlainFrm.resx">
       <DependentUpon>AddPlainFrm.cs</DependentUpon>
     </EmbeddedResource>
@@ -264,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frame\document\typeOfProcess\TypeOfProcessFrm.resx">
       <DependentUpon>TypeOfProcessFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frame\pdm\purchase\PurchaseOrderFrm.resx">
+      <DependentUpon>PurchaseOrderFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frame\system\ChangePwdFrm.resx">
       <DependentUpon>ChangePwdFrm.cs</DependentUpon>

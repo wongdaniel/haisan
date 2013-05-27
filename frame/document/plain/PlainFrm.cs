@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using haisan.dao;
 using haisan.util;
+using haisan.frame.pdm.purchase;
 
 namespace haisan.frame.document.plain
 {
@@ -15,11 +16,20 @@ namespace haisan.frame.document.plain
     {
         BaseDao baseDao = BaseDaoImpl.getInstance();
         private string tableName = "";
+       // private PurchaseOrderFrm purFrm = null;
+        private DataGridViewCell dataGridViewCell = null;
 
         public PlainFrm()
         {
             InitializeComponent();
         }
+
+        public PlainFrm(DataGridViewCell dataGridViewCell)
+        {
+            InitializeComponent();
+            this.dataGridViewCell = dataGridViewCell;
+        }
+
 
         private void PlainFrm_Load(object sender, EventArgs e)
         {
@@ -101,6 +111,15 @@ namespace haisan.frame.document.plain
         private void 退出EToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dataGridViewPlain_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (null != dataGridViewCell)
+            {
+                dataGridViewCell.Value = dataGridViewPlain.Rows[e.RowIndex].Cells["name"].Value.ToString();
+                this.Close();
+            }
         }
     }
 }

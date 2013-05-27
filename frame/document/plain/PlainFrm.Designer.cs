@@ -91,6 +91,7 @@
             this.dataGridViewPlain.RowTemplate.Height = 23;
             this.dataGridViewPlain.Size = new System.Drawing.Size(420, 256);
             this.dataGridViewPlain.TabIndex = 1;
+            this.dataGridViewPlain.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPlain_CellDoubleClick);
             // 
             // PlainFrm
             // 
@@ -101,6 +102,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "PlainFrm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PlainFrm";
             this.Load += new System.EventHandler(this.PlainFrm_Load);
             this.menuStrip1.ResumeLayout(false);

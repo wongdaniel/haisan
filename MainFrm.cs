@@ -18,6 +18,8 @@ using haisan.frame.system.user;
 using haisan.frame.system.group;
 using haisan.frame.document.plain;
 using haisan.frame.document.typeOfProcess;
+using haisan.frame.pdm.purchase;
+using haisan.frame.document.image;
 
 namespace haisan
 {
@@ -264,6 +266,28 @@ namespace haisan
             typeFrm.MdiParent = this;
             typeFrm.Text = title;
             typeFrm.Show();
+        }
+
+        private void 进货订单KToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string title = getTitleFromMenuItem(sender);
+            logDao.saveLog(Parameter.user, title);
+
+            PurchaseOrderFrm purFrm = new PurchaseOrderFrm();
+            purFrm.MdiParent = this;
+            purFrm.Text = title;
+            purFrm.Show();
+        }
+
+        private void toolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            string title = getTitleFromMenuItem(sender);
+            logDao.saveLog(Parameter.user, title);
+
+            ImageFrm imageFrm = new ImageFrm();
+            imageFrm.MdiParent = this;
+            imageFrm.Text = title;
+            imageFrm.Show();
         }
     }
 }
