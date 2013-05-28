@@ -7,11 +7,16 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace haisan.util
 {
     class Util
     {
+
+       private static string regexOfLengthOrWidth = "^(0|[1-9][0-9]*|[1-9][0-9]*\\([1-9][0-9]*\\))$";
+       private static string regexOfDigital = "^(0|[1-9][0-9]*)$";
+
        public static byte[] ConvertImage(Image image)
         {
             Bitmap bmp = new Bitmap(image);
@@ -77,6 +82,40 @@ namespace haisan.util
                 ids.Remove(ids.Length - 1, 1);
 
             return ids.ToString();
+        }
+
+        public static bool isLengthOrWidth(string text)
+        {
+            Regex regex = new Regex(regexOfLengthOrWidth);
+            return regex.IsMatch(text);
+        }
+
+        public static bool isDigital(string text)
+        {
+            Regex regex = new Regex(regexOfDigital);
+            return regex.IsMatch(text);
+        }
+
+        //L: length, W: width, T:thickness
+        public static int getValueOfLWT(string next)
+        {
+            int index = next.IndexOf("(");
+            if (-1 != index)
+            {
+                return int.Parse(next.Substring(index + 1, next.IndexOf(")") - index - 1));
+            }
+            return int.Parse(next);
+        }
+
+        //L: length, W: width, T:thickness
+        public static int getValueOfLWT2(string next)
+        {
+            int index = next.IndexOf("(");
+            if (-1 != index)
+            {
+                return int.Parse(next.Substring(0, index - 1));
+            }
+            return int.Parse(next);
         }
 
     }

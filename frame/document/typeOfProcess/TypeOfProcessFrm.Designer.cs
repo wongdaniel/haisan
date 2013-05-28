@@ -89,7 +89,7 @@
             this.dataGridViewTypeOfProcess.RowTemplate.Height = 23;
             this.dataGridViewTypeOfProcess.Size = new System.Drawing.Size(452, 275);
             this.dataGridViewTypeOfProcess.TabIndex = 1;
-            this.dataGridViewTypeOfProcess.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTypeOfProcess_CellContentClick);
+            this.dataGridViewTypeOfProcess.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTypeOfProcess_CellDoubleClick);
             // 
             // TypeOfProcessFrm
             // 
@@ -100,6 +100,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "TypeOfProcessFrm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TypeOfProcess";
             this.Load += new System.EventHandler(this.TypeOfProcessFrm_Load);
             this.menuStrip1.ResumeLayout(false);

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonSaveTable = new System.Windows.Forms.Button();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
@@ -74,7 +75,7 @@
             this.ColumnDiagram2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.ColumnName2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnNumber2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnDiagram3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnDiagram3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.ColumnName3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnNumber3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -86,7 +87,6 @@
             this.ColumnNumberStats = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnUnitPriceStats = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCostStats = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buttonSaveTable = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -120,6 +120,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(888, 102);
             this.panel1.TabIndex = 0;
+            // 
+            // buttonSaveTable
+            // 
+            this.buttonSaveTable.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonSaveTable.Location = new System.Drawing.Point(787, 62);
+            this.buttonSaveTable.Name = "buttonSaveTable";
+            this.buttonSaveTable.Size = new System.Drawing.Size(75, 23);
+            this.buttonSaveTable.TabIndex = 13;
+            this.buttonSaveTable.Text = "表格保存";
+            this.buttonSaveTable.UseVisualStyleBackColor = true;
+            this.buttonSaveTable.Click += new System.EventHandler(this.buttonSaveTable_Click);
             // 
             // textBox6
             // 
@@ -410,6 +421,8 @@
             this.dataGridViewItem.Size = new System.Drawing.Size(888, 212);
             this.dataGridViewItem.TabIndex = 0;
             this.dataGridViewItem.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewItem_CellDoubleClick);
+            this.dataGridViewItem.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridViewItem_CellValidating);
+            this.dataGridViewItem.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewItem_CellValueChanged);
             // 
             // ColumnCategoryStone
             // 
@@ -499,6 +512,8 @@
             // 
             this.ColumnDiagram3.HeaderText = "加工图3";
             this.ColumnDiagram3.Name = "ColumnDiagram3";
+            this.ColumnDiagram3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnDiagram3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // ColumnName3
             // 
@@ -578,17 +593,6 @@
             this.ColumnCostStats.HeaderText = "金额";
             this.ColumnCostStats.Name = "ColumnCostStats";
             // 
-            // buttonSaveTable
-            // 
-            this.buttonSaveTable.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonSaveTable.Location = new System.Drawing.Point(787, 62);
-            this.buttonSaveTable.Name = "buttonSaveTable";
-            this.buttonSaveTable.Size = new System.Drawing.Size(75, 23);
-            this.buttonSaveTable.TabIndex = 13;
-            this.buttonSaveTable.Text = "表格保存";
-            this.buttonSaveTable.UseVisualStyleBackColor = true;
-            this.buttonSaveTable.Click += new System.EventHandler(this.buttonSaveTable_Click);
-            // 
             // PurchaseOrderFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -651,6 +655,13 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridView dataGridViewItemStats;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProcessingName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProcessingDiagram;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnUnitStats;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNumberStats;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnUnitPriceStats;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCostStats;
+        private System.Windows.Forms.Button buttonSaveTable;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCategoryStone;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLength;
@@ -667,16 +678,9 @@
         private System.Windows.Forms.DataGridViewImageColumn ColumnDiagram2;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName2;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNumber2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDiagram3;
+        private System.Windows.Forms.DataGridViewImageColumn ColumnDiagram3;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName3;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNumber3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProcessingName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProcessingDiagram;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnUnitStats;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNumberStats;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnUnitPriceStats;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCostStats;
-        private System.Windows.Forms.Button buttonSaveTable;
 
     }
 }

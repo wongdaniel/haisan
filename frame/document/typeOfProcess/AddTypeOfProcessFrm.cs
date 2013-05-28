@@ -81,8 +81,8 @@ namespace haisan.frame.document.typeOfProcess
 
         private void fillUnits()
         {
-            comboBoxUnit.Items.Add("m");
-            comboBoxUnit.Items.Add("件");
+            comboBoxUnit.Items.Add(Parameter.METER);
+            comboBoxUnit.Items.Add(Parameter.PACKAGE);
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)

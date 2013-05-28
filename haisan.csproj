@@ -171,6 +171,12 @@
     <Compile Include="frame\document\typeOfProcess\TypeOfProcessFrm.Designer.cs">
       <DependentUpon>TypeOfProcessFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="frame\pdm\purchase\BrowseImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frame\pdm\purchase\BrowseImage.Designer.cs">
+      <DependentUpon>BrowseImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="frame\pdm\purchase\PurchaseOrderFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -282,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frame\document\typeOfProcess\TypeOfProcessFrm.resx">
       <DependentUpon>TypeOfProcessFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frame\pdm\purchase\BrowseImage.resx">
+      <DependentUpon>BrowseImage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frame\pdm\purchase\PurchaseOrderFrm.resx">
       <DependentUpon>PurchaseOrderFrm.cs</DependentUpon>

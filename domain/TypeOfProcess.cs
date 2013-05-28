@@ -35,5 +35,12 @@ namespace haisan.domain
             unit = "";
         }
 
+        public TypeOfProcess(int id, string name, string unit)
+        {
+            this.id = id;
+            this.name = name;
+            this.unit = unit;
+        }
+
     }
 }

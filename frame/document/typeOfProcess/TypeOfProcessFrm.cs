@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using haisan.dao;
 using haisan.util;
+using haisan.domain;
 
 namespace haisan.frame.document.typeOfProcess
 {
@@ -16,14 +17,16 @@ namespace haisan.frame.document.typeOfProcess
 
         BaseDao baseDao = BaseDaoImpl.getInstance();
         private string tableName = "tb_typeOfProcess";
+        private DataGridViewCell cell = null;
+
         public TypeOfProcessFrm()
         {
             InitializeComponent();
         }
-
-        private void dataGridViewTypeOfProcess_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        public TypeOfProcessFrm(DataGridViewCell cell)
         {
-            refreshDataGridView();
+            InitializeComponent();
+            this.cell = cell;
         }
 
         private void refreshDataGridView()
@@ -99,6 +102,20 @@ namespace haisan.frame.document.typeOfProcess
         private void 退出EToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dataGridViewTypeOfProcess_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (null != cell)
+            {
+                // 对tag的修改一定要放在对value修改的前面，因为对value的修改，将会触发CellValueChanged事件
+                cell.Tag = new TypeOfProcess(int.Parse(dataGridViewTypeOfProcess.Rows[e.RowIndex].Cells["id"].Value.ToString()),
+                            dataGridViewTypeOfProcess.Rows[e.RowIndex].Cells["name"].Value.ToString(),
+                            dataGridViewTypeOfProcess.Rows[e.RowIndex].Cells["unit"].Value.ToString());
+
+                cell.Value = dataGridViewTypeOfProcess.Rows[e.RowIndex].Cells["name"].Value.ToString();
+                this.Close();
+            }
         }
     }
 }

@@ -10,5 +10,6 @@ namespace haisan.dao
     interface ProcessingImageDao
     {
         MessageLocal saveOrUpdateProcessingImage(ProcessingImage processingImage);
+        LinkedList<ProcessingImage> getAllProcessingImage();
     }
 }

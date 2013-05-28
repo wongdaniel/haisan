@@ -52,5 +52,12 @@ namespace haisan.util
         public static readonly short INDETERMINATE = 2;
         
 
+        public static readonly string SQUARE_METER = "m^2"; //平方米
+        public static readonly string STERE = "m^3"; //立方米
+        public static readonly string METER = "m"; //米
+        public static readonly string PACKAGE = "p"; //件
+
+        public static readonly int NUMBER_MANTISSA = 3;
+
     }
 }

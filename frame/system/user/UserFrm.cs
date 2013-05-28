@@ -27,6 +27,7 @@ namespace haisan.frame.system.user
             labelTitle.Left = (this.Width - labelTitle.Width) / 2;
             dataGridViewUser.DataSource = userDao.getAllUser(textBoxQuery.Text).Tables[0].DefaultView;
             ProductListHeadText();
+     
 
             MessageLocal msg = baseDao.fillDataGridView(Parameter.user, "tb_user", dataGridViewUser);
             if (!msg.IsSucess)
