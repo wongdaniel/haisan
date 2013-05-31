@@ -148,7 +148,7 @@ namespace haisan.frame.document.image
             this.Enabled = false;
             foreach (DataGridViewRow row in dataGridViewImage.Rows)
             {
-                if (isNull(row))
+                if (row.IsNewRow || isNull(row)) // 因为isNewRow是后来才发现的属性，所以原来成功运行的isNull，暂不排除
                 {
                     continue;
                 }

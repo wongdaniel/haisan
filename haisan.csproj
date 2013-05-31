@@ -79,6 +79,8 @@
     <Compile Include="dao\ProcessingImageDaoImpl.cs" />
     <Compile Include="dao\ProductDao.cs" />
     <Compile Include="dao\ProductDaoImpl.cs" />
+    <Compile Include="dao\PurchaseOrderDao.cs" />
+    <Compile Include="dao\PurchaseOrderDaoImpl.cs" />
     <Compile Include="dao\SessionFactory.cs" />
     <Compile Include="dao\TypeOfProcessDao.cs" />
     <Compile Include="dao\TypeOfProcessDaoImpl.cs" />
@@ -89,12 +91,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetProduct.xsd</DependentUpon>
     </Compile>
+    <Compile Include="domain\Base.cs" />
+    <Compile Include="domain\CategoryOfStone.cs" />
+    <Compile Include="domain\Company.cs" />
     <Compile Include="domain\Group.cs" />
     <Compile Include="domain\Module.cs" />
+    <Compile Include="domain\Order.cs" />
+    <Compile Include="domain\OrderItem.cs" />
+    <Compile Include="domain\OrderStats.cs" />
     <Compile Include="domain\Permission.cs" />
     <Compile Include="domain\Plain.cs" />
     <Compile Include="domain\ProcessingImage.cs" />
     <Compile Include="domain\Product.cs" />
+    <Compile Include="domain\ProductName.cs" />
     <Compile Include="domain\Provider.cs" />
     <Compile Include="domain\TypeOfProcess.cs" />
     <Compile Include="frame\document\category\AddCategoryFrm.cs">
@@ -182,6 +191,12 @@
     </Compile>
     <Compile Include="frame\pdm\purchase\PurchaseOrderFrm.Designer.cs">
       <DependentUpon>PurchaseOrderFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frame\pdm\purchase\QueryPurchaseOrderFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frame\pdm\purchase\QueryPurchaseOrderFrm.Designer.cs">
+      <DependentUpon>QueryPurchaseOrderFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="frame\system\ChangePwdFrm.cs">
       <SubType>Form</SubType>
@@ -294,6 +309,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frame\pdm\purchase\PurchaseOrderFrm.resx">
       <DependentUpon>PurchaseOrderFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frame\pdm\purchase\QueryPurchaseOrderFrm.resx">
+      <DependentUpon>QueryPurchaseOrderFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frame\system\ChangePwdFrm.resx">
       <DependentUpon>ChangePwdFrm.cs</DependentUpon>

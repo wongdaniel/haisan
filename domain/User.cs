@@ -25,6 +25,15 @@ namespace haisan.domain
             this.id = id;
         }
 
+        public User(int id, string username)
+        {
+            this.username = username;
+            password = "";
+            isOnline = false;
+            isLock = false;
+            this.id = id;
+        }
+
         public User(string username, string password)
         {
             this.username = username;

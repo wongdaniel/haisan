@@ -19,8 +19,13 @@ namespace haisan.frame.pdm.purchase
     public partial class PurchaseOrderFrm : Form
     {
         private BaseDao baseDao = BaseDaoImpl.getInstance();
+        private PurchaseOrderDao purchaseOrderDao = PurchaseOrderDaoImpl.getInstance();
+
         private static string[] units = { Parameter.SQUARE_METER, Parameter.STERE, Parameter.METER, Parameter.PACKAGE };
         private static readonly string regexIncludeDigital = "^(ColumnName[1-3]|ColumnDiagram[1-3])$";
+        private static readonly string SN_FORMAT = "{0:00000}";
+
+        private int orderID = -1;
 
         public PurchaseOrderFrm()
         {
@@ -32,6 +37,12 @@ namespace haisan.frame.pdm.purchase
         {
             get { return dataGridViewItem; }
             set { dataGridViewItem = value; }
+        }
+
+        public DataGridView DataGridViewItemStats
+        {
+            get { return dataGridViewItemStats; }
+            set { dataGridViewItemStats = value; }
         }
 
         private void initDataGridViewItem()
@@ -77,7 +88,7 @@ namespace haisan.frame.pdm.purchase
             }
             else if (-1 != columnName.IndexOf("ColumnName"))
             {
-                TypeOfProcessFrm typeOfProcessFrm = new TypeOfProcessFrm(dataGridViewItem.Rows[e.RowIndex].Cells[e.ColumnIndex]);
+                TypeOfProcessFrm typeOfProcessFrm = new TypeOfProcessFrm(this, e.ColumnIndex, e.RowIndex);
                 typeOfProcessFrm.Text = "加工类型";
                 typeOfProcessFrm.ShowDialog();
             }
@@ -98,6 +109,9 @@ namespace haisan.frame.pdm.purchase
 
         private void PurchaseOrderFrm_Load(object sender, EventArgs e)
         {
+            labelTitle.Left = (this.Width - labelTitle.Width) / 2;
+            initField();
+
             MessageLocal msg = baseDao.fillDataGridView(Parameter.user, "tb_order_item", dataGridViewItem);
             if (!msg.IsSucess)
             {
@@ -106,9 +120,20 @@ namespace haisan.frame.pdm.purchase
             }
         }
 
+        private void initField()
+        {
+            label1Operator.Text = Parameter.user.Username;
+            label1CreateDate.Text = DateTime.Now.ToShortDateString();
+
+            comboBoxGetStyle.Items.Add(Parameter.GET_CASH);
+            comboBoxGetStyle.Items.Add(Parameter.GET_SIGN);
+
+        }
+
         // 用以验证当前输入的值，是否合法。
         private void dataGridViewItem_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
+            Console.WriteLine("135 of purFrm 触发：dataGridViewItem_CellValidating");
             dataGridViewItem.Rows[e.RowIndex].ErrorText = "";
             if (dataGridViewItem.Rows[e.RowIndex].IsNewRow)
                 return;
@@ -148,6 +173,7 @@ namespace haisan.frame.pdm.purchase
         {
             string columnName = dataGridViewItem.Columns[e.ColumnIndex].Name;
 
+            Console.WriteLine("触发CellValueChanged: " + columnName);
             Regex regex = new Regex(regexIncludeDigital);
             if (regex.IsMatch(columnName))
             {
@@ -160,8 +186,13 @@ namespace haisan.frame.pdm.purchase
                 || columnName.Equals("ColumnThickness") || columnName.Equals("ColumnUnit")){
              //   Console.WriteLine("触发" + columnName);
                 refreshColumnNumber(sender, e, columnName);
+                refreshColumnNumberX(sender, e, "ColumnDiagram1");
+                refreshColumnNumberX(sender, e, "ColumnDiagram2");
+                refreshColumnNumberX(sender, e, "ColumnDiagram3");
             }
 
+            if (columnName.Equals("ColumnPackage") || columnName.Equals("ColumnNumber") || columnName.Equals("ColumnCost"))
+                refreshTotalFiled();
         }
 
         //刷新ColumnNumber[1-3]
@@ -172,7 +203,14 @@ namespace haisan.frame.pdm.purchase
             string diagram = "ColumnDiagram" + index;
             string number = "ColumnNumber" + index;
 
-             if(dataGridViewItem.Rows[e.RowIndex].Cells[name].Tag == null 
+            decimal value = 0;
+            if (-1 == columnName.IndexOf("ColumnName"))
+            {
+                if (Util.isDecimal(getFormattedValue(e, number)))
+                    value = -decimal.Parse(getFormattedValue(e, number));
+            }
+
+             if(null == dataGridViewItem.Rows[e.RowIndex].Cells[name].Tag 
                  || null == dataGridViewItem.Rows[e.RowIndex].Cells[diagram].Tag){
                  dataGridViewItem.Rows[e.RowIndex].Cells[number].Value = 0;
              }else{
@@ -211,6 +249,8 @@ namespace haisan.frame.pdm.purchase
                  {
                      MessageBox.Show("不认识的加工类型", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                  }
+                 value = decimal.Parse(dataGridViewItem.Rows[e.RowIndex].Cells[number].Value.ToString()) + value;
+                 insertIntoStats((TypeOfProcess)dataGridViewItem.Rows[e.RowIndex].Cells[name].Tag, value);
              }
         }
 
@@ -252,9 +292,60 @@ namespace haisan.frame.pdm.purchase
             }
         }
 
+        public void insertIntoStats(TypeOfProcess typeOfProcess, decimal number)
+        {
+            Console.WriteLine("insertIntoStats  number:[" + number + "]");
+
+            bool found = false;
+            foreach (DataGridViewRow row in dataGridViewItemStats.Rows)
+            {
+                if (typeOfProcess.Equals(row.Cells["ColumnProcessingName"].Tag))
+                {
+                    decimal numberStats = 0;
+                    if (Util.isDecimal(row.Cells["ColumnNumberStats"].FormattedValue.ToString()))
+                        numberStats = decimal.Parse(row.Cells["ColumnNumberStats"].FormattedValue.ToString());
+
+                    row.Cells["ColumnNumberStats"].Value = numberStats + number;
+                    Console.WriteLine("278 of purFrm row.Cells[ColumnNumberStats].Value: [" + row.Cells["ColumnNumberStats"].Value.ToString() + "]");
+                    if ("0".Equals(row.Cells["ColumnNumberStats"].Value.ToString()) || "0.0".Equals(row.Cells["ColumnNumberStats"].Value.ToString()))
+                    {
+                        Console.WriteLine("delete row:[" + typeOfProcess.Name+ "]");
+                        dataGridViewItemStats.Rows.Remove(row);
+                        return;
+                    }
+                    found = true;
+                    break;
+                }
+            }
+
+            if(!found){
+                
+              //  row.CreateCells(dataGridViewItemStats);
+                int index = dataGridViewItemStats.Rows.Add();
+                DataGridViewRow row = dataGridViewItemStats.Rows[index];
+
+                row.Cells["ColumnStatsID"].Value = 0;
+                row.Cells["ColumnProcessingName"].Tag = typeOfProcess;
+                row.Cells["ColumnProcessingName"].Value = typeOfProcess.Name.ToString();
+                row.Cells["ColumnProcessingDiagram"].Value = null;
+                row.Cells["ColumnUnitStats"].Value = typeOfProcess.Unit.ToString();
+                row.Cells["ColumnNumberStats"].Value = number.ToString();
+                row.Cells["ColumnUnitPriceStats"].Value = 0;
+                row.Cells["ColumnCostStats"].Value = 0;
+
+           //     dataGridViewItemStats.Rows.Add(row);
+            }
+        }
+
+        // 该方法只能使用在dataGridViewItem上。
         private string getFormattedValue(DataGridViewCellEventArgs e, string columnName)
         {
             return dataGridViewItem.Rows[e.RowIndex].Cells[columnName].FormattedValue.ToString();
+        }
+
+        private string getFormattedValue(DataGridView dataGridView, DataGridViewCellEventArgs e, string columnName)
+        {
+            return dataGridView.Rows[e.RowIndex].Cells[columnName].FormattedValue.ToString();
         }
 
         private decimal computeNumber(string unit, int length, int width, int thickness)
@@ -273,5 +364,313 @@ namespace haisan.frame.pdm.purchase
             }
         }
 
+        private void dataGridViewItemStats_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            string columnName = dataGridViewItemStats.Columns[e.ColumnIndex].Name;
+            if (columnName.Equals("ColumnNumberStats") || columnName.Equals("ColumnUnitPriceStats"))
+            {
+                refreshColumnCostStats(sender, e);
+            }else if(columnName.Equals("ColumnCostStats")){
+                refreshStatsFields();
+            }
+        }
+
+        private void refreshColumnCostStats(object sender, DataGridViewCellEventArgs e)
+        {
+            decimal numberStats = 0, priceStats = 0;
+            numberStats = Util.getDecimalValue(getFormattedValue(dataGridViewItemStats, e, "ColumnNumberStats"));
+            priceStats =   Util.getDecimalValue(getFormattedValue(dataGridViewItemStats, e, "ColumnUnitPriceStats"));
+
+            dataGridViewItemStats.Rows[e.RowIndex].Cells["ColumnCostStats"].Value = 
+                decimal.Round(numberStats * priceStats, Parameter.NUMBER_MANTISSA);
+        }
+
+        private void refreshStatsFields()
+        {
+            decimal sum = 0;
+            foreach (DataGridViewRow row in dataGridViewItemStats.Rows)
+            {
+                sum += Util.getDecimalValue(row.Cells["ColumnCostStats"].FormattedValue.ToString());
+            }
+
+            textBoxProcessing.Text = sum.ToString();
+
+            textBoxTotalCost.Text = (sum + decimal.Parse(textBoxPayment.Text)).ToString();
+        }
+
+        private void refreshTotalFiled()
+        {
+            decimal totalNumber = 0,  totalPayment = 0;
+            int totalPackage = 0;
+            foreach (DataGridViewRow row in dataGridViewItem.Rows)
+            {
+                totalNumber += Util.getDecimalValue(row.Cells["ColumnNumber"].FormattedValue.ToString());
+                totalPackage += Util.getIntValue(row.Cells["ColumnPackage"].FormattedValue.ToString());
+                totalPayment += Util.getDecimalValue(row.Cells["ColumnCost"].FormattedValue.ToString());
+            }
+
+            textBoxTotalNumber.Text = totalNumber.ToString();
+            textBoxTotalPackage.Text = totalPackage.ToString();
+            textBoxPayment.Text = totalPayment.ToString();
+
+            textBoxTotalCost.Text = (decimal.Parse(textBoxProcessing.Text) + decimal.Parse(textBoxPayment.Text)).ToString();
+        }
+
+        private void PurchaseOrderFrm_Resize(object sender, EventArgs e)
+        {
+            labelTitle.Left = (this.Width - labelTitle.Width) / 2;
+        }
+
+        private string constructSN()
+        {
+            string sn = Parameter.SN_PRE;
+            sn += (DateTime.Now.ToString("MMdd",CultureInfo.CreateSpecificCulture("en-us")));
+            sn += string.Format(SN_FORMAT, baseDao.getSequence());
+            Console.WriteLine("425 sn:[" + sn + "]");
+            return sn;
+        }
+
+        private Order getOrder()
+        {
+            Order order = constructOrder();
+            foreach (DataGridViewRow row in dataGridViewItem.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                OrderItem item = constructOrderItem(order, row);
+                order.OrderItems.AddLast(item);
+            }
+
+            foreach (DataGridViewRow row in dataGridViewItemStats.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                OrderStats stats = constructOrderStats(order, row);
+                order.OrderStats.AddLast(stats);
+            }
+
+            return order;
+        }
+
+        private Order constructOrder()
+        {
+            Order order = new Order();
+
+            order.Id = orderID;
+            order.Sn = textBoxSN.Text.ToString();
+            order.Company = new Company(int.Parse(textBoxCompany.Text.ToString())); // 先暂时这样写，以后需要用textbox上的tag直接复制。
+            if (null != comboBoxGetStyle.SelectedItem)
+               order.WayOfPayment = comboBoxGetStyle.SelectedItem.ToString();
+            else
+                order.WayOfPayment = comboBoxGetStyle.Text.ToString();
+            order.Phone = textBoxPhone.Text.ToString();
+            order.CreateDate = DateTime.Now;
+            order.Operatr = (User)label1Operator.Tag;
+            order.TotalNumber = Util.getDecimalValue(textBoxTotalNumber.Text.ToString());
+            order.TotalPackages = Util.getIntValue(textBoxTotalPackage.Text.ToString());
+            order.Payment = Util.getDecimalValue(textBoxPayment.Text.ToString());
+            order.ProcessingCharges = Util.getDecimalValue(textBoxProcessing.Text.ToString());
+            order.TotalCost = Util.getDecimalValue(textBoxTotalCost.Text.ToString());
+            order.AdvancesReceived = Util.getDecimalValue(textBoxAdvanceReceived.Text.ToString());
+            return order;
+        }
+
+        public void fillPurchaseOrderFrm(Order order)
+        {
+            fillOrderOnly(order);
+
+            int index = 0;
+
+            dataGridViewItem.Rows.Clear();
+            foreach (OrderItem item in order.OrderItems)
+            {
+                index = dataGridViewItem.Rows.Add();
+                fillOrderItemRow(item, dataGridViewItem.Rows[index]);
+            }
+
+            dataGridViewItemStats.Rows.Clear();
+            foreach (OrderStats stats in order.OrderStats)
+            {
+                index = dataGridViewItemStats.Rows.Add();
+                fillOrderStatsRow(stats, dataGridViewItemStats.Rows[index]);
+            }
+        }
+
+        private void fillOrderOnly(Order order)
+        {
+            orderID = order.Id;
+            textBoxSN.Text = order.Sn;
+            textBoxCompany.Tag = order.Company;
+            textBoxCompany.Text = order.Company.Name;
+            comboBoxGetStyle.SelectedIndex = comboBoxGetStyle.FindString(order.WayOfPayment); // 如果是任意填写的会咋样？
+            if (-1 == comboBoxGetStyle.SelectedIndex)
+                comboBoxGetStyle.Text = order.WayOfPayment;
+            Console.WriteLine("479 of PurchaseOrderFrm: comboBoxGetStyle.SelectedIndex" + comboBoxGetStyle.SelectedIndex);
+         
+            textBoxPhone.Text = order.Phone;
+            label1CreateDate.Text = order.CreateDate.ToShortDateString();
+            label1Operator.Text = order.Operatr.Username;
+            label1Operator.Tag = order.Operatr;
+
+            textBoxTotalNumber.Text = order.TotalNumber.ToString();
+            textBoxTotalPackage.Text =  order.TotalPackages.ToString();
+            textBoxPayment.Text =  order.Payment.ToString();
+            textBoxProcessing.Text =  order.ProcessingCharges.ToString();
+            textBoxTotalCost.Text = order.TotalCost.ToString();
+            textBoxAdvanceReceived.Text = order.AdvancesReceived.ToString();
+        }
+
+        private OrderItem constructOrderItem(Order order,DataGridViewRow row)
+        {
+            OrderItem item = new OrderItem();
+            item.Id = Util.getIntValue(row.Cells["ColumnItemID"].FormattedValue.ToString());
+            item.Order = order;
+            item.CategoryOfStone = (CategoryOfStone)row.Cells["ColumnCategoryStone"].Tag;
+            item.ProductName = (ProductName)row.Cells["ColumnProductName"].Tag;
+            item.Length = row.Cells["ColumnLength"].Value.ToString();
+            item.Width = row.Cells["ColumnWidth"].Value.ToString();
+            item.Thickness = row.Cells["ColumnThickness"].Value.ToString();
+            item.Package = int.Parse(row.Cells["ColumnPackage"].Value.ToString());
+            item.Unit = row.Cells["ColumnUnit"].FormattedValue.ToString();
+            item.Number = Util.getDecimalValue(row.Cells["ColumnNumber"].Value.ToString());
+            item.UnitPrice = Util.getDecimalValue(row.Cells["ColumnUnitPrice"].Value.ToString());
+            item.Cost = Util.getDecimalValue(row.Cells["ColumnCost"].Value.ToString());
+            item.WorkingDiagram1 = (Image)row.Cells["ColumnDiagram1"].Value;
+            item.WorkingName1 = (TypeOfProcess)row.Cells["ColumnName1"].Tag;
+            item.WorkingNumber1 = Util.getDecimalValue(row.Cells["ColumnNumber1"].Value.ToString());
+            item.WorkingDiagram2 = (Image)row.Cells["ColumnDiagram2"].Value;
+            item.WorkingName2 = (TypeOfProcess)row.Cells["ColumnName2"].Tag;
+            item.WorkingNumber2 = Util.getDecimalValue(row.Cells["ColumnNumber2"].Value.ToString());
+            item.WorkingDiagram3 = (Image)row.Cells["ColumnDiagram3"].Value;
+            item.WorkingName3 = (TypeOfProcess)row.Cells["ColumnName3"].Tag;
+            item.WorkingNumber3 = Util.getDecimalValue(row.Cells["ColumnNumber3"].Value.ToString());
+            return item;
+        }
+
+        private void fillOrderItemRow(OrderItem item, DataGridViewRow row)
+        {
+            row.Cells["ColumnItemID"].Value = item.Id;
+            row.Cells["ColumnCategoryStone"].Tag = item.CategoryOfStone;
+            row.Cells["ColumnCategoryStone"].Value = item.CategoryOfStone.Name;
+            row.Cells["ColumnProductName"].Tag = item.ProductName;
+            row.Cells["ColumnProductName"].Value = item.ProductName.Name;
+
+            row.Cells["ColumnLength"].Value = item.Length;
+            row.Cells["ColumnWidth"].Value = item.Width;
+            row.Cells["ColumnThickness"].Value = item.Thickness;
+            row.Cells["ColumnPackage"].Value = item.Package;
+            row.Cells["ColumnUnit"].Value = item.Unit;
+            row.Cells["ColumnNumber"].Value = item.Number;
+            row.Cells["ColumnUnitPrice"].Value = item.UnitPrice;
+            row.Cells["ColumnCost"].Value = item.Cost;
+
+            row.Cells["ColumnDiagram1"].Value = item.WorkingDiagram1;
+            row.Cells["ColumnName1"].Tag = item.WorkingName1;
+            row.Cells["ColumnName1"].Value = (null == item.WorkingName1 ? "" : item.WorkingName1.Name);
+            row.Cells["ColumnNumber1"].Value = item.WorkingNumber1;
+
+
+            row.Cells["ColumnDiagram2"].Value = item.WorkingDiagram2;
+            row.Cells["ColumnName2"].Tag = item.WorkingName2;
+            row.Cells["ColumnName2"].Value = (null == item.WorkingName2 ? "" : item.WorkingName2.Name);
+            row.Cells["ColumnNumber2"].Value = item.WorkingNumber2;
+
+            row.Cells["ColumnDiagram3"].Value = item.WorkingDiagram3;
+            row.Cells["ColumnName3"].Tag = item.WorkingName3;
+            row.Cells["ColumnName3"].Value = (null == item.WorkingName3 ? "" : item.WorkingName3.Name);
+            row.Cells["ColumnNumber3"].Value = item.WorkingNumber3;
+        }
+
+        private OrderStats constructOrderStats(Order order, DataGridViewRow row)
+        {
+            OrderStats stats = new OrderStats();
+
+            stats.Id = Util.getIntValue(row.Cells["ColumnStatsID"].Value.ToString());
+            stats.Order = order;
+            stats.TypeOfProcess = (TypeOfProcess)row.Cells["ColumnProcessingName"].Tag;
+            stats.Image =(Image)row.Cells["ColumnProcessingDiagram"].Value;
+            stats.Unit = row.Cells["ColumnUnitStats"].Value.ToString();
+            stats.TotalNumber = Util.getDecimalValue(row.Cells["ColumnNumberStats"].Value.ToString());
+            stats.UnitPrice = Util.getDecimalValue(row.Cells["ColumnUnitPriceStats"].Value.ToString());
+            stats.AmountOfMoney = Util.getDecimalValue(row.Cells["ColumnCostStats"].Value.ToString());
+            
+            return stats;
+        }
+
+        private void fillOrderStatsRow(OrderStats stats, DataGridViewRow row)
+        {
+
+            row.Cells["ColumnStatsID"].Value = stats.Id;
+            row.Cells["ColumnProcessingName"].Tag = stats.TypeOfProcess;
+            row.Cells["ColumnProcessingName"].Value = stats.TypeOfProcess.Name;
+            row.Cells["ColumnProcessingDiagram"].Value = stats.Image;
+            row.Cells["ColumnUnitStats"].Value = stats.Unit;
+            row.Cells["ColumnNumberStats"].Value = stats.TotalNumber;
+            row.Cells["ColumnUnitPriceStats"].Value = stats.UnitPrice;
+            row.Cells["ColumnCostStats"].Value = stats.AmountOfMoney;
+        }
+
+        private void 保存订单NToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Enabled = false;
+            textBoxSN.Text = constructSN();
+            MessageLocal msg = purchaseOrderDao.saveOrUpdatePurchaseOrder(getOrder());
+            if (!msg.IsSucess)
+            {
+                MessageBox.Show(msg.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            Console.WriteLine("526 purchase msg.Message: " + msg.Message);
+            this.Enabled = true;
+        }
+
+        private void 查询订单QToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            QueryPurchaseOrderFrm queryFrm = new QueryPurchaseOrderFrm(this);
+            queryFrm.Text = "查询订单";
+            queryFrm.ShowDialog();
+        }
+
+        public void disableCellValueChanged()
+        {
+            this.dataGridViewItem.CellValueChanged -= new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewItem_CellValueChanged);
+            this.dataGridViewItemStats.CellValueChanged -= new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewItemStats_CellValueChanged);
+        }
+
+        public void enableCellValueChanged()
+        {
+            this.dataGridViewItem.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewItem_CellValueChanged);
+            this.dataGridViewItemStats.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewItemStats_CellValueChanged);
+        }
+
+        private void 新增订单NToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            clearAllField();
+        }
+
+        private void clearAllField()
+        {
+
+            orderID = -1;
+            textBoxSN.Text = "";
+            textBoxCompany.Tag = null;
+            textBoxCompany.Text = "";
+            comboBoxGetStyle.SelectedIndex = -1;
+            comboBoxGetStyle.Text = "";
+
+            textBoxPhone.Text = "";
+            label1CreateDate.Text = "";
+            label1Operator.Text = Parameter.user.Name;
+            label1Operator.Tag = Parameter.user;
+
+            textBoxTotalNumber.Text = "0";
+            textBoxTotalPackage.Text = "0";
+            textBoxPayment.Text = "0";
+            textBoxProcessing.Text = "0";
+            textBoxTotalCost.Text = "0";
+            textBoxAdvanceReceived.Text = "0";
+
+            dataGridViewItem.Rows.Clear();
+            dataGridViewItemStats.Rows.Clear();
+        }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace haisan.domain
 {
-    class TypeOfProcess
+    public class TypeOfProcess
     {
         private int id;
 
@@ -40,6 +40,20 @@ namespace haisan.domain
             this.id = id;
             this.name = name;
             this.unit = unit;
+        }
+
+        public override bool Equals(Object typeOfProcess)
+        {
+            TypeOfProcess pro = typeOfProcess as TypeOfProcess;
+            if (null == pro)
+                return false;
+
+            return this.id == pro.id;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
 
     }

@@ -158,10 +158,38 @@ namespace haisan.dao
             return msg;
         }
 
+        // 在传入table参数的时候，记得runProcedu自动在table前面加了tb_前缀。
+        public MessageLocal runProcedureTran(string procedure, SqlParameter[] prams, string table, SqlTransaction sqlTran)
+        {
+            MessageLocal msg = new MessageLocal();
+            DataSet dataset = database.RunProcReturnTran(procedure, prams, "tb_" + table, CommandType.StoredProcedure, sqlTran);
+
+            if ("0".Equals(prams[prams.Length - 1].Value.ToString()))
+            {
+                msg.IsSucess = true;
+            }
+            msg.Message = prams[prams.Length - 2].Value.ToString();
+
+            return msg;
+        }
+
         public DataSet getAllEntities(string table)
         {
             string sql = "SELECT * FROM " + table;
             return database.RunProcReturn(sql, table);
+        }
+
+        public int getSequence()
+        {
+            SqlParameter[] prams = {
+                                   new SqlParameter("rval", SqlDbType.Int, 4)};
+
+            prams[0].Direction = ParameterDirection.ReturnValue;
+
+            DataSet dataset = database.RunProcReturn("get_sequence", prams, "tb_sequence", CommandType.StoredProcedure);
+        //    database.RunProc("get_sequence", prams, CommandType.StoredProcedure);
+
+            return  int.Parse(prams[prams.Length - 1].Value.ToString());
         }
     }
 }

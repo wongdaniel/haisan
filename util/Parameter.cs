@@ -59,5 +59,13 @@ namespace haisan.util
 
         public static readonly int NUMBER_MANTISSA = 3;
 
+
+        //提货方式
+        public static readonly string GET_CASH = "现金提货";
+        public static readonly string GET_SIGN = "签字提货";
+
+        //订单编码前缀
+        public static readonly string SN_PRE = "HS";
+
     }
 }

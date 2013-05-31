@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using haisan.dao;
 using haisan.util;
 using haisan.frame.pdm.purchase;
+using haisan.domain;
 
 namespace haisan.frame.document.plain
 {
@@ -117,7 +118,15 @@ namespace haisan.frame.document.plain
         {
             if (null != dataGridViewCell)
             {
+                if ("tb_category_stone".Equals(tableName))
+                    dataGridViewCell.Tag = new CategoryOfStone(int.Parse(dataGridViewPlain.Rows[e.RowIndex].Cells["id"].Value.ToString()),
+                        dataGridViewPlain.Rows[e.RowIndex].Cells["name"].Value.ToString());
+                else if ("tb_product_name".Equals(tableName))
+                    dataGridViewCell.Tag = new ProductName(int.Parse(dataGridViewPlain.Rows[e.RowIndex].Cells["id"].Value.ToString()),
+                        dataGridViewPlain.Rows[e.RowIndex].Cells["name"].Value.ToString());
+
                 dataGridViewCell.Value = dataGridViewPlain.Rows[e.RowIndex].Cells["name"].Value.ToString();
+
                 this.Close();
             }
         }

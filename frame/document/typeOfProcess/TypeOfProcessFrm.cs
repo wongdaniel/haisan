@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using haisan.dao;
 using haisan.util;
 using haisan.domain;
+using haisan.frame.pdm.purchase;
 
 namespace haisan.frame.document.typeOfProcess
 {
@@ -17,16 +18,20 @@ namespace haisan.frame.document.typeOfProcess
 
         BaseDao baseDao = BaseDaoImpl.getInstance();
         private string tableName = "tb_typeOfProcess";
-        private DataGridViewCell cell = null;
+        private int columnIndex = -1;
+        private int rowIndex = -1;
+        private PurchaseOrderFrm purFrm = null;
 
         public TypeOfProcessFrm()
         {
             InitializeComponent();
         }
-        public TypeOfProcessFrm(DataGridViewCell cell)
+        public TypeOfProcessFrm(PurchaseOrderFrm purFrm, int columnIndex, int rowIndex)
         {
             InitializeComponent();
-            this.cell = cell;
+            this.columnIndex = columnIndex;
+            this.rowIndex = rowIndex;
+            this.purFrm = purFrm;
         }
 
         private void refreshDataGridView()
@@ -106,12 +111,23 @@ namespace haisan.frame.document.typeOfProcess
 
         private void dataGridViewTypeOfProcess_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            DataGridViewCell cell = purFrm.DataGridViewItem.Rows[rowIndex].Cells[columnIndex];
             if (null != cell)
             {
-                // 对tag的修改一定要放在对value修改的前面，因为对value的修改，将会触发CellValueChanged事件
-                cell.Tag = new TypeOfProcess(int.Parse(dataGridViewTypeOfProcess.Rows[e.RowIndex].Cells["id"].Value.ToString()),
+                TypeOfProcess typeOfProcess = new TypeOfProcess(int.Parse(dataGridViewTypeOfProcess.Rows[e.RowIndex].Cells["id"].Value.ToString()),
                             dataGridViewTypeOfProcess.Rows[e.RowIndex].Cells["name"].Value.ToString(),
                             dataGridViewTypeOfProcess.Rows[e.RowIndex].Cells["unit"].Value.ToString());
+                if (null != cell.Tag)
+                {
+                    string columnName = purFrm.DataGridViewItem.Columns[columnIndex].Name;
+                    int index = int.Parse(columnName.Substring(columnName.Length - 1, 1));
+                    string number = "ColumnNumber" + index;
+                    purFrm.insertIntoStats((TypeOfProcess)cell.Tag,
+                        -decimal.Parse(purFrm.DataGridViewItem.Rows[rowIndex].Cells[number].Value.ToString()));
+                }
+
+                // 对tag的修改一定要放在对value修改的前面，因为对value的修改，将会触发CellValueChanged事件
+                cell.Tag = typeOfProcess;
 
                 cell.Value = dataGridViewTypeOfProcess.Rows[e.RowIndex].Cells["name"].Value.ToString();
                 this.Close();

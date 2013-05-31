@@ -118,5 +118,35 @@ namespace haisan.util
             return int.Parse(next);
         }
 
+        public static int getIntValue(string str)
+        {
+            int value;
+            if(int.TryParse(str,out value))
+                return value;
+            return 0;
+        }
+
+        public static decimal getDecimalValue(string str)
+        {
+            decimal  value;
+            if (decimal.TryParse(str, out value))
+                return value;
+            return 0;
+        }
+
+        public static void showError(string message)
+        {
+            MessageBox.Show(message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public static void showWarning(string message)
+        {
+            MessageBox.Show(message, "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        public static void showInformation(string message)
+        {
+            MessageBox.Show(message, "信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

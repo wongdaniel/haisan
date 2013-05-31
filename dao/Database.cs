@@ -117,7 +117,7 @@ namespace haisan.dao
 
         #region 将命令文本添加到SqlDataAdapter
 
-        private SqlCommand CreateCommand(string procName, SqlParameter[] prams)
+        public SqlCommand CreateCommand(string procName, SqlParameter[] prams)
         {
             return CreateCommand(procName, prams, CommandType.Text);
         }
@@ -127,7 +127,7 @@ namespace haisan.dao
         /// <param name="procName">命令文本</param>
         /// <param name="prams"命令文本所需参数</param>
         /// <returns>返回SqlCommand对象</returns>
-        private SqlCommand CreateCommand(string procName, SqlParameter[] prams, CommandType ct)
+        public SqlCommand CreateCommand(string procName, SqlParameter[] prams, CommandType ct)
         {
             if (null == SessionFactory.getConnection()) return null;
 
@@ -217,5 +217,101 @@ namespace haisan.dao
             return dap;//返回桥接器对象
         }
         #endregion
+
+
+
+
+        //以下函数，数据库连接将不自动关闭，且提供事务支持
+
+        public DataSet RunProcReturnTran(string procName, SqlParameter[] prams, string tbName, SqlTransaction sqlLevel)
+        {
+            return RunProcReturnTran(procName, prams, tbName, CommandType.Text, sqlLevel);
+        }
+
+        public DataSet RunProcReturnTran(string procName, string tbName, CommandType ct, SqlTransaction sqlLevel)
+        {
+            SqlDataAdapter dap = CreateDataAdaper(procName, null, ct, sqlLevel);//创建桥接器对象
+            if (null == dap) return null;
+
+            DataSet ds = new DataSet();//创建数据集对象
+            dap.Fill(ds, tbName);//填充数据集
+            return ds;//返回数据集
+        }
+
+        public DataSet RunProcReturnTran(string procName, SqlParameter[] prams, string tbName, CommandType ct, SqlTransaction sqlLevel)
+        {
+            SqlDataAdapter dap = CreateDataAdaper(procName, prams, ct, sqlLevel);//创建桥接器对象
+            if (null == dap) return null;
+
+            DataSet ds = new DataSet();//创建数据集对象
+            dap.Fill(ds, tbName);//填充数据集
+            return ds;//返回数据集
+        }
+
+        private SqlDataAdapter CreateDataAdaper(string procName, SqlParameter[] prams, CommandType ct, SqlTransaction sqlLevel)
+        {
+            if (null == SessionFactory.getConnection()) return null;
+
+            SqlDataAdapter dap = new SqlDataAdapter(procName, SessionFactory.getConnection());//创建桥接器对象
+
+            dap.SelectCommand.CommandType = ct;//指定要执行的类型为命令文本
+            dap.SelectCommand.Transaction = sqlLevel;
+
+            if (prams != null)//判断SQL参数是否不为空
+            {
+                foreach (SqlParameter parameter in prams)//遍历传递的每个SQL参数
+                    dap.SelectCommand.Parameters.Add(parameter);//将SQL参数添加到执行命令对象中
+            }
+            //加入返回参数
+            dap.SelectCommand.Parameters.Add(new SqlParameter("ReturnValue", SqlDbType.Int, 4,
+                ParameterDirection.ReturnValue, false, 0, 0, string.Empty, DataRowVersion.Default, null));
+            return dap;//返回桥接器对象
+        }
+
+        public int RunProcTran(string procName, SqlParameter[] prams, SqlTransaction sqlLevel)
+        {
+            return RunProcTran(procName, prams, CommandType.Text, sqlLevel);
+        }
+
+        /// <summary>
+        /// 执行命令
+        /// </summary>
+        /// <param name="procName">命令文本</param>
+        /// <param name="prams">参数对象</param>
+        /// <returns></returns>
+        public int RunProcTran(string procName, SqlParameter[] prams, CommandType ct, SqlTransaction sqlLevel)
+        {
+            SqlCommand cmd = CreateCommand(procName, prams, ct);//创建SqlCommand命令对象
+            cmd.Transaction = sqlLevel;
+
+            if (null == cmd) return 0;
+            try
+            {
+                cmd.ExecuteNonQuery();//执行SQL命令
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+
+            return (int)cmd.Parameters["ReturnValue"].Value;//得到执行成功返回值
+        }
+        /// <summary>
+        /// 直接执行SQL语句
+        /// </summary>
+        /// <param name="procName">命令文本</param>
+        /// <returns></returns>
+        public int RunProcTran(string procName, SqlTransaction sqlLevel)
+        {
+            if (null == SessionFactory.getConnection()) return 0;
+
+            SqlCommand cmd = new SqlCommand(procName, SessionFactory.getConnection());//创建SqlCommand命令对象
+            cmd.Transaction = sqlLevel;
+            cmd.ExecuteNonQuery();//执行SQL命令
+            return 1;//返回1，表示执行成功
+        }
+
+
     }
 }

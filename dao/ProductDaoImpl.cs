@@ -85,7 +85,6 @@ namespace haisan.dao
 
         SqlParameter[] constructParamsForProduct(Product product)
         {
-            MessageLocal msg = new MessageLocal();
             byte[] buffByte = null == product.Image ? new byte[0] : Util.imageToByteArray(product.Image);
 
             SqlParameter[] prams = {

@@ -35,8 +35,15 @@ namespace haisan.dao
             return bool.Parse(dataset.Tables[0].Rows[index][name].ToString());
         }
 
+        protected decimal getDecimalValue(DataSet dataset, int index, string name)
+        {
+            return decimal.Parse(dataset.Tables[0].Rows[index][name].ToString());
+        }
+
         protected Image getImageValue(DataSet dataset, int index, string name)
         {
+            if (DBNull.Value == dataset.Tables[0].Rows[index][name])
+                return null;
            return Util.byteArrayToImage((byte[])dataset.Tables[0].Rows[index][name]);
         }
     }
