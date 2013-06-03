@@ -14,6 +14,22 @@
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -36,6 +52,18 @@
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>6CCD09E404F96B5CAAD55E3E7738647C97067500</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>haisan_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
@@ -86,6 +114,8 @@
     <Compile Include="dao\TypeOfProcessDaoImpl.cs" />
     <Compile Include="dao\UserDao.cs" />
     <Compile Include="dao\UserDaoImpl.cs" />
+    <Compile Include="dao\WarehouseDao.cs" />
+    <Compile Include="dao\WarehouseDaoImpl.cs" />
     <Compile Include="DataSetProduct.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -106,6 +136,7 @@
     <Compile Include="domain\ProductName.cs" />
     <Compile Include="domain\Provider.cs" />
     <Compile Include="domain\TypeOfProcess.cs" />
+    <Compile Include="domain\Warehouse.cs" />
     <Compile Include="frame\document\category\AddCategoryFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,11 +211,29 @@
     <Compile Include="frame\document\typeOfProcess\TypeOfProcessFrm.Designer.cs">
       <DependentUpon>TypeOfProcessFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="frame\document\warehouse\AddWarehouseFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frame\document\warehouse\AddWarehouseFrm.Designer.cs">
+      <DependentUpon>AddWarehouseFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frame\document\warehouse\WarehouseFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frame\document\warehouse\WarehouseFrm.Designer.cs">
+      <DependentUpon>WarehouseFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="frame\pdm\purchase\BrowseImage.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frame\pdm\purchase\BrowseImage.Designer.cs">
       <DependentUpon>BrowseImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frame\pdm\purchase\CrystalReportOrderItem.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReportOrderItem.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="frame\pdm\purchase\PurchaseOrderFrm.cs">
       <SubType>Form</SubType>
@@ -197,6 +246,18 @@
     </Compile>
     <Compile Include="frame\pdm\purchase\QueryPurchaseOrderFrm.Designer.cs">
       <DependentUpon>QueryPurchaseOrderFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frame\pdm\purchase\ReportOrderFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frame\pdm\purchase\ReportOrderFrm.Designer.cs">
+      <DependentUpon>ReportOrderFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frame\pdm\purchase\ShowImageFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frame\pdm\purchase\ShowImageFrm.Designer.cs">
+      <DependentUpon>ShowImageFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="frame\system\ChangePwdFrm.cs">
       <SubType>Form</SubType>
@@ -267,6 +328,15 @@
     <Compile Include="util\ModuleComparer.cs" />
     <Compile Include="util\Parameter.cs" />
     <Compile Include="util\Util.cs" />
+    <Compile Include="xsd\ReportOrderItem.cs">
+      <DependentUpon>ReportOrderItem.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="xsd\ReportOrderItem.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportOrderItem.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="frame\document\category\AddCategoryFrm.resx">
       <DependentUpon>AddCategoryFrm.cs</DependentUpon>
     </EmbeddedResource>
@@ -304,14 +374,30 @@
     <EmbeddedResource Include="frame\document\typeOfProcess\TypeOfProcessFrm.resx">
       <DependentUpon>TypeOfProcessFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frame\document\warehouse\AddWarehouseFrm.resx">
+      <DependentUpon>AddWarehouseFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frame\document\warehouse\WarehouseFrm.resx">
+      <DependentUpon>WarehouseFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frame\pdm\purchase\BrowseImage.resx">
       <DependentUpon>BrowseImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frame\pdm\purchase\CrystalReportOrderItem.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReportOrderItem.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="frame\pdm\purchase\PurchaseOrderFrm.resx">
       <DependentUpon>PurchaseOrderFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frame\pdm\purchase\QueryPurchaseOrderFrm.resx">
       <DependentUpon>QueryPurchaseOrderFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frame\pdm\purchase\ReportOrderFrm.resx">
+      <DependentUpon>ReportOrderFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frame\pdm\purchase\ShowImageFrm.resx">
+      <DependentUpon>ShowImageFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frame\system\ChangePwdFrm.resx">
       <DependentUpon>ChangePwdFrm.cs</DependentUpon>
@@ -365,6 +451,7 @@
     <None Include="DataSetProduct.xss">
       <DependentUpon>DataSetProduct.xsd</DependentUpon>
     </None>
+    <None Include="haisan_TemporaryKey.pfx" />
     <None Include="Properties\DataSources\haisan.domain.Product.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -375,6 +462,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="xsd\ReportOrderItem.xsc">
+      <DependentUpon>ReportOrderItem.xsd</DependentUpon>
+    </None>
+    <None Include="xsd\ReportOrderItem.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ReportOrderItem.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="xsd\ReportOrderItem.xss">
+      <DependentUpon>ReportOrderItem.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\page_not_found.jpg" />
@@ -407,6 +505,31 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\trigger\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

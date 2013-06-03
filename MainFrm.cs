@@ -20,6 +20,7 @@ using haisan.frame.document.plain;
 using haisan.frame.document.typeOfProcess;
 using haisan.frame.pdm.purchase;
 using haisan.frame.document.image;
+using haisan.frame.document.warehouse;
 
 namespace haisan
 {
@@ -288,6 +289,17 @@ namespace haisan
             imageFrm.MdiParent = this;
             imageFrm.Text = title;
             imageFrm.Show();
+        }
+
+        private void 仓库资料SToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string title = getTitleFromMenuItem(sender);
+            logDao.saveLog(Parameter.user, title);
+
+            WarehouseFrm wareFrm = new WarehouseFrm();
+            wareFrm.MdiParent = this;
+            wareFrm.Text = title;
+            wareFrm.Show();
         }
     }
 }

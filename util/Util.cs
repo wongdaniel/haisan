@@ -8,6 +8,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using CrystalDecisions.Shared;
 
 namespace haisan.util
 {
@@ -147,6 +148,34 @@ namespace haisan.util
         public static void showInformation(string message)
         {
             MessageBox.Show(message, "信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        public static Image getThumbnailImage(Image image)
+        {
+            if (null == image) return null;
+
+            Image ReducedImage;
+            Image.GetThumbnailImageAbort callb = new Image.GetThumbnailImageAbort(ThumbnailCallback);
+
+            ReducedImage = image.GetThumbnailImage(Parameter.THUMBNAIL_LENGTH, Parameter.THUMBNAIL_WIDTH, callb, IntPtr.Zero);
+
+            return ReducedImage;
+        }
+
+        public static bool ThumbnailCallback()
+        {
+            return false;
+        }
+
+        public static void addParameterField(ParameterFields paramFields, string name, string value)
+        {
+            ParameterField paramField = new ParameterField();
+            ParameterDiscreteValue paramDiscreteValue = new ParameterDiscreteValue();
+            paramField.Name = name;
+            paramDiscreteValue.Value = value;
+            paramField.CurrentValues.Add(paramDiscreteValue);
+            paramField.HasCurrentValue = true;
+            paramFields.Add(paramField);
         }
     }
 }

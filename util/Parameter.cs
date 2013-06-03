@@ -67,5 +67,10 @@ namespace haisan.util
         //订单编码前缀
         public static readonly string SN_PRE = "HS";
 
+
+        //datagridview中缩略图的长宽
+        public static readonly int THUMBNAIL_LENGTH = 70;
+        public static readonly int THUMBNAIL_WIDTH = 30;
+
     }
 }

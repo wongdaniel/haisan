@@ -77,6 +77,7 @@ namespace haisan.dao
                 sqlTran.Rollback();
                 msg.Message = "保存失败！" + e.Message;
                 msg.IsSucess = false;
+                Console.WriteLine(e.StackTrace);
                 return msg;
             }finally
             {
@@ -182,6 +183,16 @@ namespace haisan.dao
 
         }
 
+        public DataSet getOrderItems(Order order)
+        {
+            SqlParameter[] prams = {
+									    database.MakeInParam("@order",  SqlDbType.VarChar, 20, order.Id)
+			};
+
+            return database.RunProcReturn("get_reportOfOrderItem", prams, "ReportOrderItem", CommandType.StoredProcedure);
+        }
+
+
         private OrderItem parseOrderItem(DataSet dataset, int index)
         {
             OrderItem item = new OrderItem();
@@ -251,7 +262,7 @@ namespace haisan.dao
             return item;
         }
 
-        private Order loadOrderById(int id)
+        public Order loadOrderById(int id)
         {
             Order order = new Order(id);
             string sql = "SELECT * FROM tb_order_view WHERE id = " + id;

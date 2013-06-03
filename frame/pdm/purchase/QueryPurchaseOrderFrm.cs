@@ -52,6 +52,8 @@ namespace haisan.frame.pdm.purchase
             dataGridViewOrder.Columns[i++].HeaderText = "预收款";
             dataGridViewOrder.Columns[i++].HeaderText = "操作员";
             dataGridViewOrder.Columns[i++].HeaderText = "创建日期";
+            dataGridViewOrder.Columns[i++].Visible  = false;//最后两列隐藏，因为是外键。
+            dataGridViewOrder.Columns[i++].Visible = false;
         }
 
         private void buttonQuery_Click(object sender, EventArgs e)

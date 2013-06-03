@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using haisan.dao;
 using haisan.domain;
 using System.Runtime.InteropServices;
+using haisan.util;
 
 namespace haisan.frame.pdm.purchase
 {
@@ -48,7 +49,7 @@ namespace haisan.frame.pdm.purchase
         {
             listViewImage.Items.Clear();
             listViewImage.LargeImageList = imageList1;
-            imageList1.ImageSize = new Size(97, 30);
+            imageList1.ImageSize = new Size(Parameter.THUMBNAIL_LENGTH, Parameter.THUMBNAIL_WIDTH);
 
             LinkedList<ProcessingImage> proImages = proImageDao.getAllProcessingImage();
             int count = 0;

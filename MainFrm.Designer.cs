@@ -51,6 +51,7 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.费用类型VToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.其它ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,7 +75,6 @@
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
             this.currentTimeLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -222,6 +222,7 @@
             this.仓库资料SToolStripMenuItem.Name = "仓库资料SToolStripMenuItem";
             this.仓库资料SToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.仓库资料SToolStripMenuItem.Text = "仓库资料(&S)";
+            this.仓库资料SToolStripMenuItem.Click += new System.EventHandler(this.仓库资料SToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -262,6 +263,13 @@
             this.toolStripMenuItem4.Size = new System.Drawing.Size(165, 22);
             this.toolStripMenuItem4.Text = "加工类型(&X)";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(165, 22);
+            this.toolStripMenuItem5.Text = "加工图(&Y)";
+            this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
             // 
             // toolStripSeparator4
             // 
@@ -421,13 +429,6 @@
             // 
             this.currentTimeLabel.Name = "currentTimeLabel";
             this.currentTimeLabel.Size = new System.Drawing.Size(0, 17);
-            // 
-            // toolStripMenuItem5
-            // 
-            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(165, 22);
-            this.toolStripMenuItem5.Text = "加工图(&Y)";
-            this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
             // 
             // MainFrm
             // 

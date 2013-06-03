@@ -14,6 +14,8 @@ namespace haisan.dao
         MessageLocal saveOrUpdatePurchaseOrder(Order order);
         DataSet getPurchaseOrder(string sn, string customName, DateTime begin, DateTime end);
         Order getOrderById(int id);
+        DataSet getOrderItems(Order order);
+        Order loadOrderById(int id);
 
     }
 }

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ReportOrderItem" targetNamespace="http://tempuri.org/ReportOrderItem.xsd" xmlns:mstns="http://tempuri.org/ReportOrderItem.xsd" xmlns="http://tempuri.org/ReportOrderItem.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ReportOrderItem" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ReportOrderItem" msprop:Generator_UserDSName="ReportOrderItem">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTableReportOrderItem" msprop:Generator_TableClassName="DataTableReportOrderItemDataTable" msprop:Generator_TableVarName="tableDataTableReportOrderItem" msprop:Generator_TablePropName="DataTableReportOrderItem" msprop:Generator_RowDeletingName="DataTableReportOrderItemRowDeleting" msprop:Generator_UserTableName="DataTableReportOrderItem" msprop:Generator_RowChangingName="DataTableReportOrderItemRowChanging" msprop:Generator_RowEvHandlerName="DataTableReportOrderItemRowChangeEventHandler" msprop:Generator_RowDeletedName="DataTableReportOrderItemRowDeleted" msprop:Generator_RowEvArgName="DataTableReportOrderItemRowChangeEvent" msprop:Generator_RowChangedName="DataTableReportOrderItemRowChanged" msprop:Generator_RowClassName="DataTableReportOrderItemRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="stoneName" msprop:Generator_ColumnVarNameInTable="columnstoneName" msprop:Generator_ColumnPropNameInRow="stoneName" msprop:Generator_ColumnPropNameInTable="stoneNameColumn" msprop:Generator_UserColumnName="stoneName" type="xs:string" minOccurs="0" />
+              <xs:element name="productName" msprop:Generator_ColumnVarNameInTable="columnproductName" msprop:Generator_ColumnPropNameInRow="productName" msprop:Generator_ColumnPropNameInTable="productNameColumn" msprop:Generator_UserColumnName="productName" type="xs:string" minOccurs="0" />
+              <xs:element name="specification" msprop:Generator_ColumnVarNameInTable="columnspecification" msprop:Generator_ColumnPropNameInRow="specification" msprop:Generator_ColumnPropNameInTable="specificationColumn" msprop:Generator_UserColumnName="specification" type="xs:string" minOccurs="0" />
+              <xs:element name="package" msprop:Generator_ColumnVarNameInTable="columnpackage" msprop:Generator_ColumnPropNameInRow="package" msprop:Generator_ColumnPropNameInTable="packageColumn" msprop:Generator_UserColumnName="package" type="xs:int" minOccurs="0" />
+              <xs:element name="unit" msprop:Generator_ColumnVarNameInTable="columnunit" msprop:Generator_ColumnPropNameInRow="unit" msprop:Generator_ColumnPropNameInTable="unitColumn" msprop:Generator_UserColumnName="unit" type="xs:string" minOccurs="0" />
+              <xs:element name="number" msprop:Generator_ColumnVarNameInTable="columnnumber" msprop:Generator_ColumnPropNameInRow="number" msprop:Generator_ColumnPropNameInTable="numberColumn" msprop:Generator_UserColumnName="number" type="xs:string" minOccurs="0" />
+              <xs:element name="workingName1" msprop:Generator_ColumnVarNameInTable="columnworkingName1" msprop:Generator_ColumnPropNameInRow="workingName1" msprop:Generator_ColumnPropNameInTable="workingName1Column" msprop:Generator_UserColumnName="workingName1" type="xs:string" minOccurs="0" />
+              <xs:element name="workingNumber1" msprop:Generator_ColumnVarNameInTable="columnworkingNumber1" msprop:Generator_ColumnPropNameInRow="workingNumber1" msprop:Generator_ColumnPropNameInTable="workingNumber1Column" msprop:Generator_UserColumnName="workingNumber1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="workingDiagram1" msprop:Generator_ColumnVarNameInTable="columnworkingDiagram1" msprop:Generator_ColumnPropNameInRow="workingDiagram1" msprop:Generator_ColumnPropNameInTable="workingDiagram1Column" msprop:Generator_UserColumnName="workingDiagram1" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -13,6 +13,8 @@ using haisan.frame.document.typeOfProcess;
 using System.Globalization;
 using haisan.domain;
 using System.Text.RegularExpressions;
+using CrystalDecisions.Shared;
+using CrystalDecisions.CrystalReports.Engine;
 
 namespace haisan.frame.pdm.purchase
 {
@@ -24,8 +26,11 @@ namespace haisan.frame.pdm.purchase
         private static string[] units = { Parameter.SQUARE_METER, Parameter.STERE, Parameter.METER, Parameter.PACKAGE };
         private static readonly string regexIncludeDigital = "^(ColumnName[1-3]|ColumnDiagram[1-3])$";
         private static readonly string SN_FORMAT = "{0:00000}";
+        private static readonly int ILLEGAEL_ORDERID = -1;
 
-        private int orderID = -1;
+        private int orderID = ILLEGAEL_ORDERID;
+        private int currentRow = -1;
+        private int currentColumn = -1;
 
         public PurchaseOrderFrm()
         {
@@ -150,7 +155,7 @@ namespace haisan.frame.pdm.purchase
             }
             else if (columnName.Equals("ColumnThickness") || columnName.Equals("ColumnPackage"))
             {
-                if(!Util.isDigital(e.FormattedValue.ToString()))
+                if (!Util.isDigital(e.FormattedValue.ToString()))
                 {
                     dataGridViewItem.Rows[e.RowIndex].ErrorText = "格式非法！只能输入大于0的数字";
                     e.Cancel = true;
@@ -177,14 +182,18 @@ namespace haisan.frame.pdm.purchase
             Regex regex = new Regex(regexIncludeDigital);
             if (regex.IsMatch(columnName))
             {
-              //  Console.WriteLine("触发" + columnName);
+                //  Console.WriteLine("触发" + columnName);
                 refreshColumnNumberX(sender, e, columnName);
-            }else if(columnName.Equals("ColumnNumber") || columnName.Equals("ColumnUnitPrice")){
-             //   Console.WriteLine("触发" + columnName);
+            }
+            else if (columnName.Equals("ColumnNumber") || columnName.Equals("ColumnUnitPrice"))
+            {
+                //   Console.WriteLine("触发" + columnName);
                 refreshColumnCost(sender, e, columnName);
-            }else if (columnName.Equals("ColumnPackage") || columnName.Equals("ColumnLength")|| columnName.Equals("ColumnWidth")
-                || columnName.Equals("ColumnThickness") || columnName.Equals("ColumnUnit")){
-             //   Console.WriteLine("触发" + columnName);
+            }
+            else if (columnName.Equals("ColumnPackage") || columnName.Equals("ColumnLength") || columnName.Equals("ColumnWidth")
+               || columnName.Equals("ColumnThickness") || columnName.Equals("ColumnUnit"))
+            {
+                Console.WriteLine("将刷新，数量，以及数量1,数量2，数量3");
                 refreshColumnNumber(sender, e, columnName);
                 refreshColumnNumberX(sender, e, "ColumnDiagram1");
                 refreshColumnNumberX(sender, e, "ColumnDiagram2");
@@ -210,53 +219,56 @@ namespace haisan.frame.pdm.purchase
                     value = -decimal.Parse(getFormattedValue(e, number));
             }
 
-             if(null == dataGridViewItem.Rows[e.RowIndex].Cells[name].Tag 
-                 || null == dataGridViewItem.Rows[e.RowIndex].Cells[diagram].Tag){
-                 dataGridViewItem.Rows[e.RowIndex].Cells[number].Value = 0;
-             }else{
-                 TypeOfProcess typePro = (TypeOfProcess)dataGridViewItem.Rows[e.RowIndex].Cells[name].Tag;
-                 if (Parameter.PACKAGE.Equals(typePro.Unit))
-                 {
-                     dataGridViewItem.Rows[e.RowIndex].Cells[number].Value = getFormattedValue(e, "ColumnPackage");
-                 }
-                 else if (Parameter.METER.Equals(typePro.Unit))
-                 {
-                     ProcessingImage proImage = (ProcessingImage)dataGridViewItem.Rows[e.RowIndex].Cells[diagram].Tag;
-                     int length = 0, width = 0, package = 0;
+            if (null == dataGridViewItem.Rows[e.RowIndex].Cells[name].Tag
+                || null == dataGridViewItem.Rows[e.RowIndex].Cells[diagram].Tag)
+            {
+                dataGridViewItem.Rows[e.RowIndex].Cells[number].Value = 0;
+            }
+            else
+            {
+                TypeOfProcess typePro = (TypeOfProcess)dataGridViewItem.Rows[e.RowIndex].Cells[name].Tag;
+                if (Parameter.PACKAGE.Equals(typePro.Unit))
+                {
+                    dataGridViewItem.Rows[e.RowIndex].Cells[number].Value = getFormattedValue(e, "ColumnPackage");
+                }
+                else if (Parameter.METER.Equals(typePro.Unit))
+                {
+                    ProcessingImage proImage = (ProcessingImage)dataGridViewItem.Rows[e.RowIndex].Cells[diagram].Tag;
+                    int length = 0, width = 0, package = 0;
 
-                     if (Util.isLengthOrWidth(getFormattedValue(e, "ColumnLength")))
-                         length = Util.getValueOfLWT2(getFormattedValue(e, "ColumnLength"));
+                    if (Util.isLengthOrWidth(getFormattedValue(e, "ColumnLength")))
+                        length = Util.getValueOfLWT2(getFormattedValue(e, "ColumnLength"));
 
-                     if (Util.isLengthOrWidth(getFormattedValue(e, "ColumnWidth")))
-                         width = Util.getValueOfLWT2(getFormattedValue(e, "ColumnWidth"));
+                    if (Util.isLengthOrWidth(getFormattedValue(e, "ColumnWidth")))
+                        width = Util.getValueOfLWT2(getFormattedValue(e, "ColumnWidth"));
 
-                     if (Util.isDigital(getFormattedValue(e, "ColumnPackage")))
-                         package = int.Parse(getFormattedValue(e, "ColumnWidth"));
+                    if (Util.isDigital(getFormattedValue(e, "ColumnPackage")))
+                        package = int.Parse(getFormattedValue(e, "ColumnPackage"));
 
-                     decimal sum = 0;
-                     if (proImage.Up)
-                         sum += ((decimal)length) / 1000 * package;
-                     if (proImage.Down)
-                         sum += ((decimal)length) / 1000 * package;
-                     if (proImage.Left)
-                         sum += ((decimal)width) / 1000 * package;
-                     if (proImage.Right)
-                         sum += ((decimal)width) / 1000 * package;
-                     dataGridViewItem.Rows[e.RowIndex].Cells[number].Value = decimal.Round(sum, Parameter.NUMBER_MANTISSA);
+                    decimal sum = 0;
+                    if (proImage.Up)
+                        sum += ((decimal)length) / 1000 * package;
+                    if (proImage.Down)
+                        sum += ((decimal)length) / 1000 * package;
+                    if (proImage.Left)
+                        sum += ((decimal)width) / 1000 * package;
+                    if (proImage.Right)
+                        sum += ((decimal)width) / 1000 * package;
+                    dataGridViewItem.Rows[e.RowIndex].Cells[number].Value = decimal.Round(sum, Parameter.NUMBER_MANTISSA);
 
-                 }
-                 else
-                 {
-                     MessageBox.Show("不认识的加工类型", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                 }
-                 value = decimal.Parse(dataGridViewItem.Rows[e.RowIndex].Cells[number].Value.ToString()) + value;
-                 insertIntoStats((TypeOfProcess)dataGridViewItem.Rows[e.RowIndex].Cells[name].Tag, value);
-             }
+                }
+                else
+                {
+                    MessageBox.Show("不认识的加工类型", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                value = Util.getDecimalValue(dataGridViewItem.Rows[e.RowIndex].Cells[number].FormattedValue.ToString()) + value;
+                insertIntoStats((TypeOfProcess)dataGridViewItem.Rows[e.RowIndex].Cells[name].Tag, value);
+            }
         }
 
         //刷新金额
         private void refreshColumnCost(object sender, DataGridViewCellEventArgs e, string columnName)
-        {      
+        {
             decimal number = 0, price = 0;
             if (Util.isDecimal(getFormattedValue(e, "ColumnNumber")))
                 number = decimal.Parse(getFormattedValue(e, "ColumnNumber"));
@@ -270,7 +282,7 @@ namespace haisan.frame.pdm.purchase
         //改变数量
         private void refreshColumnNumber(object sender, DataGridViewCellEventArgs e, string columnName)
         {
- 
+
             if (getFormattedValue(e, "ColumnUnit").Equals(Parameter.PACKAGE))
             {
                 dataGridViewItem.Rows[e.RowIndex].Cells["ColumnNumber"].Value = getFormattedValue(e, "ColumnPackage");
@@ -309,7 +321,7 @@ namespace haisan.frame.pdm.purchase
                     Console.WriteLine("278 of purFrm row.Cells[ColumnNumberStats].Value: [" + row.Cells["ColumnNumberStats"].Value.ToString() + "]");
                     if ("0".Equals(row.Cells["ColumnNumberStats"].Value.ToString()) || "0.0".Equals(row.Cells["ColumnNumberStats"].Value.ToString()))
                     {
-                        Console.WriteLine("delete row:[" + typeOfProcess.Name+ "]");
+                        Console.WriteLine("delete row:[" + typeOfProcess.Name + "]");
                         dataGridViewItemStats.Rows.Remove(row);
                         return;
                     }
@@ -318,9 +330,10 @@ namespace haisan.frame.pdm.purchase
                 }
             }
 
-            if(!found){
-                
-              //  row.CreateCells(dataGridViewItemStats);
+            if (!found)
+            {
+
+                //  row.CreateCells(dataGridViewItemStats);
                 int index = dataGridViewItemStats.Rows.Add();
                 DataGridViewRow row = dataGridViewItemStats.Rows[index];
 
@@ -333,7 +346,7 @@ namespace haisan.frame.pdm.purchase
                 row.Cells["ColumnUnitPriceStats"].Value = 0;
                 row.Cells["ColumnCostStats"].Value = 0;
 
-           //     dataGridViewItemStats.Rows.Add(row);
+                //     dataGridViewItemStats.Rows.Add(row);
             }
         }
 
@@ -352,14 +365,18 @@ namespace haisan.frame.pdm.purchase
         {
             if (unit.Equals(Parameter.SQUARE_METER))
             {
-                return ((decimal)length / 1000) * ((decimal)width / 1000); 
-            }else if(unit.Equals(Parameter.STERE))
+                return ((decimal)length / 1000) * ((decimal)width / 1000);
+            }
+            else if (unit.Equals(Parameter.STERE))
             {
                 return ((decimal)length / 1000) * ((decimal)width / 1000) * ((decimal)thickness / 1000);
-            }else if((unit.Equals(Parameter.METER)))
+            }
+            else if ((unit.Equals(Parameter.METER)))
             {
                 return (decimal)length;
-            }else {
+            }
+            else
+            {
                 return 0;
             }
         }
@@ -370,7 +387,9 @@ namespace haisan.frame.pdm.purchase
             if (columnName.Equals("ColumnNumberStats") || columnName.Equals("ColumnUnitPriceStats"))
             {
                 refreshColumnCostStats(sender, e);
-            }else if(columnName.Equals("ColumnCostStats")){
+            }
+            else if (columnName.Equals("ColumnCostStats"))
+            {
                 refreshStatsFields();
             }
         }
@@ -379,9 +398,9 @@ namespace haisan.frame.pdm.purchase
         {
             decimal numberStats = 0, priceStats = 0;
             numberStats = Util.getDecimalValue(getFormattedValue(dataGridViewItemStats, e, "ColumnNumberStats"));
-            priceStats =   Util.getDecimalValue(getFormattedValue(dataGridViewItemStats, e, "ColumnUnitPriceStats"));
+            priceStats = Util.getDecimalValue(getFormattedValue(dataGridViewItemStats, e, "ColumnUnitPriceStats"));
 
-            dataGridViewItemStats.Rows[e.RowIndex].Cells["ColumnCostStats"].Value = 
+            dataGridViewItemStats.Rows[e.RowIndex].Cells["ColumnCostStats"].Value =
                 decimal.Round(numberStats * priceStats, Parameter.NUMBER_MANTISSA);
         }
 
@@ -400,7 +419,7 @@ namespace haisan.frame.pdm.purchase
 
         private void refreshTotalFiled()
         {
-            decimal totalNumber = 0,  totalPayment = 0;
+            decimal totalNumber = 0, totalPayment = 0;
             int totalPackage = 0;
             foreach (DataGridViewRow row in dataGridViewItem.Rows)
             {
@@ -424,7 +443,7 @@ namespace haisan.frame.pdm.purchase
         private string constructSN()
         {
             string sn = Parameter.SN_PRE;
-            sn += (DateTime.Now.ToString("MMdd",CultureInfo.CreateSpecificCulture("en-us")));
+            sn += (DateTime.Now.ToString("MMdd", CultureInfo.CreateSpecificCulture("en-us")));
             sn += string.Format(SN_FORMAT, baseDao.getSequence());
             Console.WriteLine("425 sn:[" + sn + "]");
             return sn;
@@ -460,12 +479,12 @@ namespace haisan.frame.pdm.purchase
             order.Sn = textBoxSN.Text.ToString();
             order.Company = new Company(int.Parse(textBoxCompany.Text.ToString())); // 先暂时这样写，以后需要用textbox上的tag直接复制。
             if (null != comboBoxGetStyle.SelectedItem)
-               order.WayOfPayment = comboBoxGetStyle.SelectedItem.ToString();
+                order.WayOfPayment = comboBoxGetStyle.SelectedItem.ToString();
             else
                 order.WayOfPayment = comboBoxGetStyle.Text.ToString();
             order.Phone = textBoxPhone.Text.ToString();
             order.CreateDate = DateTime.Now;
-            order.Operatr = (User)label1Operator.Tag;
+            order.Operatr = (User)label1Operator.Tag == null ? Parameter.user : (User)label1Operator.Tag;
             order.TotalNumber = Util.getDecimalValue(textBoxTotalNumber.Text.ToString());
             order.TotalPackages = Util.getIntValue(textBoxTotalPackage.Text.ToString());
             order.Payment = Util.getDecimalValue(textBoxPayment.Text.ToString());
@@ -506,21 +525,21 @@ namespace haisan.frame.pdm.purchase
             if (-1 == comboBoxGetStyle.SelectedIndex)
                 comboBoxGetStyle.Text = order.WayOfPayment;
             Console.WriteLine("479 of PurchaseOrderFrm: comboBoxGetStyle.SelectedIndex" + comboBoxGetStyle.SelectedIndex);
-         
+
             textBoxPhone.Text = order.Phone;
             label1CreateDate.Text = order.CreateDate.ToShortDateString();
             label1Operator.Text = order.Operatr.Username;
             label1Operator.Tag = order.Operatr;
 
             textBoxTotalNumber.Text = order.TotalNumber.ToString();
-            textBoxTotalPackage.Text =  order.TotalPackages.ToString();
-            textBoxPayment.Text =  order.Payment.ToString();
-            textBoxProcessing.Text =  order.ProcessingCharges.ToString();
+            textBoxTotalPackage.Text = order.TotalPackages.ToString();
+            textBoxPayment.Text = order.Payment.ToString();
+            textBoxProcessing.Text = order.ProcessingCharges.ToString();
             textBoxTotalCost.Text = order.TotalCost.ToString();
             textBoxAdvanceReceived.Text = order.AdvancesReceived.ToString();
         }
 
-        private OrderItem constructOrderItem(Order order,DataGridViewRow row)
+        private OrderItem constructOrderItem(Order order, DataGridViewRow row)
         {
             OrderItem item = new OrderItem();
             item.Id = Util.getIntValue(row.Cells["ColumnItemID"].FormattedValue.ToString());
@@ -588,12 +607,12 @@ namespace haisan.frame.pdm.purchase
             stats.Id = Util.getIntValue(row.Cells["ColumnStatsID"].Value.ToString());
             stats.Order = order;
             stats.TypeOfProcess = (TypeOfProcess)row.Cells["ColumnProcessingName"].Tag;
-            stats.Image =(Image)row.Cells["ColumnProcessingDiagram"].Value;
+            stats.Image = (Image)row.Cells["ColumnProcessingDiagram"].Tag;
             stats.Unit = row.Cells["ColumnUnitStats"].Value.ToString();
             stats.TotalNumber = Util.getDecimalValue(row.Cells["ColumnNumberStats"].Value.ToString());
             stats.UnitPrice = Util.getDecimalValue(row.Cells["ColumnUnitPriceStats"].Value.ToString());
             stats.AmountOfMoney = Util.getDecimalValue(row.Cells["ColumnCostStats"].Value.ToString());
-            
+
             return stats;
         }
 
@@ -603,7 +622,8 @@ namespace haisan.frame.pdm.purchase
             row.Cells["ColumnStatsID"].Value = stats.Id;
             row.Cells["ColumnProcessingName"].Tag = stats.TypeOfProcess;
             row.Cells["ColumnProcessingName"].Value = stats.TypeOfProcess.Name;
-            row.Cells["ColumnProcessingDiagram"].Value = stats.Image;
+            row.Cells["ColumnProcessingDiagram"].Tag = stats.Image;
+            row.Cells["ColumnProcessingDiagram"].Value = Util.getThumbnailImage(stats.Image);
             row.Cells["ColumnUnitStats"].Value = stats.Unit;
             row.Cells["ColumnNumberStats"].Value = stats.TotalNumber;
             row.Cells["ColumnUnitPriceStats"].Value = stats.UnitPrice;
@@ -613,7 +633,8 @@ namespace haisan.frame.pdm.purchase
         private void 保存订单NToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Enabled = false;
-            textBoxSN.Text = constructSN();
+            if (ILLEGAEL_ORDERID == orderID)
+                textBoxSN.Text = constructSN();
             MessageLocal msg = purchaseOrderDao.saveOrUpdatePurchaseOrder(getOrder());
             if (!msg.IsSucess)
             {
@@ -650,7 +671,7 @@ namespace haisan.frame.pdm.purchase
         private void clearAllField()
         {
 
-            orderID = -1;
+            orderID = ILLEGAEL_ORDERID;
             textBoxSN.Text = "";
             textBoxCompany.Tag = null;
             textBoxCompany.Text = "";
@@ -672,5 +693,115 @@ namespace haisan.frame.pdm.purchase
             dataGridViewItem.Rows.Clear();
             dataGridViewItemStats.Rows.Clear();
         }
+
+        private void 删除订单DToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            if (ILLEGAEL_ORDERID == orderID)
+            {
+                MessageBox.Show("没有可以供删除的订单!", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult dr = MessageBox.Show("将删除编号为[" + textBoxSN.Text + "]的订单!", "警告",
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+            if (dr == DialogResult.OK)
+            {
+                this.Enabled = false;
+                baseDao.deleteEntities("tb_order", orderID.ToString());
+                this.Enabled = true;
+                clearAllField();
+            }
+        }
+
+        private void dataGridViewItemStats_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            currentColumn = e.ColumnIndex;
+            currentRow = e.RowIndex;
+        }
+
+        private void dataGridViewItemStats_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            currentColumn = -1;
+            currentRow = -1;
+        }
+
+        private void dataGridViewItemStats_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (currentRow >= 0
+                    && "ColumnProcessingDiagram".Equals(dataGridViewItemStats.Columns[currentColumn].Name))
+                {
+                    this.dataGridViewItemStats.CellMouseEnter -= new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewItemStats_CellMouseEnter);
+                    this.dataGridViewItemStats.CellMouseLeave -= new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewItemStats_CellMouseLeave);
+                    contextMenuStripDiagram.Show(dataGridViewItemStats, new Point(e.X, e.Y));
+                }
+
+            }
+            else if (e.Button == MouseButtons.Left)
+            {
+                Console.WriteLine("出发鼠标左键！row:[" + currentRow + "] column:[" + currentColumn + "]");
+                if (currentRow >= 0
+                  && "ColumnProcessingDiagram".Equals(dataGridViewItemStats.Columns[currentColumn].Name))
+                {
+                    Image image = (Image)dataGridViewItemStats.Rows[currentRow].Cells[currentColumn].Tag;
+                    if (null != image)
+                    {
+                        ShowImageFrm showFrm = new ShowImageFrm(image);
+                        showFrm.Size = new Size(image.Width, image.Height);
+                        showFrm.ShowDialog();
+                    }
+                }
+            }
+        }
+
+        private void 打开文件ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            // ofd.InitialDirectory = Parameter.IMG_TEMP;
+            ofd.Filter = "Image Files(*.JPG)|*.JPG|All files (*.*)|*.*";
+            ofd.FilterIndex = 1;
+            ofd.RestoreDirectory = true;
+            ofd.Title = "加载图片";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                Image image = Image.FromFile(ofd.FileName);
+                Image reducedImage = Util.getThumbnailImage(image);
+
+                dataGridViewItemStats.Rows[currentRow].Cells[currentColumn].Value = reducedImage;
+                dataGridViewItemStats.Rows[currentRow].Cells[currentColumn].Tag = image;
+            }
+        }
+
+        private void contextMenuStripDiagram_Closed(object sender, ToolStripDropDownClosedEventArgs e)
+        {
+            this.dataGridViewItemStats.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewItemStats_CellMouseLeave);
+            this.dataGridViewItemStats.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewItemStats_CellMouseEnter);
+        }
+
+        private void 报表预览PToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            CrystalReportOrderItem ccoi = new CrystalReportOrderItem();
+            ReportOrderFrm roFrm = new ReportOrderFrm(ccoi);
+            Order order = purchaseOrderDao.loadOrderById(orderID);
+            if (null == order) return;
+
+            ParameterFields paramFields = new ParameterFields();
+
+            Util.addParameterField(paramFields, "sn", order.Sn);
+            Util.addParameterField(paramFields, "customName", order.Company.Name);
+
+
+            ccoi.SetDataSource(purchaseOrderDao.getOrderItems(order).Tables[0]);
+           // roFrm.refreshReport(); // 不能刷新，如果刷新，将会弹出参数窗口
+            roFrm.setParameterFields(paramFields);
+
+            roFrm.Show();
+        }
+
     }
 }

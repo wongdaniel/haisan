@@ -189,5 +189,28 @@ namespace haisan.frame.document.image
         {
             return ("up".Equals(name) || "down".Equals(name) || "left".Equals(name) || "right".Equals(name)) ;
         }
+
+        private void 删除DToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (0 == dataGridViewImage.SelectedRows.Count)
+            {
+                MessageBox.Show("请先选择要删除的数据！", "信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            string ids = Util.constructIds(dataGridViewImage); //当所选择的行
+            if ("".Equals(ids))
+                return;
+
+            DialogResult dr = MessageBox.Show("将删除ID为[" + ids.ToString() + "]的" + Text + "!", "警告",
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (dr == DialogResult.OK)
+            {
+                this.Enabled = false;
+                baseDao.deleteEntities("tb_image", ids);
+                this.Enabled = true;
+                refreshDataGridViewImage();
+            }
+        }
     }
 }

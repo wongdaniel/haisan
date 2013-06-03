@@ -33,6 +33,7 @@
             this.退出EToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出EToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewImage = new System.Windows.Forms.DataGridView();
+            this.删除DToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewImage)).BeginInit();
             this.SuspendLayout();
@@ -43,7 +44,9 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.保存表格ToolStripMenuItem,
             this.退出EToolStripMenuItem,
-            this.退出EToolStripMenuItem1});
+            this.删除DToolStripMenuItem,
+            this.退出EToolStripMenuItem1
+            });
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(468, 25);
@@ -83,6 +86,13 @@
             this.dataGridViewImage.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewImage_CellContentClick);
             this.dataGridViewImage.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewImage_CellDoubleClick);
             // 
+            // 删除DToolStripMenuItem
+            // 
+            this.删除DToolStripMenuItem.Name = "删除DToolStripMenuItem";
+            this.删除DToolStripMenuItem.Size = new System.Drawing.Size(61, 21);
+            this.删除DToolStripMenuItem.Text = "删除(&D)";
+            this.删除DToolStripMenuItem.Click += new System.EventHandler(this.删除DToolStripMenuItem_Click);
+            // 
             // ImageFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -109,5 +119,6 @@
         private System.Windows.Forms.ToolStripMenuItem 退出EToolStripMenuItem;
         private System.Windows.Forms.DataGridView dataGridViewImage;
         private System.Windows.Forms.ToolStripMenuItem 退出EToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 删除DToolStripMenuItem;
     }
 }

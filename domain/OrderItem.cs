@@ -8,7 +8,7 @@ namespace haisan.domain
 {
     class OrderItem
     {
-        private int id;
+        private  int id;
 
         public int Id
         {
@@ -29,6 +29,7 @@ namespace haisan.domain
             get { return categoryOfStone; }
             set { categoryOfStone = value; }
         }
+
         private ProductName productName;
 
         internal ProductName ProductName
