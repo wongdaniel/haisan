@@ -794,7 +794,8 @@ namespace haisan.frame.pdm.purchase
 
             Util.addParameterField(paramFields, "sn", order.Sn);
             Util.addParameterField(paramFields, "customName", order.Company.Name);
-
+            Util.addParameterField(paramFields, "totalPackage", order.TotalPackages.ToString());
+            Util.addParameterField(paramFields, "totalNumber", order.TotalNumber.ToString());
 
             ccoi.SetDataSource(purchaseOrderDao.getOrderItems(order).Tables[0]);
            // roFrm.refreshReport(); // 不能刷新，如果刷新，将会弹出参数窗口

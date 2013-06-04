@@ -297,6 +297,18 @@ namespace haisan.xsd {
             
             private global::System.Data.DataColumn columnworkingDiagram1;
             
+            private global::System.Data.DataColumn columnworkingName2;
+            
+            private global::System.Data.DataColumn columnworkingNumber2;
+            
+            private global::System.Data.DataColumn columnworkingDiagram2;
+            
+            private global::System.Data.DataColumn columnworkingName3;
+            
+            private global::System.Data.DataColumn columnworkingDiagram3;
+            
+            private global::System.Data.DataColumn columnworkingNumber3;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public DataTableReportOrderItemDataTable() {
@@ -404,6 +416,54 @@ namespace haisan.xsd {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn workingName2Column {
+                get {
+                    return this.columnworkingName2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn workingNumber2Column {
+                get {
+                    return this.columnworkingNumber2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn workingDiagram2Column {
+                get {
+                    return this.columnworkingDiagram2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn workingName3Column {
+                get {
+                    return this.columnworkingName3;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn workingDiagram3Column {
+                get {
+                    return this.columnworkingDiagram3;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn workingNumber3Column {
+                get {
+                    return this.columnworkingNumber3;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -439,7 +499,7 @@ namespace haisan.xsd {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTableReportOrderItemRow AddDataTableReportOrderItemRow(string stoneName, string productName, string specification, int package, string unit, string number, string workingName1, decimal workingNumber1, byte[] workingDiagram1) {
+            public DataTableReportOrderItemRow AddDataTableReportOrderItemRow(string stoneName, string productName, string specification, int package, string unit, string number, string workingName1, string workingNumber1, byte[] workingDiagram1, string workingName2, string workingNumber2, byte[] workingDiagram2, string workingName3, byte[] workingDiagram3, string workingNumber3) {
                 DataTableReportOrderItemRow rowDataTableReportOrderItemRow = ((DataTableReportOrderItemRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         stoneName,
@@ -450,7 +510,13 @@ namespace haisan.xsd {
                         number,
                         workingName1,
                         workingNumber1,
-                        workingDiagram1};
+                        workingDiagram1,
+                        workingName2,
+                        workingNumber2,
+                        workingDiagram2,
+                        workingName3,
+                        workingDiagram3,
+                        workingNumber3};
                 rowDataTableReportOrderItemRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTableReportOrderItemRow);
                 return rowDataTableReportOrderItemRow;
@@ -482,6 +548,12 @@ namespace haisan.xsd {
                 this.columnworkingName1 = base.Columns["workingName1"];
                 this.columnworkingNumber1 = base.Columns["workingNumber1"];
                 this.columnworkingDiagram1 = base.Columns["workingDiagram1"];
+                this.columnworkingName2 = base.Columns["workingName2"];
+                this.columnworkingNumber2 = base.Columns["workingNumber2"];
+                this.columnworkingDiagram2 = base.Columns["workingDiagram2"];
+                this.columnworkingName3 = base.Columns["workingName3"];
+                this.columnworkingDiagram3 = base.Columns["workingDiagram3"];
+                this.columnworkingNumber3 = base.Columns["workingNumber3"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -501,10 +573,22 @@ namespace haisan.xsd {
                 base.Columns.Add(this.columnnumber);
                 this.columnworkingName1 = new global::System.Data.DataColumn("workingName1", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnworkingName1);
-                this.columnworkingNumber1 = new global::System.Data.DataColumn("workingNumber1", typeof(decimal), null, global::System.Data.MappingType.Element);
+                this.columnworkingNumber1 = new global::System.Data.DataColumn("workingNumber1", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnworkingNumber1);
                 this.columnworkingDiagram1 = new global::System.Data.DataColumn("workingDiagram1", typeof(byte[]), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnworkingDiagram1);
+                this.columnworkingName2 = new global::System.Data.DataColumn("workingName2", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnworkingName2);
+                this.columnworkingNumber2 = new global::System.Data.DataColumn("workingNumber2", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnworkingNumber2);
+                this.columnworkingDiagram2 = new global::System.Data.DataColumn("workingDiagram2", typeof(byte[]), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnworkingDiagram2);
+                this.columnworkingName3 = new global::System.Data.DataColumn("workingName3", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnworkingName3);
+                this.columnworkingDiagram3 = new global::System.Data.DataColumn("workingDiagram3", typeof(byte[]), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnworkingDiagram3);
+                this.columnworkingNumber3 = new global::System.Data.DataColumn("workingNumber3", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnworkingNumber3);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -759,10 +843,10 @@ namespace haisan.xsd {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal workingNumber1 {
+            public string workingNumber1 {
                 get {
                     try {
-                        return ((decimal)(this[this.tableDataTableReportOrderItem.workingNumber1Column]));
+                        return ((string)(this[this.tableDataTableReportOrderItem.workingNumber1Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("表“DataTableReportOrderItem”中列“workingNumber1”的值为 DBNull。", e);
@@ -786,6 +870,102 @@ namespace haisan.xsd {
                 }
                 set {
                     this[this.tableDataTableReportOrderItem.workingDiagram1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string workingName2 {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTableReportOrderItem.workingName2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“DataTableReportOrderItem”中列“workingName2”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTableReportOrderItem.workingName2Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string workingNumber2 {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTableReportOrderItem.workingNumber2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“DataTableReportOrderItem”中列“workingNumber2”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTableReportOrderItem.workingNumber2Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte[] workingDiagram2 {
+                get {
+                    try {
+                        return ((byte[])(this[this.tableDataTableReportOrderItem.workingDiagram2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“DataTableReportOrderItem”中列“workingDiagram2”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTableReportOrderItem.workingDiagram2Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string workingName3 {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTableReportOrderItem.workingName3Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“DataTableReportOrderItem”中列“workingName3”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTableReportOrderItem.workingName3Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte[] workingDiagram3 {
+                get {
+                    try {
+                        return ((byte[])(this[this.tableDataTableReportOrderItem.workingDiagram3Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“DataTableReportOrderItem”中列“workingDiagram3”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTableReportOrderItem.workingDiagram3Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string workingNumber3 {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTableReportOrderItem.workingNumber3Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“DataTableReportOrderItem”中列“workingNumber3”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTableReportOrderItem.workingNumber3Column] = value;
                 }
             }
             
@@ -895,6 +1075,78 @@ namespace haisan.xsd {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetworkingDiagram1Null() {
                 this[this.tableDataTableReportOrderItem.workingDiagram1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsworkingName2Null() {
+                return this.IsNull(this.tableDataTableReportOrderItem.workingName2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetworkingName2Null() {
+                this[this.tableDataTableReportOrderItem.workingName2Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsworkingNumber2Null() {
+                return this.IsNull(this.tableDataTableReportOrderItem.workingNumber2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetworkingNumber2Null() {
+                this[this.tableDataTableReportOrderItem.workingNumber2Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsworkingDiagram2Null() {
+                return this.IsNull(this.tableDataTableReportOrderItem.workingDiagram2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetworkingDiagram2Null() {
+                this[this.tableDataTableReportOrderItem.workingDiagram2Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsworkingName3Null() {
+                return this.IsNull(this.tableDataTableReportOrderItem.workingName3Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetworkingName3Null() {
+                this[this.tableDataTableReportOrderItem.workingName3Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsworkingDiagram3Null() {
+                return this.IsNull(this.tableDataTableReportOrderItem.workingDiagram3Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetworkingDiagram3Null() {
+                this[this.tableDataTableReportOrderItem.workingDiagram3Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsworkingNumber3Null() {
+                return this.IsNull(this.tableDataTableReportOrderItem.workingNumber3Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetworkingNumber3Null() {
+                this[this.tableDataTableReportOrderItem.workingNumber3Column] = global::System.Convert.DBNull;
             }
         }
         
