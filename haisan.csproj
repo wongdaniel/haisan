@@ -229,10 +229,22 @@
     <Compile Include="frame\pdm\purchase\BrowseImage.Designer.cs">
       <DependentUpon>BrowseImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="frame\pdm\purchase\CrystalReport1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="frame\pdm\purchase\CrystalReportOrderItem.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CrystalReportOrderItem.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="frame\pdm\purchase\CrystalReportOrderStats.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReportOrderStats.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="frame\pdm\purchase\PurchaseOrderFrm.cs">
@@ -337,6 +349,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ReportOrderItem.xsd</DependentUpon>
     </Compile>
+    <Compile Include="xsd\ReportOrderStats.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportOrderStats.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="frame\document\category\AddCategoryFrm.resx">
       <DependentUpon>AddCategoryFrm.cs</DependentUpon>
     </EmbeddedResource>
@@ -383,9 +400,17 @@
     <EmbeddedResource Include="frame\pdm\purchase\BrowseImage.resx">
       <DependentUpon>BrowseImage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frame\pdm\purchase\CrystalReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport1.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="frame\pdm\purchase\CrystalReportOrderItem.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReportOrderItem.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frame\pdm\purchase\CrystalReportOrderStats.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReportOrderStats.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="frame\pdm\purchase\PurchaseOrderFrm.resx">
       <DependentUpon>PurchaseOrderFrm.cs</DependentUpon>
@@ -472,6 +497,17 @@
     </None>
     <None Include="xsd\ReportOrderItem.xss">
       <DependentUpon>ReportOrderItem.xsd</DependentUpon>
+    </None>
+    <None Include="xsd\ReportOrderStats.xsc">
+      <DependentUpon>ReportOrderStats.xsd</DependentUpon>
+    </None>
+    <None Include="xsd\ReportOrderStats.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ReportOrderStats.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="xsd\ReportOrderStats.xss">
+      <DependentUpon>ReportOrderStats.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

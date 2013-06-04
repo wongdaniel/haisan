@@ -50,6 +50,7 @@
             this.ClientSize = new System.Drawing.Size(470, 308);
             this.Controls.Add(this.crystalReportViewerOrder);
             this.Name = "ReportOrderFrm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.ReportOrder_Load);
             this.ResumeLayout(false);
 

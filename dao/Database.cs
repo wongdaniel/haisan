@@ -169,6 +169,26 @@ namespace haisan.dao
             return ds;//返回数据集
         }
 
+
+        /// <summary>
+        /// 执行查询命令文本，并且返回DataSet数据集
+        /// </summary>
+        /// <param name="procName">命令文本</param>
+        /// <param name="prams">参数对象</param>
+        /// <param name="tbName">数据表名称</param>
+        /// <returns></returns>
+        public DataSet RunProcReturn(DataSet ds, string procName, SqlParameter[] prams, string tbName, CommandType ct)
+        {
+            SqlDataAdapter dap = CreateDataAdaper(procName, prams, ct);//创建桥接器对象
+            if (null == dap) return null;
+            if (null == ds)
+                ds = new DataSet();
+            dap.Fill(ds, tbName);//填充数据集
+            SessionFactory.Close();//关闭数据库连接
+            return ds;//返回数据集
+        }
+
+
         public DataSet RunProcReturn(string procName, string tbName)
         {
             return RunProcReturn(procName, tbName, CommandType.Text);

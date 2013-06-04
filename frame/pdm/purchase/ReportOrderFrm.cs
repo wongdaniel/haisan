@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using CrystalDecisions.Shared;
+using CrystalDecisions.CrystalReports.Engine;
 
 namespace haisan.frame.pdm.purchase
 {
@@ -22,6 +23,11 @@ namespace haisan.frame.pdm.purchase
             InitializeComponent();
             crystalReportViewerOrder.ReportSource = crp;
             
+        }
+
+        public void setReportSoruce(ReportDocument rdDoc)
+        {
+            crystalReportViewerOrder.ReportSource = rdDoc;
         }
 
         public void setParameterFields(ParameterFields paramFields)

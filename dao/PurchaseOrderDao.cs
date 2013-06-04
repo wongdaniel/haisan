@@ -15,6 +15,7 @@ namespace haisan.dao
         DataSet getPurchaseOrder(string sn, string customName, DateTime begin, DateTime end);
         Order getOrderById(int id);
         DataSet getOrderItems(Order order);
+        DataSet getOrderStats(Order order);
         Order loadOrderById(int id);
 
     }

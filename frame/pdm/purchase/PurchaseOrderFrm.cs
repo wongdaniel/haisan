@@ -785,8 +785,9 @@ namespace haisan.frame.pdm.purchase
         private void 报表预览PToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            CrystalReportOrderItem ccoi = new CrystalReportOrderItem();
-            ReportOrderFrm roFrm = new ReportOrderFrm(ccoi);
+        //    CrystalReportOrderItem ccoi = new CrystalReportOrderItem();
+         //   ReportOrderFrm roFrm = new ReportOrderFrm(ccoi);
+            ReportOrderFrm roFrm = new ReportOrderFrm();
             Order order = purchaseOrderDao.loadOrderById(orderID);
             if (null == order) return;
 
@@ -797,7 +798,21 @@ namespace haisan.frame.pdm.purchase
             Util.addParameterField(paramFields, "totalPackage", order.TotalPackages.ToString());
             Util.addParameterField(paramFields, "totalNumber", order.TotalNumber.ToString());
 
-            ccoi.SetDataSource(purchaseOrderDao.getOrderItems(order).Tables[0]);
+            string str = "H:\\Users\\daniel\\documents\\visual studio 2010\\Projects\\haisan\\haisan\\frame\\pdm\\purchase\\CrystalReportOrderItem.rpt";
+            ReportDocument rdDoc = new ReportDocument();
+            rdDoc.Load(str);
+
+            DataSet dataset = purchaseOrderDao.getOrderItems(order);
+            rdDoc.SetDataSource(dataset.Tables[0]);
+
+
+            ReportDocument rdStuff = rdDoc.Subreports["CrystalReportOrderStats.rpt"];
+            dataset = purchaseOrderDao.getOrderStats(order);
+            rdStuff.SetDataSource(dataset.Tables[0]);
+
+
+            roFrm.setReportSoruce(rdDoc);
+
            // roFrm.refreshReport(); // 不能刷新，如果刷新，将会弹出参数窗口
             roFrm.setParameterFields(paramFields);
 

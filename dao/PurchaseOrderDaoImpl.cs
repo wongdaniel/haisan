@@ -192,6 +192,15 @@ namespace haisan.dao
             return database.RunProcReturn("get_reportOfOrderItem", prams, "ReportOrderItem", CommandType.StoredProcedure);
         }
 
+        public DataSet getOrderStats(Order order)
+        {
+            SqlParameter[] prams = {
+									    database.MakeInParam("@order",  SqlDbType.VarChar, 20, order.Id)
+			};
+
+            return database.RunProcReturn("get_reportOfOrderStats", prams, "ReportOrderStats", CommandType.StoredProcedure);
+        }
+
 
         private OrderItem parseOrderItem(DataSet dataset, int index)
         {
