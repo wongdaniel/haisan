@@ -955,11 +955,12 @@ namespace haisan.frame.pdm.purchase
                 Util.addParameterField(paramFields, "totalPackage", order.TotalPackages.ToString());
                 Util.addParameterField(paramFields, "totalNumber", order.TotalNumber.ToString());
 
-                //Console.WriteLine("System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName:" + System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
-                string str = "H:\\Users\\daniel\\documents\\visual studio 2010\\Projects\\haisan\\haisan\\frame\\pdm\\purchase\\CrystalReportOrderItem.rpt";
-             //   Console.WriteLine("System.IO.Path.GetFullPath()" + System.IO.Path.GetFullPath(".\\").ToString());
-                //string str = @"\CrystalReportOrderItem.rpt";
-                //string str = global::haisan.Properties.Resources.Resour
+                string str = Application.StartupPath.ToString();
+                str = str.Substring(0, str.LastIndexOf("\\"));
+                str = str.Substring(0, str.LastIndexOf("\\"));
+                str += @"\Resources\CrystalReportOrderItem.rpt";
+
+                Console.WriteLine("str:" + str);
                 ReportDocument rdDoc = new ReportDocument();
                 rdDoc.Load(str);
 

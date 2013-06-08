@@ -87,6 +87,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Resources\CrystalReportOrderItem.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReportOrderItem.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="dao\BaseDao.cs" />
     <Compile Include="dao\BaseDaoImpl.cs" />
     <Compile Include="dao\CategoryDao.cs" />
@@ -259,18 +265,6 @@
     <Compile Include="frame\pdm\purchase\BrowseImage.Designer.cs">
       <DependentUpon>BrowseImage.cs</DependentUpon>
     </Compile>
-    <Compile Include="frame\pdm\purchase\CrystalReportOrderItem.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CrystalReportOrderItem.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="frame\pdm\purchase\CrystalReportOrderStats.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CrystalReportOrderStats.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="frame\pdm\purchase\PurchaseOrderFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -385,6 +379,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ReportOrderStats.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Resources\CrystalReportOrderItem.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReportOrderItem.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="frame\document\category\AddCategoryFrm.resx">
       <DependentUpon>AddCategoryFrm.cs</DependentUpon>
     </EmbeddedResource>
@@ -442,14 +440,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frame\pdm\purchase\BrowseImage.resx">
       <DependentUpon>BrowseImage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frame\pdm\purchase\CrystalReportOrderItem.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>CrystalReportOrderItem.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frame\pdm\purchase\CrystalReportOrderStats.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>CrystalReportOrderStats.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="frame\pdm\purchase\PurchaseOrderFrm.resx">
       <DependentUpon>PurchaseOrderFrm.cs</DependentUpon>
