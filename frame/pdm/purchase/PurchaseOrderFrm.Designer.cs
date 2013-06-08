@@ -91,16 +91,20 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dataGridViewItemStats = new System.Windows.Forms.DataGridView();
+            this.contextMenuStripDiagram = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.打开文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.保存文件SToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.编辑文件EToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.process1 = new System.Diagnostics.Process();
             this.ColumnProcessingName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnStatsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnThicknessStats = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnProcessingDiagram = new System.Windows.Forms.DataGridViewImageColumn();
+            this.ColumnDWG = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnUnitStats = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnNumberStats = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnUnitPriceStats = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCostStats = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contextMenuStripDiagram = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.打开文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.保存文件SToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -324,14 +328,14 @@
             // 报表打印PToolStripMenuItem
             // 
             this.报表打印PToolStripMenuItem.Name = "报表打印PToolStripMenuItem";
-            this.报表打印PToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.报表打印PToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.报表打印PToolStripMenuItem.Text = "报表预览(&P)";
             this.报表打印PToolStripMenuItem.Click += new System.EventHandler(this.报表预览PToolStripMenuItem_Click);
             // 
             // 报表预览VToolStripMenuItem
             // 
             this.报表预览VToolStripMenuItem.Name = "报表预览VToolStripMenuItem";
-            this.报表预览VToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.报表预览VToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.报表预览VToolStripMenuItem.Text = "报表打印(&V)";
             // 
             // 取消退出EToolStripMenuItem
@@ -524,6 +528,7 @@
             this.dataGridViewItem.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewItem_CellDoubleClick);
             this.dataGridViewItem.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridViewItem_CellValidating);
             this.dataGridViewItem.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewItem_CellValueChanged);
+            this.dataGridViewItem.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewItem_UserAddedRow);
             // 
             // ColumnCategoryStone
             // 
@@ -583,11 +588,13 @@
             // 
             this.ColumnDiagram1.HeaderText = "加工图1";
             this.ColumnDiagram1.Name = "ColumnDiagram1";
+            this.ColumnDiagram1.ReadOnly = true;
             // 
             // ColumnName1
             // 
             this.ColumnName1.HeaderText = "加工名称1";
             this.ColumnName1.Name = "ColumnName1";
+            this.ColumnName1.ReadOnly = true;
             this.ColumnName1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnName1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
@@ -603,11 +610,13 @@
             // 
             this.ColumnDiagram2.HeaderText = "加工图2";
             this.ColumnDiagram2.Name = "ColumnDiagram2";
+            this.ColumnDiagram2.ReadOnly = true;
             // 
             // ColumnName2
             // 
             this.ColumnName2.HeaderText = "加工名称2";
             this.ColumnName2.Name = "ColumnName2";
+            this.ColumnName2.ReadOnly = true;
             // 
             // ColumnNumber2
             // 
@@ -619,6 +628,7 @@
             // 
             this.ColumnDiagram3.HeaderText = "加工图3";
             this.ColumnDiagram3.Name = "ColumnDiagram3";
+            this.ColumnDiagram3.ReadOnly = true;
             this.ColumnDiagram3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnDiagram3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
@@ -626,6 +636,7 @@
             // 
             this.ColumnName3.HeaderText = "加工名称3";
             this.ColumnName3.Name = "ColumnName3";
+            this.ColumnName3.ReadOnly = true;
             // 
             // ColumnNumber3
             // 
@@ -667,7 +678,9 @@
             this.dataGridViewItemStats.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnProcessingName,
             this.ColumnStatsID,
+            this.ColumnThicknessStats,
             this.ColumnProcessingDiagram,
+            this.ColumnDWG,
             this.ColumnUnitStats,
             this.ColumnNumberStats,
             this.ColumnUnitPriceStats,
@@ -678,10 +691,53 @@
             this.dataGridViewItemStats.RowTemplate.Height = 23;
             this.dataGridViewItemStats.Size = new System.Drawing.Size(891, 136);
             this.dataGridViewItemStats.TabIndex = 0;
-            this.dataGridViewItemStats.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewItemStats_CellMouseClick);
             this.dataGridViewItemStats.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewItemStats_CellMouseEnter);
             this.dataGridViewItemStats.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewItemStats_CellMouseLeave);
             this.dataGridViewItemStats.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewItemStats_CellValueChanged);
+            this.dataGridViewItemStats.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewItemStats_MouseClick);
+            // 
+            // contextMenuStripDiagram
+            // 
+            this.contextMenuStripDiagram.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.打开文件ToolStripMenuItem,
+            this.保存文件SToolStripMenuItem,
+            this.编辑文件EToolStripMenuItem});
+            this.contextMenuStripDiagram.Name = "contextMenuStripDiagram";
+            this.contextMenuStripDiagram.Size = new System.Drawing.Size(153, 92);
+            this.contextMenuStripDiagram.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.contextMenuStripDiagram_Closed);
+            // 
+            // 打开文件ToolStripMenuItem
+            // 
+            this.打开文件ToolStripMenuItem.Name = "打开文件ToolStripMenuItem";
+            this.打开文件ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.打开文件ToolStripMenuItem.Text = "加载文件(&F)...";
+            this.打开文件ToolStripMenuItem.Click += new System.EventHandler(this.打开文件ToolStripMenuItem_Click);
+            // 
+            // 保存文件SToolStripMenuItem
+            // 
+            this.保存文件SToolStripMenuItem.Name = "保存文件SToolStripMenuItem";
+            this.保存文件SToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.保存文件SToolStripMenuItem.Text = "保存文件(&S)...";
+            this.保存文件SToolStripMenuItem.Click += new System.EventHandler(this.保存文件SToolStripMenuItem_Click);
+            // 
+            // 编辑文件EToolStripMenuItem
+            // 
+            this.编辑文件EToolStripMenuItem.Name = "编辑文件EToolStripMenuItem";
+            this.编辑文件EToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.编辑文件EToolStripMenuItem.Text = "编辑文件(&E)...";
+            this.编辑文件EToolStripMenuItem.Click += new System.EventHandler(this.编辑文件EToolStripMenuItem_Click);
+            // 
+            // process1
+            // 
+            this.process1.EnableRaisingEvents = true;
+            this.process1.StartInfo.Domain = "";
+            this.process1.StartInfo.LoadUserProfile = false;
+            this.process1.StartInfo.Password = null;
+            this.process1.StartInfo.StandardErrorEncoding = null;
+            this.process1.StartInfo.StandardOutputEncoding = null;
+            this.process1.StartInfo.UserName = "";
+            this.process1.SynchronizingObject = this;
+            this.process1.Exited += new System.EventHandler(this.process1_Exited);
             // 
             // ColumnProcessingName
             // 
@@ -695,12 +751,24 @@
             this.ColumnStatsID.Name = "ColumnStatsID";
             this.ColumnStatsID.Visible = false;
             // 
+            // ColumnThicknessStats
+            // 
+            this.ColumnThicknessStats.HeaderText = "厚度";
+            this.ColumnThicknessStats.Name = "ColumnThicknessStats";
+            this.ColumnThicknessStats.ReadOnly = true;
+            // 
             // ColumnProcessingDiagram
             // 
             this.ColumnProcessingDiagram.HeaderText = "图片展示";
             this.ColumnProcessingDiagram.Name = "ColumnProcessingDiagram";
             this.ColumnProcessingDiagram.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnProcessingDiagram.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // ColumnDWG
+            // 
+            this.ColumnDWG.HeaderText = "ColumnDWG";
+            this.ColumnDWG.Name = "ColumnDWG";
+            this.ColumnDWG.Visible = false;
             // 
             // ColumnUnitStats
             // 
@@ -724,28 +792,6 @@
             this.ColumnCostStats.HeaderText = "金额";
             this.ColumnCostStats.Name = "ColumnCostStats";
             this.ColumnCostStats.ReadOnly = true;
-            // 
-            // contextMenuStripDiagram
-            // 
-            this.contextMenuStripDiagram.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.打开文件ToolStripMenuItem,
-            this.保存文件SToolStripMenuItem});
-            this.contextMenuStripDiagram.Name = "contextMenuStripDiagram";
-            this.contextMenuStripDiagram.Size = new System.Drawing.Size(149, 48);
-            this.contextMenuStripDiagram.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.contextMenuStripDiagram_Closed);
-            // 
-            // 打开文件ToolStripMenuItem
-            // 
-            this.打开文件ToolStripMenuItem.Name = "打开文件ToolStripMenuItem";
-            this.打开文件ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.打开文件ToolStripMenuItem.Text = "加载文件(&F)...";
-            this.打开文件ToolStripMenuItem.Click += new System.EventHandler(this.打开文件ToolStripMenuItem_Click);
-            // 
-            // 保存文件SToolStripMenuItem
-            // 
-            this.保存文件SToolStripMenuItem.Name = "保存文件SToolStripMenuItem";
-            this.保存文件SToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.保存文件SToolStripMenuItem.Text = "保存文件(&S)...";
             // 
             // PurchaseOrderFrm
             // 
@@ -818,14 +864,13 @@
         private System.Windows.Forms.ToolStripMenuItem 删除订单DToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 查询订单QToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 取消退出EToolStripMenuItem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProcessingName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStatsID;
-        private System.Windows.Forms.DataGridViewImageColumn ColumnProcessingDiagram;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnUnitStats;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNumberStats;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnUnitPriceStats;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCostStats;
         private System.Windows.Forms.ToolStripMenuItem 新增订单NToolStripMenuItem1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripDiagram;
+        private System.Windows.Forms.ToolStripMenuItem 打开文件ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 保存文件SToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 打印订单PToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 报表打印PToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 报表预览VToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCategoryStone;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLength;
@@ -846,12 +891,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName3;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNumber3;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnItemID;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStripDiagram;
-        private System.Windows.Forms.ToolStripMenuItem 打开文件ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 保存文件SToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 打印订单PToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 报表打印PToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 报表预览VToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 编辑文件EToolStripMenuItem;
+        private System.Diagnostics.Process process1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProcessingName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStatsID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnThicknessStats;
+        private System.Windows.Forms.DataGridViewImageColumn ColumnProcessingDiagram;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDWG;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnUnitStats;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNumberStats;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnUnitPriceStats;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCostStats;
 
     }
 }

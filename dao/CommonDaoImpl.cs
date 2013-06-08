@@ -22,21 +22,29 @@ namespace haisan.dao
 
         protected int getIntValue(DataSet dataset, int index, string name)
         {
+            if ("".Equals(dataset.Tables[0].Rows[index][name].ToString()))
+                return 0;
             return int.Parse(dataset.Tables[0].Rows[index][name].ToString());
         }
 
         protected short getShortValue(DataSet dataset, int index, string name)
         {
+            if ("".Equals(dataset.Tables[0].Rows[index][name].ToString()))
+                return 0;
             return short.Parse(dataset.Tables[0].Rows[index][name].ToString());
         }
 
         protected bool getBoolValue(DataSet dataset, int index, string name)
         {
+            if("".Equals(dataset.Tables[0].Rows[index][name].ToString()))
+                return false;
             return bool.Parse(dataset.Tables[0].Rows[index][name].ToString());
         }
 
         protected decimal getDecimalValue(DataSet dataset, int index, string name)
         {
+            if ("".Equals(dataset.Tables[0].Rows[index][name].ToString()))
+                return 0;
             return decimal.Parse(dataset.Tables[0].Rows[index][name].ToString());
         }
 
@@ -45,6 +53,15 @@ namespace haisan.dao
             if (DBNull.Value == dataset.Tables[0].Rows[index][name])
                 return null;
            return Util.byteArrayToImage((byte[])dataset.Tables[0].Rows[index][name]);
+        }
+
+        protected DateTime getDateTime(DataSet dataset, int index, string name)
+        {
+            if (dataset.Tables[0].Rows[index][name] == DBNull.Value)
+            {
+                return DateTime.Now;
+            }
+            return DateTime.Parse(dataset.Tables[0].Rows[index][name].ToString());
         }
     }
 }

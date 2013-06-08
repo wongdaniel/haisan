@@ -19,9 +19,10 @@ namespace haisan.dao
         MessageLocal runProcedure(string procedure, SqlParameter[] prams, string table);
         MessageLocal runProcedureTran(string procedure, SqlParameter[] prams, string table, SqlTransaction sqlTran);
         MessageLocal deleteEntities(string table, string ids);
+        MessageLocal deleteEntity(string procedure, string table, int id);
 
         //@table is the true table name
         DataSet getAllEntities(string table);
-        int getSequence();
+        int getSequenceTran(SqlTransaction sqlTran);
     }
 }

@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Data;
 using haisan.domain;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace haisan.dao
 {
@@ -18,6 +19,8 @@ namespace haisan.dao
         private static BaseDao baseDao = BaseDaoImpl.getInstance();
 
         private static PurchaseOrderDaoImpl purchaseOrderDaoImpl = null;
+
+        private static readonly string SN_FORMAT = "{0:00000}";
 
         private PurchaseOrderDaoImpl() { }
 
@@ -39,7 +42,8 @@ namespace haisan.dao
 
             try
             {
-
+                if ("".Equals(order.Sn))
+                    order.Sn = constructSN(sqlTran);
                 msg = baseDao.runProcedureTran("saveOrUpdate_order", constructParamsForOrder(order), "order", sqlTran);
                 if (!msg.IsSucess)
                     throw new Exception(msg.Message);
@@ -139,7 +143,6 @@ namespace haisan.dao
             catch (Exception e)
             {
                 Util.showError(e.Message);
-                Console.WriteLine("141 of purDaoImpl: " + e.StackTrace);
             }
         }
 
@@ -149,8 +152,9 @@ namespace haisan.dao
             stats.Id = getIntValue(dataset, index, "id");
             stats.TypeOfProcess = new TypeOfProcess(getIntValue(dataset, index, "type_of_process"),
                 getValue(dataset, index, "name1"), getValue(dataset, index, "unit1"));
-
+            stats.ThicknessStats = getValue(dataset, index, "thickness");
             stats.Image = getImageValue(dataset, index, "image");
+            stats.Dwg = DBNull.Value == dataset.Tables[0].Rows[index]["dwg"] ? null : (byte[])dataset.Tables[0].Rows[index]["dwg"];
             stats.Unit = getValue(dataset, index, "unit");
             stats.TotalNumber = getDecimalValue(dataset, index, "total_number");
             stats.UnitPrice = getDecimalValue(dataset, index, "unit_price");
@@ -305,6 +309,14 @@ namespace haisan.dao
             return order;
         }
 
+        private string constructSN(SqlTransaction sqlTran)
+        {
+            string sn = Parameter.SN_PRE;
+            sn += (DateTime.Now.ToString("MMdd", CultureInfo.CreateSpecificCulture("en-us")));
+            sn += string.Format(SN_FORMAT, baseDao.getSequenceTran(sqlTran));
+            return sn;
+        }
+
         private SqlParameter[] constructParamsForOrder(Order order)
         {
             SqlParameter[] prams = { 
@@ -372,7 +384,9 @@ namespace haisan.dao
                                        database.MakeInParam("@id", SqlDbType.Int, 0, orderStats.Id), 
                                        database.MakeInParam("@order", SqlDbType.Int, 0, orderStats.Order.Id),
                                        database.MakeInParam("@type_of_process", SqlDbType.Int, 0, orderStats.TypeOfProcess.Id), 
+                                       database.MakeInParam("@thickness", SqlDbType.VarChar, 20, orderStats.ThicknessStats),
                                        database.MakeInParam("@image", SqlDbType.Image, 0, null == orderStats.Image ? DBNull.Value : (object)Util.imageToByteArray(orderStats.Image)),
+                                       database.MakeInParam("@dwg", SqlDbType.Image, 0, null == orderStats.Dwg ? DBNull.Value : (object)orderStats.Dwg),
                                        database.MakeInParam("@unit", SqlDbType.NVarChar, 10, orderStats.Unit), 
                                        database.MakeInParam("@total_number", SqlDbType.Decimal, 0, orderStats.TotalNumber),
                                        database.MakeInParam("@unit_price", SqlDbType.Money, 0, orderStats.UnitPrice),

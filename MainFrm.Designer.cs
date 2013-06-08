@@ -75,6 +75,7 @@
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
             this.currentTimeLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -210,12 +211,14 @@
             this.部门资料QToolStripMenuItem.Name = "部门资料QToolStripMenuItem";
             this.部门资料QToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.部门资料QToolStripMenuItem.Text = "部门资料(&Q)";
+            this.部门资料QToolStripMenuItem.Click += new System.EventHandler(this.部门资料QToolStripMenuItem_Click);
             // 
             // 员工资料RToolStripMenuItem
             // 
             this.员工资料RToolStripMenuItem.Name = "员工资料RToolStripMenuItem";
             this.员工资料RToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.员工资料RToolStripMenuItem.Text = "员工资料(&R)";
+            this.员工资料RToolStripMenuItem.Click += new System.EventHandler(this.员工资料RToolStripMenuItem_Click);
             // 
             // 仓库资料SToolStripMenuItem
             // 
@@ -337,6 +340,8 @@
             // 
             // 帮助ZToolStripMenuItem
             // 
+            this.帮助ZToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.测试ToolStripMenuItem});
             this.帮助ZToolStripMenuItem.Name = "帮助ZToolStripMenuItem";
             this.帮助ZToolStripMenuItem.Size = new System.Drawing.Size(63, 21);
             this.帮助ZToolStripMenuItem.Text = "帮 助(&Z)";
@@ -430,6 +435,13 @@
             this.currentTimeLabel.Name = "currentTimeLabel";
             this.currentTimeLabel.Size = new System.Drawing.Size(0, 17);
             // 
+            // 测试ToolStripMenuItem
+            // 
+            this.测试ToolStripMenuItem.Name = "测试ToolStripMenuItem";
+            this.测试ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.测试ToolStripMenuItem.Text = "测试功能";
+            this.测试ToolStripMenuItem.Click += new System.EventHandler(this.测试ToolStripMenuItem_Click);
+            // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -504,5 +516,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem 测试ToolStripMenuItem;
     }
 }

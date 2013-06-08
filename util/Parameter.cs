@@ -72,5 +72,16 @@ namespace haisan.util
         public static readonly int THUMBNAIL_LENGTH = 70;
         public static readonly int THUMBNAIL_WIDTH = 30;
 
+
+        //员工管理中使用的参数
+        public static readonly string MAN = "男";
+        public static readonly string WONMAN = "女"; 
+
+
+        //在编辑CAD缩略图时使用
+        public static readonly string GRAY = "ffaeaeae";
+        public static string PATH_AUTOCAD = "H:\\Program Files\\AutoCAD 2008\\acad.exe";
+        public static string USER_HOME = "H:\\Users\\daniel";
+
     }
 }

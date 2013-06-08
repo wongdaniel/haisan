@@ -64,5 +64,24 @@ namespace haisan.domain
             get { return amountOfMoney; }
             set { amountOfMoney = value; }
         }
+
+        private byte[] dwg;
+
+        public byte[] Dwg
+        {
+            get { return dwg; }
+            set { dwg = value; }
+        }
+
+        private string thicknessStats;
+
+        public string ThicknessStats
+        {
+            get { return thicknessStats; }
+            set { thicknessStats = value; }
+        }
+ 
+
+
     }
 }

@@ -499,7 +499,7 @@ namespace haisan.xsd {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTableReportOrderItemRow AddDataTableReportOrderItemRow(string stoneName, string productName, string specification, int package, string unit, string number, string workingName1, string workingNumber1, byte[] workingDiagram1, string workingName2, string workingNumber2, byte[] workingDiagram2, string workingName3, byte[] workingDiagram3, string workingNumber3) {
+            public DataTableReportOrderItemRow AddDataTableReportOrderItemRow(string stoneName, string productName, string specification, int package, string unit, decimal number, string workingName1, string workingNumber1, byte[] workingDiagram1, string workingName2, string workingNumber2, byte[] workingDiagram2, string workingName3, byte[] workingDiagram3, string workingNumber3) {
                 DataTableReportOrderItemRow rowDataTableReportOrderItemRow = ((DataTableReportOrderItemRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         stoneName,
@@ -569,7 +569,7 @@ namespace haisan.xsd {
                 base.Columns.Add(this.columnpackage);
                 this.columnunit = new global::System.Data.DataColumn("unit", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnunit);
-                this.columnnumber = new global::System.Data.DataColumn("number", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnnumber = new global::System.Data.DataColumn("number", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnnumber);
                 this.columnworkingName1 = new global::System.Data.DataColumn("workingName1", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnworkingName1);
@@ -811,10 +811,10 @@ namespace haisan.xsd {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string number {
+            public decimal number {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTableReportOrderItem.numberColumn]));
+                        return ((decimal)(this[this.tableDataTableReportOrderItem.numberColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("表“DataTableReportOrderItem”中列“number”的值为 DBNull。", e);

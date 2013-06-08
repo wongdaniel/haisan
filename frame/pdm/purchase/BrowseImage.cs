@@ -67,8 +67,8 @@ namespace haisan.frame.pdm.purchase
 
         private void listViewImage_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
-            dataGridViewCell.Value = ((ProcessingImage)e.Item.Tag).Image;
             dataGridViewCell.Tag = (ProcessingImage)e.Item.Tag;
+            dataGridViewCell.Value = ((ProcessingImage)e.Item.Tag).Image;
             this.Close();
         }
 

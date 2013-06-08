@@ -23,7 +23,6 @@ namespace haisan.frame.document.warehouse
 
         private void warehouseFrm_Load(object sender, EventArgs e)
         {
-            Console.WriteLine("in load");
             refreshDataGridView();
             WarehouseListHeadText();
 
@@ -38,7 +37,6 @@ namespace haisan.frame.document.warehouse
 
         private void refreshDataGridView()
         {
-           // dataGridViewWarehouse.Rows.Clear();
             dataGridViewWarehouse.DataSource = baseDao.getAllEntities(TB_NAME).Tables[0].DefaultView;
         }
 

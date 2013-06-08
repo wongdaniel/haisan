@@ -21,6 +21,9 @@ using haisan.frame.document.typeOfProcess;
 using haisan.frame.pdm.purchase;
 using haisan.frame.document.image;
 using haisan.frame.document.warehouse;
+using haisan.frame.document.department;
+using haisan.frame.document.employee;
+using haisan.frame.test;
 
 namespace haisan
 {
@@ -300,6 +303,34 @@ namespace haisan
             wareFrm.MdiParent = this;
             wareFrm.Text = title;
             wareFrm.Show();
+        }
+
+        private void 部门资料QToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string title = getTitleFromMenuItem(sender);
+            logDao.saveLog(Parameter.user, title);
+
+            DepartmentFrm departFrm = new DepartmentFrm();
+            departFrm.MdiParent = this;
+            departFrm.Text = title;
+            departFrm.Show();
+        }
+
+        private void 员工资料RToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string title = getTitleFromMenuItem(sender);
+            logDao.saveLog(Parameter.user, title);
+
+            EmployeeFrm employeeFrm = new EmployeeFrm();
+            employeeFrm.MdiParent = this;
+            employeeFrm.Text = title;
+            employeeFrm.Show();
+        }
+
+        private void 测试ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowDWGFrm showFrm = new ShowDWGFrm();
+            showFrm.Show();
         }
     }
 }

@@ -1,3 +1,5 @@
+DROP PROCEDURE get_sequence
+GO
 CREATE PROCEDURE get_sequence
 AS
 BEGIN
@@ -8,13 +10,9 @@ BEGIN
       SET NOCOUNT ON
 
       -- 插入新值到SeqT_0101001表
-      INSERT INTO tb_sequence ([value]) values (0)   
-
-      -- 设置新Sequence值为插入到SeqT_0101001表的标识列内的最后一个标识值  
-      SET @NewSeqValue = scope_identity()   
-
-      -- 删除SeqT_0101001表(不显示被锁行)
-      DELETE FROM get_sequence WITH (READPAST)
+	  SELECT @NewSeqValue = sn FROM tb_sequence WHERE id = 1
+	  SET @NewSeqValue = @NewSeqValue + 1
+	  UPDATE tb_sequence SET sn = @NewSeqValue where id = 1  
 
 -- 返回新Sequence值
 RETURN @NewSeqValue

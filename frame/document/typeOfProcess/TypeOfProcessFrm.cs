@@ -117,12 +117,13 @@ namespace haisan.frame.document.typeOfProcess
                 TypeOfProcess typeOfProcess = new TypeOfProcess(int.Parse(dataGridViewTypeOfProcess.Rows[e.RowIndex].Cells["id"].Value.ToString()),
                             dataGridViewTypeOfProcess.Rows[e.RowIndex].Cells["name"].Value.ToString(),
                             dataGridViewTypeOfProcess.Rows[e.RowIndex].Cells["unit"].Value.ToString());
-                if (null != cell.Tag)
+  
+                if (null != cell.Tag && !((TypeOfProcess)cell.Tag).Name.Equals(typeOfProcess.Name))
                 {
                     string columnName = purFrm.DataGridViewItem.Columns[columnIndex].Name;
                     int index = int.Parse(columnName.Substring(columnName.Length - 1, 1));
                     string number = "ColumnNumber" + index;
-                    purFrm.insertIntoStats((TypeOfProcess)cell.Tag,
+                    purFrm.insertIntoStats((TypeOfProcess)cell.Tag, purFrm.DataGridViewItem.Rows[rowIndex].Cells["ColumnThickness"].Value.ToString(),
                         -decimal.Parse(purFrm.DataGridViewItem.Rows[rowIndex].Cells[number].Value.ToString()));
                 }
 

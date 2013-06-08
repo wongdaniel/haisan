@@ -5,7 +5,7 @@ using System.Text;
 
 namespace haisan.domain
 {
-    class Base
+    public class Base
     {
         protected int id;
 
@@ -24,6 +24,11 @@ namespace haisan.domain
 
         public Base()
         {
+        }
+
+        public Base(int id)
+        {
+            this.id = id;
         }
 
         public Base(int id, string name)

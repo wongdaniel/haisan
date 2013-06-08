@@ -15,8 +15,9 @@ namespace haisan.util
     class Util
     {
 
-       private static string regexOfLengthOrWidth = "^(0|[1-9][0-9]*|[1-9][0-9]*\\([1-9][0-9]*\\))$";
+       private static string regexOfLengthOrWidth = "^([1-9][0-9]*|[1-9][0-9]*\\([1-9][0-9]*\\))$";
        private static string regexOfDigital = "^(0|[1-9][0-9]*)$";
+       private static string regexOfDigitalGreaterZero = "^([1-9][0-9]*)$";
 
        public static byte[] ConvertImage(Image image)
         {
@@ -42,7 +43,7 @@ namespace haisan.util
         public static byte[] imageToByteArray(System.Drawing.Image imageIn)
         {
             MemoryStream ms = new MemoryStream();
-            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
             return ms.ToArray();
         }
 
@@ -97,6 +98,12 @@ namespace haisan.util
             return regex.IsMatch(text);
         }
 
+        public static bool isDigitalGreaterZero(string text)
+        {
+            Regex regex = new Regex(regexOfDigitalGreaterZero);
+            return regex.IsMatch(text);
+        }
+
         //L: length, W: width, T:thickness
         public static int getValueOfLWT(string next)
         {
@@ -127,12 +134,18 @@ namespace haisan.util
             return 0;
         }
 
+        // 如果str为"000", "0.00", ".00"返回的结果都是0
         public static decimal getDecimalValue(string str)
         {
             decimal  value;
             if (decimal.TryParse(str, out value))
                 return value;
             return 0;
+        }
+
+        public static bool isZeroDecimal(string str)
+        {
+            return 0 == getDecimalValue(str);
         }
 
         public static void showError(string message)
@@ -162,6 +175,16 @@ namespace haisan.util
             return ReducedImage;
         }
 
+        public static byte[] getBytes(string fileName)
+        {
+            FileStream dwgF = new FileStream(fileName, FileMode.Open, FileAccess.Read); //文件流
+            byte[] bytes = new byte[dwgF.Length];
+            dwgF.Read(bytes, 0, Convert.ToInt32(dwgF.Length));
+            dwgF.Close();
+
+            return bytes;
+        }
+
         public static bool ThumbnailCallback()
         {
             return false;
@@ -177,5 +200,7 @@ namespace haisan.util
             paramField.HasCurrentValue = true;
             paramFields.Add(paramField);
         }
+
+        
     }
 }

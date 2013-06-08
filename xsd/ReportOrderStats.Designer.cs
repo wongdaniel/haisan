@@ -409,7 +409,7 @@ namespace haisan.xsd {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTableOrderStatsRow AddDataTableOrderStatsRow(string processingName, byte[] processingDiagram, string unitStats, string numberStats, string unitPriceStats, string costStats) {
+            public DataTableOrderStatsRow AddDataTableOrderStatsRow(string processingName, byte[] processingDiagram, string unitStats, decimal numberStats, decimal unitPriceStats, double costStats) {
                 DataTableOrderStatsRow rowDataTableOrderStatsRow = ((DataTableOrderStatsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         processingName,
@@ -457,11 +457,11 @@ namespace haisan.xsd {
                 base.Columns.Add(this.columnprocessingDiagram);
                 this.columnunitStats = new global::System.Data.DataColumn("unitStats", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnunitStats);
-                this.columnnumberStats = new global::System.Data.DataColumn("numberStats", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnnumberStats = new global::System.Data.DataColumn("numberStats", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnnumberStats);
-                this.columnunitPriceStats = new global::System.Data.DataColumn("unitPriceStats", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnunitPriceStats = new global::System.Data.DataColumn("unitPriceStats", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnunitPriceStats);
-                this.columncostStats = new global::System.Data.DataColumn("costStats", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columncostStats = new global::System.Data.DataColumn("costStats", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncostStats);
             }
             
@@ -653,10 +653,10 @@ namespace haisan.xsd {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string numberStats {
+            public decimal numberStats {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTableOrderStats.numberStatsColumn]));
+                        return ((decimal)(this[this.tableDataTableOrderStats.numberStatsColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("表“DataTableOrderStats”中列“numberStats”的值为 DBNull。", e);
@@ -669,10 +669,10 @@ namespace haisan.xsd {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string unitPriceStats {
+            public decimal unitPriceStats {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTableOrderStats.unitPriceStatsColumn]));
+                        return ((decimal)(this[this.tableDataTableOrderStats.unitPriceStatsColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("表“DataTableOrderStats”中列“unitPriceStats”的值为 DBNull。", e);
@@ -685,10 +685,10 @@ namespace haisan.xsd {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string costStats {
+            public double costStats {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTableOrderStats.costStatsColumn]));
+                        return ((double)(this[this.tableDataTableOrderStats.costStatsColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("表“DataTableOrderStats”中列“costStats”的值为 DBNull。", e);
