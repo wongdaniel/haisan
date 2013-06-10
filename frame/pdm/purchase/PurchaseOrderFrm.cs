@@ -1014,7 +1014,7 @@ namespace haisan.frame.pdm.purchase
             {
                 byte[] bytes = (byte[])dataGridViewItemStats.Rows[currentRow].Cells["ColumnDWG"].Tag;
 
-                fileName = Parameter.USER_HOME + @"\tmp" + DateTime.Now.Millisecond + ".dwg";
+                fileName = Parameter.USER_HOME + @"\tmp" + DateTime.Now.Ticks + ".dwg";
                 if (File.Exists(fileName))
                 {
                     MessageBox.Show("文件[" + fileName + "]已存在，无法创建临时文件", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1047,6 +1047,10 @@ namespace haisan.frame.pdm.purchase
             Console.WriteLine("955 currentRow:[" + currentRow + "] currentColumn:[" + currentColumn + "]");
             refreshImage(fileName);
             File.Delete(fileName);
+            string bakFileName = fileName.Substring(0, fileName.LastIndexOf(".")) + ".bak";
+ //           Console.WriteLine("bakFileName:"+ bakFileName);
+            if (File.Exists(bakFileName))
+                File.Delete(bakFileName);
             this.Enabled = true;
         }
 

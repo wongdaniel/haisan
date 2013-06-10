@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using CrystalDecisions.Shared;
 using CrystalDecisions.CrystalReports.Engine;
+using haisan.Resources;
 
 namespace haisan.frame.pdm.purchase
 {

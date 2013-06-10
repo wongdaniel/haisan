@@ -200,7 +200,6 @@ namespace haisan.util
             paramField.HasCurrentValue = true;
             paramFields.Add(paramField);
         }
-
         
     }
 }
