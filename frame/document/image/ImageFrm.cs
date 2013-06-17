@@ -174,6 +174,9 @@ namespace haisan.frame.document.image
 
         private void dataGridViewImage_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+
             if (isBitColumn(dataGridViewImage.Columns[e.ColumnIndex].Name))
             {
                 if("false".Equals(dataGridViewImage.Rows[e.RowIndex].Cells[e.ColumnIndex].FormattedValue.ToString().ToLower())){
