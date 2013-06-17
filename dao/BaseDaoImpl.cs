@@ -225,7 +225,6 @@ namespace haisan.dao
                 msg.IsSucess = true;
             }
             msg.Message = prams[prams.Length - 2].Value.ToString();
-
             return msg;
         }
 

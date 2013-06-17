@@ -93,9 +93,9 @@ namespace haisan.domain
             get { return cost; }
             set { cost = value; }
         }
-        private Image workingDiagram1;
+        private ProcessingImage workingDiagram1;
 
-        public Image WorkingDiagram1
+        public ProcessingImage WorkingDiagram1
         {
             get { return workingDiagram1; }
             set { workingDiagram1 = value; }
@@ -115,9 +115,9 @@ namespace haisan.domain
             set { workingNumber1 = value; }
         }
 
-        private Image workingDiagram2;
+        private ProcessingImage workingDiagram2;
 
-        public Image WorkingDiagram2
+        public ProcessingImage WorkingDiagram2
         {
             get { return workingDiagram2; }
             set { workingDiagram2 = value; }
@@ -137,9 +137,9 @@ namespace haisan.domain
             set { workingNumber2 = value; }
         }
 
-        private Image workingDiagram3;
+        private ProcessingImage workingDiagram3;
 
-        public Image WorkingDiagram3
+        public ProcessingImage WorkingDiagram3
         {
             get { return workingDiagram3; }
             set { workingDiagram3 = value; }
@@ -160,5 +160,13 @@ namespace haisan.domain
         }
 
 
+        public OrderItem()
+        {
+        }
+
+        public OrderItem(int id)
+        {
+            this.id = id;
+        }
     }
 }

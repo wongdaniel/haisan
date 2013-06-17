@@ -261,6 +261,9 @@ namespace haisan.frame.pdm.purchase
                || columnName.Equals("ColumnThickness") || columnName.Equals("ColumnUnit"))
             {
          //       Console.WriteLine("将刷新，数量，以及数量1,数量2，数量3");
+                if(columnName.Equals("ColumnPackage"))
+                    refreshTotalFiled();
+
                 refreshColumnNumber(sender, e, columnName);
                 if (columnName.Equals("ColumnPackage") || columnName.Equals("ColumnLength") || columnName.Equals("ColumnWidth"))
                 {
@@ -658,13 +661,13 @@ namespace haisan.frame.pdm.purchase
             item.Number = Util.getDecimalValue(row.Cells["ColumnNumber"].Value.ToString());
             item.UnitPrice = Util.getDecimalValue(row.Cells["ColumnUnitPrice"].Value.ToString());
             item.Cost = Util.getDecimalValue(row.Cells["ColumnCost"].Value.ToString());
-            item.WorkingDiagram1 = (Image)row.Cells["ColumnDiagram1"].Value;
+            item.WorkingDiagram1 = (ProcessingImage)row.Cells["ColumnDiagram1"].Tag;
             item.WorkingName1 = (TypeOfProcess)row.Cells["ColumnName1"].Tag;
             item.WorkingNumber1 = Util.getDecimalValue(row.Cells["ColumnNumber1"].Value.ToString());
-            item.WorkingDiagram2 = (Image)row.Cells["ColumnDiagram2"].Value;
+            item.WorkingDiagram2 = (ProcessingImage)row.Cells["ColumnDiagram2"].Tag;
             item.WorkingName2 = (TypeOfProcess)row.Cells["ColumnName2"].Tag;
             item.WorkingNumber2 = Util.getDecimalValue(row.Cells["ColumnNumber2"].Value.ToString());
-            item.WorkingDiagram3 = (Image)row.Cells["ColumnDiagram3"].Value;
+            item.WorkingDiagram3 = (ProcessingImage)row.Cells["ColumnDiagram3"].Tag;
             item.WorkingName3 = (TypeOfProcess)row.Cells["ColumnName3"].Tag;
             item.WorkingNumber3 = Util.getDecimalValue(row.Cells["ColumnNumber3"].Value.ToString());
             return item;
@@ -687,18 +690,21 @@ namespace haisan.frame.pdm.purchase
             row.Cells["ColumnUnitPrice"].Value = item.UnitPrice;
             row.Cells["ColumnCost"].Value = item.Cost;
 
-            row.Cells["ColumnDiagram1"].Value = item.WorkingDiagram1;
+            row.Cells["ColumnDiagram1"].Value = null == item.WorkingDiagram1 ? null : item.WorkingDiagram1.Image;
+            row.Cells["ColumnDiagram1"].Tag = item.WorkingDiagram1;
             row.Cells["ColumnName1"].Tag = item.WorkingName1;
             row.Cells["ColumnName1"].Value = (null == item.WorkingName1 ? "" : item.WorkingName1.Name);
             row.Cells["ColumnNumber1"].Value = item.WorkingNumber1;
 
 
-            row.Cells["ColumnDiagram2"].Value = item.WorkingDiagram2;
+            row.Cells["ColumnDiagram2"].Value = null == item.WorkingDiagram2 ? null : item.WorkingDiagram2.Image;
+            row.Cells["ColumnDiagram2"].Tag = item.WorkingDiagram2;
             row.Cells["ColumnName2"].Tag = item.WorkingName2;
             row.Cells["ColumnName2"].Value = (null == item.WorkingName2 ? "" : item.WorkingName2.Name);
             row.Cells["ColumnNumber2"].Value = item.WorkingNumber2;
 
-            row.Cells["ColumnDiagram3"].Value = item.WorkingDiagram3;
+            row.Cells["ColumnDiagram3"].Value = null == item.WorkingDiagram3 ? null : item.WorkingDiagram3.Image;
+            row.Cells["ColumnDiagram3"].Tag = item.WorkingDiagram3;
             row.Cells["ColumnName3"].Tag = item.WorkingName3;
             row.Cells["ColumnName3"].Value = (null == item.WorkingName3 ? "" : item.WorkingName3.Name);
             row.Cells["ColumnNumber3"].Value = item.WorkingNumber3;
@@ -758,6 +764,17 @@ namespace haisan.frame.pdm.purchase
             {
                 textBoxSN.Text = order.Sn;
                 orderID = order.Id;
+
+                int i = 0;
+                foreach (OrderItem item in order.OrderItems)
+                {
+                    dataGridViewItem.Rows[i++].Cells["ColumnItemID"].Value = item.Id;
+                }
+                i = 0;
+                foreach (OrderStats stats in order.OrderStats)
+                {
+                    dataGridViewItemStats.Rows[i++].Cells["ColumnStatsID"].Value = stats.Id;
+                }
             }
             this.Enabled = true;
         }

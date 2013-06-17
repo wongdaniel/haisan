@@ -80,8 +80,15 @@ namespace haisan.domain
             get { return thicknessStats; }
             set { thicknessStats = value; }
         }
- 
 
+        public OrderStats()
+        {
+        }
+
+        public OrderStats(int id)
+        {
+            this.id = id;
+        }
 
     }
 }

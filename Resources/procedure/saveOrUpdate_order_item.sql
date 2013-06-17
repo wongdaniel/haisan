@@ -13,13 +13,13 @@ CREATE PROCEDURE saveOrUpdate_order_item
 @number decimal(18,3),
 @unit_price money,
 @cost money,
-@working_diagram_1 image,
+@working_diagram_1 int,
 @working_name_1 int,
 @working_number_1 decimal(18,3),
-@working_diagram_2 image,
+@working_diagram_2 int,
 @working_name_2 int,
 @working_number_2 decimal(18,3),
-@working_diagram_3 image,
+@working_diagram_3 int,
 @working_name_3 int,
 @working_number_3 decimal(18,3),
 @message nvarchar(50) output
@@ -72,6 +72,7 @@ IF (@id > 0) BEGIN
 				working_diagram_2 = @working_diagram_2,working_name_2 = @working_name_2,working_number_2 = @working_number_2,
 				working_diagram_3 = @working_diagram_3,working_name_3 = @working_name_3,working_number_3 = @working_number_3
 			WHERE id = @id
+		SET @message = @id
 		RETURN 0
 	END
 END ELSE BEGIN
@@ -79,6 +80,7 @@ END ELSE BEGIN
 				working_diagram_1,working_name_1,working_number_1,working_diagram_2,working_name_2,working_number_2,working_diagram_3,working_name_3,working_number_3)
 			VALUES(@order,@category_stone,@product_name,@length,@width,@thickness,@package,@unit,@number,@unit_price,@cost,
 				@working_diagram_1,@working_name_1,@working_number_1,@working_diagram_2,@working_name_2,@working_number_2,@working_diagram_3,@working_name_3,@working_number_3)
+		SELECT @message = @@identity
 		RETURN 0
 END
 

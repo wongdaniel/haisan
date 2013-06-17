@@ -1,0 +1,924 @@
+﻿namespace haisan.frame.pdm.xialiao
+{
+    partial class XialiaoOrderFrm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label1CreateDate = new System.Windows.Forms.Label();
+            this.label1Operator = new System.Windows.Forms.Label();
+            this.comboBoxGetStyle = new System.Windows.Forms.ComboBox();
+            this.buttonSaveTable = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBoxPhone = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxCompany = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxSN = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.labelTitle = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.新增订单NToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.新增订单NToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.删除订单DToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.查询订单QToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.打印订单PToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.报表打印PToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.报表预览VToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.取消退出EToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBoxOrderSN = new System.Windows.Forms.ComboBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.textBoxTotalCost = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBoxProcessing = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBoxPayment = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBoxTotalPackage = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBoxTotalNumber = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.dataGridViewItem = new System.Windows.Forms.DataGridView();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dataGridViewItemStats = new System.Windows.Forms.DataGridView();
+            this.ColumnProcessingName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnStatsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnXialiaoStatsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnThicknessStats = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnProcessingDiagram = new System.Windows.Forms.DataGridViewImageColumn();
+            this.ColumnDWG = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnUnitStats = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnNumberStats = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnUnitPriceStats = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnCostStats = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnCategoryStone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnLength = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnWidth = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnThickness = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPackage = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnRemainPackage = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnUsePackage = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnUnit = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.ColumnNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnUnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnDiagram1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.ColumnName1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnNumber1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnDiagram2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.ColumnName2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnNumber2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnDiagram3 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.ColumnName3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnNumber3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnXialiaoItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
+            this.panel1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewItem)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewItemStats)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label13);
+            this.panel1.Controls.Add(this.label1CreateDate);
+            this.panel1.Controls.Add(this.label1Operator);
+            this.panel1.Controls.Add(this.comboBoxGetStyle);
+            this.panel1.Controls.Add(this.buttonSaveTable);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.textBoxPhone);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.textBoxCompany);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.textBoxSN);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.labelTitle);
+            this.panel1.Controls.Add(this.menuStrip1);
+            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(905, 172);
+            this.panel1.TabIndex = 0;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(422, 88);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(65, 12);
+            this.label13.TabIndex = 19;
+            this.label13.Text = "销售订单：";
+            // 
+            // label1CreateDate
+            // 
+            this.label1CreateDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1CreateDate.AutoSize = true;
+            this.label1CreateDate.Location = new System.Drawing.Point(818, 39);
+            this.label1CreateDate.Name = "label1CreateDate";
+            this.label1CreateDate.Size = new System.Drawing.Size(65, 12);
+            this.label1CreateDate.TabIndex = 16;
+            this.label1CreateDate.Text = "2013-05-29";
+            // 
+            // label1Operator
+            // 
+            this.label1Operator.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1Operator.AutoSize = true;
+            this.label1Operator.Location = new System.Drawing.Point(677, 39);
+            this.label1Operator.Name = "label1Operator";
+            this.label1Operator.Size = new System.Drawing.Size(47, 12);
+            this.label1Operator.TabIndex = 15;
+            this.label1Operator.Text = "label13";
+            // 
+            // comboBoxGetStyle
+            // 
+            this.comboBoxGetStyle.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.comboBoxGetStyle.FormattingEnabled = true;
+            this.comboBoxGetStyle.Location = new System.Drawing.Point(83, 123);
+            this.comboBoxGetStyle.Name = "comboBoxGetStyle";
+            this.comboBoxGetStyle.Size = new System.Drawing.Size(125, 20);
+            this.comboBoxGetStyle.TabIndex = 14;
+            // 
+            // buttonSaveTable
+            // 
+            this.buttonSaveTable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSaveTable.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonSaveTable.Location = new System.Drawing.Point(808, 139);
+            this.buttonSaveTable.Name = "buttonSaveTable";
+            this.buttonSaveTable.Size = new System.Drawing.Size(75, 23);
+            this.buttonSaveTable.TabIndex = 13;
+            this.buttonSaveTable.Text = "表格保存";
+            this.buttonSaveTable.UseVisualStyleBackColor = true;
+            this.buttonSaveTable.Click += new System.EventHandler(this.buttonSaveTable_Click);
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(631, 39);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 12);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "操作员：";
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(758, 38);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 12);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "生成日期：";
+            // 
+            // textBoxPhone
+            // 
+            this.textBoxPhone.Location = new System.Drawing.Point(276, 122);
+            this.textBoxPhone.MaxLength = 20;
+            this.textBoxPhone.Name = "textBoxPhone";
+            this.textBoxPhone.ReadOnly = true;
+            this.textBoxPhone.Size = new System.Drawing.Size(125, 21);
+            this.textBoxPhone.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(228, 127);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(41, 12);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "电话：";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(21, 127);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 12);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "提货方式：";
+            // 
+            // textBoxCompany
+            // 
+            this.textBoxCompany.Location = new System.Drawing.Point(276, 83);
+            this.textBoxCompany.Name = "textBoxCompany";
+            this.textBoxCompany.ReadOnly = true;
+            this.textBoxCompany.Size = new System.Drawing.Size(125, 21);
+            this.textBoxCompany.TabIndex = 4;
+            this.textBoxCompany.TextChanged += new System.EventHandler(this.textBoxCompany_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(226, 87);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "客户名：";
+            // 
+            // textBoxSN
+            // 
+            this.textBoxSN.Location = new System.Drawing.Point(83, 83);
+            this.textBoxSN.Name = "textBoxSN";
+            this.textBoxSN.ReadOnly = true;
+            this.textBoxSN.Size = new System.Drawing.Size(125, 21);
+            this.textBoxSN.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(21, 87);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "订单号：";
+            // 
+            // labelTitle
+            // 
+            this.labelTitle.AutoSize = true;
+            this.labelTitle.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelTitle.Location = new System.Drawing.Point(309, 36);
+            this.labelTitle.Name = "labelTitle";
+            this.labelTitle.Size = new System.Drawing.Size(110, 16);
+            this.labelTitle.TabIndex = 0;
+            this.labelTitle.Text = "下料加工订单";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.AllowMerge = false;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.新增订单NToolStripMenuItem1,
+            this.新增订单NToolStripMenuItem,
+            this.删除订单DToolStripMenuItem,
+            this.查询订单QToolStripMenuItem,
+            this.打印订单PToolStripMenuItem,
+            this.取消退出EToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(905, 25);
+            this.menuStrip1.TabIndex = 18;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // 新增订单NToolStripMenuItem1
+            // 
+            this.新增订单NToolStripMenuItem1.Name = "新增订单NToolStripMenuItem1";
+            this.新增订单NToolStripMenuItem1.Size = new System.Drawing.Size(86, 21);
+            this.新增订单NToolStripMenuItem1.Text = "新增订单(&N)";
+            this.新增订单NToolStripMenuItem1.Click += new System.EventHandler(this.新增订单NToolStripMenuItem1_Click);
+            // 
+            // 新增订单NToolStripMenuItem
+            // 
+            this.新增订单NToolStripMenuItem.Name = "新增订单NToolStripMenuItem";
+            this.新增订单NToolStripMenuItem.Size = new System.Drawing.Size(83, 21);
+            this.新增订单NToolStripMenuItem.Text = "保存订单(&S)";
+            this.新增订单NToolStripMenuItem.Click += new System.EventHandler(this.保存订单NToolStripMenuItem_Click);
+            // 
+            // 删除订单DToolStripMenuItem
+            // 
+            this.删除订单DToolStripMenuItem.Name = "删除订单DToolStripMenuItem";
+            this.删除订单DToolStripMenuItem.Size = new System.Drawing.Size(85, 21);
+            this.删除订单DToolStripMenuItem.Text = "删除订单(&D)";
+            this.删除订单DToolStripMenuItem.Click += new System.EventHandler(this.删除订单DToolStripMenuItem_Click);
+            // 
+            // 查询订单QToolStripMenuItem
+            // 
+            this.查询订单QToolStripMenuItem.Name = "查询订单QToolStripMenuItem";
+            this.查询订单QToolStripMenuItem.Size = new System.Drawing.Size(86, 21);
+            this.查询订单QToolStripMenuItem.Text = "查询订单(&Q)";
+            this.查询订单QToolStripMenuItem.Click += new System.EventHandler(this.查询订单QToolStripMenuItem_Click);
+            // 
+            // 打印订单PToolStripMenuItem
+            // 
+            this.打印订单PToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.报表打印PToolStripMenuItem,
+            this.报表预览VToolStripMenuItem});
+            this.打印订单PToolStripMenuItem.Name = "打印订单PToolStripMenuItem";
+            this.打印订单PToolStripMenuItem.Size = new System.Drawing.Size(83, 21);
+            this.打印订单PToolStripMenuItem.Text = "打印订单(&P)";
+            // 
+            // 报表打印PToolStripMenuItem
+            // 
+            this.报表打印PToolStripMenuItem.Name = "报表打印PToolStripMenuItem";
+            this.报表打印PToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.报表打印PToolStripMenuItem.Text = "报表预览(&P)";
+            this.报表打印PToolStripMenuItem.Click += new System.EventHandler(this.报表预览PToolStripMenuItem_Click);
+            // 
+            // 报表预览VToolStripMenuItem
+            // 
+            this.报表预览VToolStripMenuItem.Name = "报表预览VToolStripMenuItem";
+            this.报表预览VToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.报表预览VToolStripMenuItem.Text = "报表打印(&V)";
+            // 
+            // 取消退出EToolStripMenuItem
+            // 
+            this.取消退出EToolStripMenuItem.Name = "取消退出EToolStripMenuItem";
+            this.取消退出EToolStripMenuItem.Size = new System.Drawing.Size(83, 21);
+            this.取消退出EToolStripMenuItem.Text = "取消退出(&E)";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.comboBoxOrderSN);
+            this.groupBox1.Location = new System.Drawing.Point(12, 57);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(750, 105);
+            this.groupBox1.TabIndex = 21;
+            this.groupBox1.TabStop = false;
+            // 
+            // comboBoxOrderSN
+            // 
+            this.comboBoxOrderSN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxOrderSN.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.comboBoxOrderSN.FormattingEnabled = true;
+            this.comboBoxOrderSN.Location = new System.Drawing.Point(477, 26);
+            this.comboBoxOrderSN.Name = "comboBoxOrderSN";
+            this.comboBoxOrderSN.Size = new System.Drawing.Size(125, 20);
+            this.comboBoxOrderSN.TabIndex = 15;
+            this.comboBoxOrderSN.TextChanged += new System.EventHandler(this.comboBoxOrderSN_TextChanged);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.textBoxTotalCost);
+            this.panel2.Controls.Add(this.label11);
+            this.panel2.Controls.Add(this.textBoxProcessing);
+            this.panel2.Controls.Add(this.label10);
+            this.panel2.Controls.Add(this.textBoxPayment);
+            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.textBoxTotalPackage);
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.textBoxTotalNumber);
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 494);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(905, 85);
+            this.panel2.TabIndex = 1;
+            // 
+            // textBoxTotalCost
+            // 
+            this.textBoxTotalCost.Location = new System.Drawing.Point(294, 46);
+            this.textBoxTotalCost.Name = "textBoxTotalCost";
+            this.textBoxTotalCost.ReadOnly = true;
+            this.textBoxTotalCost.Size = new System.Drawing.Size(125, 21);
+            this.textBoxTotalCost.TabIndex = 9;
+            this.textBoxTotalCost.Text = "0";
+            this.textBoxTotalCost.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(233, 53);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(53, 12);
+            this.label11.TabIndex = 8;
+            this.label11.Text = "总计款：";
+            // 
+            // textBoxProcessing
+            // 
+            this.textBoxProcessing.Location = new System.Drawing.Point(92, 50);
+            this.textBoxProcessing.Name = "textBoxProcessing";
+            this.textBoxProcessing.ReadOnly = true;
+            this.textBoxProcessing.Size = new System.Drawing.Size(125, 21);
+            this.textBoxProcessing.TabIndex = 7;
+            this.textBoxProcessing.Text = "0";
+            this.textBoxProcessing.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(29, 55);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(53, 12);
+            this.label10.TabIndex = 6;
+            this.label10.Text = "加工费：";
+            // 
+            // textBoxPayment
+            // 
+            this.textBoxPayment.Location = new System.Drawing.Point(473, 17);
+            this.textBoxPayment.Name = "textBoxPayment";
+            this.textBoxPayment.ReadOnly = true;
+            this.textBoxPayment.Size = new System.Drawing.Size(125, 21);
+            this.textBoxPayment.TabIndex = 5;
+            this.textBoxPayment.Text = "0";
+            this.textBoxPayment.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(438, 22);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(41, 12);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "货款：";
+            // 
+            // textBoxTotalPackage
+            // 
+            this.textBoxTotalPackage.Location = new System.Drawing.Point(294, 17);
+            this.textBoxTotalPackage.Name = "textBoxTotalPackage";
+            this.textBoxTotalPackage.ReadOnly = true;
+            this.textBoxTotalPackage.Size = new System.Drawing.Size(125, 21);
+            this.textBoxTotalPackage.TabIndex = 3;
+            this.textBoxTotalPackage.Text = "0";
+            this.textBoxTotalPackage.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(233, 23);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(65, 12);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "件数合计：";
+            // 
+            // textBoxTotalNumber
+            // 
+            this.textBoxTotalNumber.Location = new System.Drawing.Point(92, 17);
+            this.textBoxTotalNumber.Name = "textBoxTotalNumber";
+            this.textBoxTotalNumber.ReadOnly = true;
+            this.textBoxTotalNumber.Size = new System.Drawing.Size(125, 21);
+            this.textBoxTotalNumber.TabIndex = 1;
+            this.textBoxTotalNumber.Text = "0";
+            this.textBoxTotalNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(29, 23);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 12);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "数量合计：";
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 172);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.dataGridViewItem);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
+            this.splitContainer1.Size = new System.Drawing.Size(905, 322);
+            this.splitContainer1.SplitterDistance = 173;
+            this.splitContainer1.TabIndex = 2;
+            // 
+            // dataGridViewItem
+            // 
+            this.dataGridViewItem.AllowUserToAddRows = false;
+            this.dataGridViewItem.AllowUserToDeleteRows = false;
+            this.dataGridViewItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnCategoryStone,
+            this.ColumnProductName,
+            this.ColumnLength,
+            this.ColumnWidth,
+            this.ColumnThickness,
+            this.ColumnPackage,
+            this.ColumnRemainPackage,
+            this.ColumnUsePackage,
+            this.ColumnUnit,
+            this.ColumnNumber,
+            this.ColumnUnitPrice,
+            this.ColumnCost,
+            this.ColumnDiagram1,
+            this.ColumnName1,
+            this.ColumnNumber1,
+            this.ColumnDiagram2,
+            this.ColumnName2,
+            this.ColumnNumber2,
+            this.ColumnDiagram3,
+            this.ColumnName3,
+            this.ColumnNumber3,
+            this.ColumnItemID,
+            this.ColumnXialiaoItemID});
+            this.dataGridViewItem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewItem.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewItem.Name = "dataGridViewItem";
+            this.dataGridViewItem.RowTemplate.Height = 23;
+            this.dataGridViewItem.Size = new System.Drawing.Size(905, 173);
+            this.dataGridViewItem.TabIndex = 0;
+            this.dataGridViewItem.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridViewItem_CellValidating);
+            this.dataGridViewItem.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewItem_CellValueChanged);
+            this.dataGridViewItem.Resize += new System.EventHandler(this.XialiaoOrderFrm_Resize);
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(905, 145);
+            this.tabControl1.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.dataGridViewItemStats);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(897, 119);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "按加工名称统计";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewItemStats
+            // 
+            this.dataGridViewItemStats.AllowUserToAddRows = false;
+            this.dataGridViewItemStats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewItemStats.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnProcessingName,
+            this.ColumnStatsID,
+            this.ColumnXialiaoStatsID,
+            this.ColumnThicknessStats,
+            this.ColumnProcessingDiagram,
+            this.ColumnDWG,
+            this.ColumnUnitStats,
+            this.ColumnNumberStats,
+            this.ColumnUnitPriceStats,
+            this.ColumnCostStats});
+            this.dataGridViewItemStats.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewItemStats.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewItemStats.Name = "dataGridViewItemStats";
+            this.dataGridViewItemStats.RowTemplate.Height = 23;
+            this.dataGridViewItemStats.Size = new System.Drawing.Size(891, 113);
+            this.dataGridViewItemStats.TabIndex = 0;
+            this.dataGridViewItemStats.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewItemStats_CellClick);
+            this.dataGridViewItemStats.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewItemStats_CellValueChanged);
+            // 
+            // ColumnProcessingName
+            // 
+            this.ColumnProcessingName.HeaderText = "加工名称";
+            this.ColumnProcessingName.Name = "ColumnProcessingName";
+            this.ColumnProcessingName.ReadOnly = true;
+            // 
+            // ColumnStatsID
+            // 
+            this.ColumnStatsID.HeaderText = "ColumnStatsID";
+            this.ColumnStatsID.Name = "ColumnStatsID";
+            this.ColumnStatsID.Visible = false;
+            // 
+            // ColumnXialiaoStatsID
+            // 
+            this.ColumnXialiaoStatsID.HeaderText = "ColumnXialiaoStatsID";
+            this.ColumnXialiaoStatsID.Name = "ColumnXialiaoStatsID";
+            this.ColumnXialiaoStatsID.Visible = false;
+            // 
+            // ColumnThicknessStats
+            // 
+            this.ColumnThicknessStats.HeaderText = "厚度";
+            this.ColumnThicknessStats.Name = "ColumnThicknessStats";
+            this.ColumnThicknessStats.ReadOnly = true;
+            // 
+            // ColumnProcessingDiagram
+            // 
+            this.ColumnProcessingDiagram.HeaderText = "图片展示";
+            this.ColumnProcessingDiagram.Name = "ColumnProcessingDiagram";
+            this.ColumnProcessingDiagram.ReadOnly = true;
+            this.ColumnProcessingDiagram.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnProcessingDiagram.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // ColumnDWG
+            // 
+            this.ColumnDWG.HeaderText = "ColumnDWG";
+            this.ColumnDWG.Name = "ColumnDWG";
+            this.ColumnDWG.ReadOnly = true;
+            this.ColumnDWG.Visible = false;
+            // 
+            // ColumnUnitStats
+            // 
+            this.ColumnUnitStats.HeaderText = "单位";
+            this.ColumnUnitStats.Name = "ColumnUnitStats";
+            this.ColumnUnitStats.ReadOnly = true;
+            // 
+            // ColumnNumberStats
+            // 
+            this.ColumnNumberStats.HeaderText = "统计数量";
+            this.ColumnNumberStats.Name = "ColumnNumberStats";
+            this.ColumnNumberStats.ReadOnly = true;
+            // 
+            // ColumnUnitPriceStats
+            // 
+            this.ColumnUnitPriceStats.HeaderText = "单价";
+            this.ColumnUnitPriceStats.Name = "ColumnUnitPriceStats";
+            this.ColumnUnitPriceStats.ReadOnly = true;
+            // 
+            // ColumnCostStats
+            // 
+            this.ColumnCostStats.HeaderText = "金额";
+            this.ColumnCostStats.Name = "ColumnCostStats";
+            this.ColumnCostStats.ReadOnly = true;
+            // 
+            // ColumnCategoryStone
+            // 
+            this.ColumnCategoryStone.HeaderText = "石材名称";
+            this.ColumnCategoryStone.Name = "ColumnCategoryStone";
+            this.ColumnCategoryStone.ReadOnly = true;
+            // 
+            // ColumnProductName
+            // 
+            this.ColumnProductName.HeaderText = "产品名称";
+            this.ColumnProductName.Name = "ColumnProductName";
+            this.ColumnProductName.ReadOnly = true;
+            // 
+            // ColumnLength
+            // 
+            this.ColumnLength.HeaderText = "长";
+            this.ColumnLength.Name = "ColumnLength";
+            this.ColumnLength.ReadOnly = true;
+            // 
+            // ColumnWidth
+            // 
+            this.ColumnWidth.HeaderText = "宽";
+            this.ColumnWidth.Name = "ColumnWidth";
+            this.ColumnWidth.ReadOnly = true;
+            // 
+            // ColumnThickness
+            // 
+            this.ColumnThickness.HeaderText = "厚";
+            this.ColumnThickness.Name = "ColumnThickness";
+            this.ColumnThickness.ReadOnly = true;
+            // 
+            // ColumnPackage
+            // 
+            this.ColumnPackage.HeaderText = "订做件数";
+            this.ColumnPackage.Name = "ColumnPackage";
+            this.ColumnPackage.ReadOnly = true;
+            // 
+            // ColumnRemainPackage
+            // 
+            this.ColumnRemainPackage.HeaderText = "未下件数";
+            this.ColumnRemainPackage.Name = "ColumnRemainPackage";
+            this.ColumnRemainPackage.ReadOnly = true;
+            // 
+            // ColumnUsePackage
+            // 
+            this.ColumnUsePackage.HeaderText = "本次";
+            this.ColumnUsePackage.Name = "ColumnUsePackage";
+            // 
+            // ColumnUnit
+            // 
+            this.ColumnUnit.HeaderText = "单位";
+            this.ColumnUnit.Name = "ColumnUnit";
+            this.ColumnUnit.ReadOnly = true;
+            // 
+            // ColumnNumber
+            // 
+            this.ColumnNumber.HeaderText = "数量";
+            this.ColumnNumber.Name = "ColumnNumber";
+            this.ColumnNumber.ReadOnly = true;
+            // 
+            // ColumnUnitPrice
+            // 
+            this.ColumnUnitPrice.HeaderText = "单价";
+            this.ColumnUnitPrice.Name = "ColumnUnitPrice";
+            this.ColumnUnitPrice.ReadOnly = true;
+            // 
+            // ColumnCost
+            // 
+            this.ColumnCost.HeaderText = "金额";
+            this.ColumnCost.Name = "ColumnCost";
+            this.ColumnCost.ReadOnly = true;
+            // 
+            // ColumnDiagram1
+            // 
+            this.ColumnDiagram1.HeaderText = "加工图1";
+            this.ColumnDiagram1.Name = "ColumnDiagram1";
+            this.ColumnDiagram1.ReadOnly = true;
+            // 
+            // ColumnName1
+            // 
+            this.ColumnName1.HeaderText = "加工名称1";
+            this.ColumnName1.Name = "ColumnName1";
+            this.ColumnName1.ReadOnly = true;
+            this.ColumnName1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnName1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnNumber1
+            // 
+            this.ColumnNumber1.HeaderText = "数量1";
+            this.ColumnNumber1.Name = "ColumnNumber1";
+            this.ColumnNumber1.ReadOnly = true;
+            this.ColumnNumber1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnNumber1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnDiagram2
+            // 
+            this.ColumnDiagram2.HeaderText = "加工图2";
+            this.ColumnDiagram2.Name = "ColumnDiagram2";
+            this.ColumnDiagram2.ReadOnly = true;
+            // 
+            // ColumnName2
+            // 
+            this.ColumnName2.HeaderText = "加工名称2";
+            this.ColumnName2.Name = "ColumnName2";
+            this.ColumnName2.ReadOnly = true;
+            // 
+            // ColumnNumber2
+            // 
+            this.ColumnNumber2.HeaderText = "数量2";
+            this.ColumnNumber2.Name = "ColumnNumber2";
+            this.ColumnNumber2.ReadOnly = true;
+            // 
+            // ColumnDiagram3
+            // 
+            this.ColumnDiagram3.HeaderText = "加工图3";
+            this.ColumnDiagram3.Name = "ColumnDiagram3";
+            this.ColumnDiagram3.ReadOnly = true;
+            this.ColumnDiagram3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnDiagram3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // ColumnName3
+            // 
+            this.ColumnName3.HeaderText = "加工名称3";
+            this.ColumnName3.Name = "ColumnName3";
+            this.ColumnName3.ReadOnly = true;
+            // 
+            // ColumnNumber3
+            // 
+            this.ColumnNumber3.HeaderText = "数量3";
+            this.ColumnNumber3.Name = "ColumnNumber3";
+            this.ColumnNumber3.ReadOnly = true;
+            // 
+            // ColumnItemID
+            // 
+            this.ColumnItemID.HeaderText = "ColumnItemID";
+            this.ColumnItemID.Name = "ColumnItemID";
+            this.ColumnItemID.Visible = false;
+            // 
+            // ColumnXialiaoItemID
+            // 
+            this.ColumnXialiaoItemID.HeaderText = "ColumnXialiaoItemID";
+            this.ColumnXialiaoItemID.Name = "ColumnXialiaoItemID";
+            this.ColumnXialiaoItemID.Visible = false;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(390, 25);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(20, 23);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // XialiaoOrderFrm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(905, 579);
+            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.Name = "XialiaoOrderFrm";
+            this.Text = "PurchaseOrderFrm";
+            this.Load += new System.EventHandler(this.XialiaoOrderFrm_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewItem)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewItemStats)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label labelTitle;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxSN;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBoxCompany;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBoxPhone;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBoxTotalNumber;
+        private System.Windows.Forms.TextBox textBoxTotalPackage;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBoxPayment;
+        private System.Windows.Forms.TextBox textBoxProcessing;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox textBoxTotalCost;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.DataGridView dataGridViewItem;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.DataGridView dataGridViewItemStats;
+        private System.Windows.Forms.Button buttonSaveTable;
+        private System.Windows.Forms.ComboBox comboBoxGetStyle;
+        private System.Windows.Forms.Label label1Operator;
+        private System.Windows.Forms.Label label1CreateDate;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 新增订单NToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 删除订单DToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 查询订单QToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 取消退出EToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 新增订单NToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 打印订单PToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 报表打印PToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 报表预览VToolStripMenuItem;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox comboBoxOrderSN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProcessingName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStatsID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnXialiaoStatsID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnThicknessStats;
+        private System.Windows.Forms.DataGridViewImageColumn ColumnProcessingDiagram;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDWG;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnUnitStats;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNumberStats;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnUnitPriceStats;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCostStats;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCategoryStone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProductName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLength;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnWidth;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnThickness;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPackage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnRemainPackage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnUsePackage;
+        private System.Windows.Forms.DataGridViewComboBoxColumn ColumnUnit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnUnitPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCost;
+        private System.Windows.Forms.DataGridViewImageColumn ColumnDiagram1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNumber1;
+        private System.Windows.Forms.DataGridViewImageColumn ColumnDiagram2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNumber2;
+        private System.Windows.Forms.DataGridViewImageColumn ColumnDiagram3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNumber3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnItemID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnXialiaoItemID;
+        private System.Windows.Forms.Button button1;
+
+    }
+}

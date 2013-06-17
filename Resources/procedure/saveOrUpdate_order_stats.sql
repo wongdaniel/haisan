@@ -34,11 +34,13 @@ IF (@id > 0) BEGIN
 		UPDATE tb_order_stats SET [order] = @order,type_of_process = @type_of_process, thickness = @thickness, [image] = @image, dwg = @dwg, unit = @unit,
 			total_number = @total_number,unit_price = @unit_price,amount_of_money = @amount_of_money
 			WHERE id = @id
+		SET @message = @id
 		RETURN 0
 	END
 END ELSE BEGIN
 		INSERT INTO tb_order_stats([order],type_of_process, thickness, [image], dwg, unit,total_number,unit_price,amount_of_money)
 			VALUES(@order,@type_of_process, @thickness, @image, @dwg, @unit,@total_number,@unit_price,@amount_of_money)
+		SELECT @message = @@identity
 		RETURN 0
 END
 

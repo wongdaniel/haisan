@@ -66,6 +66,7 @@ namespace haisan.dao
                     msg = baseDao.runProcedureTran("saveOrUpdate_order_item", constructParamsForOrderItem(item), "order_item", sqlTran);
                     if (!msg.IsSucess)
                         throw new Exception(msg.Message);
+                    item.Id = int.Parse(msg.Message);
                 }
 
                 foreach (OrderStats stats in order.OrderStats)
@@ -73,6 +74,7 @@ namespace haisan.dao
                     msg = baseDao.runProcedureTran("saveOrUpdate_order_stats", constructParamsForOrderStats(stats), "order_stats", sqlTran);
                     if (!msg.IsSucess)
                         throw new Exception(msg.Message);
+                    stats.Id = int.Parse(msg.Message);
                 }           
                 sqlTran.Commit();
 
@@ -120,7 +122,7 @@ namespace haisan.dao
             return order;
         }
 
-        private void fillOrderStats(Order order)
+        public void fillOrderStats(Order order)
         {
              SqlParameter[] prams = {database.MakeInParam("@order", SqlDbType.Int, 0, order.Id),};
             string sql = "SELECT tos.*, tt.name AS name1, tt.unit AS unit1 FROM tb_order_stats AS tos, tb_typeOfProcess AS tt " + 
@@ -206,7 +208,7 @@ namespace haisan.dao
         }
 
 
-        private OrderItem parseOrderItem(DataSet dataset, int index)
+        public OrderItem parseOrderItem(DataSet dataset, int index)
         {
             OrderItem item = new OrderItem();
             item.Id = getIntValue(dataset, index, "id");
@@ -223,7 +225,8 @@ namespace haisan.dao
             item.UnitPrice = getDecimalValue(dataset, index, "unit_price");
             item.Cost = getDecimalValue(dataset, index, "cost");
 
-            if (dataset.Tables[0].Rows[index]["working_name_1"] == DBNull.Value)
+            if (dataset.Tables[0].Rows[index]["working_name_1"] == DBNull.Value ||
+                dataset.Tables[0].Rows[index]["working_diagram_1"] == DBNull.Value)
             {
                 item.WorkingDiagram1 = null;
                 item.WorkingName1 = null;
@@ -232,7 +235,10 @@ namespace haisan.dao
             else
             {
 
-                item.WorkingDiagram1 = getImageValue(dataset, index, "working_diagram_1");
+                item.WorkingDiagram1 = new ProcessingImage(getIntValue(dataset, index, "working_diagram_1"), 
+                    getImageValue(dataset, index, "working_diagram_1_image"), getBoolValue(dataset, index, "working_diagram_1_up"),
+                    getBoolValue(dataset, index, "working_diagram_1_down"), getBoolValue(dataset, index, "working_diagram_1_left"),
+                    getBoolValue(dataset, index, "working_diagram_1_right"));
                 item.WorkingName1 = new TypeOfProcess(getIntValue(dataset, index, "working_name_1"),
                     getValue(dataset, index, "name1"), getValue(dataset, index, "unit1"));
                 item.WorkingNumber1 = getDecimalValue(dataset, index, "working_number_1");
@@ -240,7 +246,8 @@ namespace haisan.dao
 
 
 
-            if (dataset.Tables[0].Rows[index]["working_name_2"] == DBNull.Value)
+            if (dataset.Tables[0].Rows[index]["working_name_2"] == DBNull.Value ||
+                dataset.Tables[0].Rows[index]["working_diagram_2"] == DBNull.Value)
             {
                 item.WorkingDiagram2 = null;
                 item.WorkingName2 = null;
@@ -249,7 +256,10 @@ namespace haisan.dao
             else
             {
 
-                item.WorkingDiagram2 = getImageValue(dataset, index, "working_diagram_2");
+                item.WorkingDiagram2 = new ProcessingImage(getIntValue(dataset, index, "working_diagram_2"),
+                    getImageValue(dataset, index, "working_diagram_2_image"), getBoolValue(dataset, index, "working_diagram_2_up"),
+                    getBoolValue(dataset, index, "working_diagram_2_down"), getBoolValue(dataset, index, "working_diagram_2_left"),
+                    getBoolValue(dataset, index, "working_diagram_2_right"));
                 item.WorkingName2 = new TypeOfProcess(getIntValue(dataset, index, "working_name_2"),
                     getValue(dataset, index, "name2"), getValue(dataset, index, "unit2"));
                 item.WorkingNumber2 = getDecimalValue(dataset, index, "working_number_2");
@@ -257,7 +267,8 @@ namespace haisan.dao
 
 
            
-            if (dataset.Tables[0].Rows[index]["working_name_3"] == DBNull.Value)
+            if (dataset.Tables[0].Rows[index]["working_name_3"] == DBNull.Value ||
+                dataset.Tables[0].Rows[index]["working_diagram_3"] == DBNull.Value)
             {
                 item.WorkingDiagram3 = null;
                 item.WorkingName3 = null;
@@ -265,7 +276,10 @@ namespace haisan.dao
             }
             else
             {
-                item.WorkingDiagram3 = getImageValue(dataset, index, "working_diagram_3");
+                item.WorkingDiagram3 = new ProcessingImage(getIntValue(dataset, index, "working_diagram_3"),
+                    getImageValue(dataset, index, "working_diagram_3_image"), getBoolValue(dataset, index, "working_diagram_3_up"),
+                    getBoolValue(dataset, index, "working_diagram_3_down"), getBoolValue(dataset, index, "working_diagram_3_left"),
+                    getBoolValue(dataset, index, "working_diagram_3_right"));
                 item.WorkingName3 = new TypeOfProcess(getIntValue(dataset, index, "working_name_3"),
                     getValue(dataset, index, "name3"), getValue(dataset, index, "unit3"));
                 item.WorkingNumber3 = getDecimalValue(dataset, index, "working_number_3");
@@ -331,7 +345,7 @@ namespace haisan.dao
                                      database.MakeInParam("@total_packages", SqlDbType.Int, 0, order.TotalPackages),
                                      database.MakeInParam("@payment", SqlDbType.Money, 0, order.Payment),
                                      database.MakeInParam("@processing_charges", SqlDbType.Money, 0, order.ProcessingCharges),
-                                     database.MakeInParam("@total_cost", SqlDbType.Money, 0, order.ProcessingCharges),
+                                     database.MakeInParam("@total_cost", SqlDbType.Money, 0, order.TotalCost),
                                      database.MakeInParam("@advances_received", SqlDbType.Money, 0, order.AdvancesReceived),
                                      new SqlParameter("@message", SqlDbType.NVarChar, 50),
                                      new SqlParameter("rval", SqlDbType.Int, 4) 
@@ -359,13 +373,13 @@ namespace haisan.dao
                                    database.MakeInParam("@number", SqlDbType.Decimal, 0, orderItem.Number),
                                    database.MakeInParam("@unit_price", SqlDbType.Money, 0, orderItem.UnitPrice),
                                    database.MakeInParam("@cost", SqlDbType.Money, 0, orderItem.Cost),
-                                   database.MakeInParam("@working_diagram_1", SqlDbType.Image, 0,(null == orderItem.WorkingDiagram1 ? DBNull.Value : (object)Util.imageToByteArray(orderItem.WorkingDiagram1))),
+                                   database.MakeInParam("@working_diagram_1", SqlDbType.Int, 0, null == orderItem.WorkingDiagram1 ? DBNull.Value : (object)orderItem.WorkingDiagram1.Id),
                                    database.MakeInParam("@working_name_1", SqlDbType.Int, 0, (null == orderItem.WorkingName1) ? DBNull.Value : (object)orderItem.WorkingName1.Id),
                                    database.MakeInParam("@working_number_1", SqlDbType.Decimal, 0, orderItem.WorkingNumber1),
-                                   database.MakeInParam("@working_diagram_2", SqlDbType.Image, 0, (null == orderItem.WorkingDiagram2 ? DBNull.Value : (object)Util.imageToByteArray(orderItem.WorkingDiagram2))),
+                                   database.MakeInParam("@working_diagram_2",  SqlDbType.Int, 0, null == orderItem.WorkingDiagram2 ? DBNull.Value : (object)orderItem.WorkingDiagram2.Id),
                                    database.MakeInParam("@working_name_2", SqlDbType.Int, 0, (null == orderItem.WorkingName2) ? DBNull.Value : (object)orderItem.WorkingName2.Id),
                                    database.MakeInParam("@working_number_2", SqlDbType.Decimal, 0, orderItem.WorkingNumber2),
-                                   database.MakeInParam("@working_diagram_3", SqlDbType.Image, 0, (null == orderItem.WorkingDiagram3 ? DBNull.Value : (object)Util.imageToByteArray(orderItem.WorkingDiagram3))),
+                                   database.MakeInParam("@working_diagram_3",  SqlDbType.Int, 0, null == orderItem.WorkingDiagram3 ? DBNull.Value : (object)orderItem.WorkingDiagram3.Id),
                                    database.MakeInParam("@working_name_3", SqlDbType.Int, 0, (null == orderItem.WorkingName3) ? DBNull.Value : (object)orderItem.WorkingName2.Id),
                                    database.MakeInParam("@working_number_3", SqlDbType.Decimal, 0, orderItem.WorkingNumber3),
                                    new SqlParameter("@message", SqlDbType.NVarChar, 50),

@@ -83,5 +83,18 @@ namespace haisan.util
         public static string PATH_AUTOCAD = "H:\\Program Files\\AutoCAD 2008\\acad.exe";
         public static string USER_HOME = "H:\\Users\\daniel";
 
+        // 状态码 对于销售订单
+        public static readonly int ORDER_STATUS_INIT = 0; //未下料
+        public static readonly int ORDER_STATUS_PROCESSING = 1;//部分下料
+        public static readonly int ORDER_STATUS_COMPLETED = 2;//下料已完成
+
+        public static readonly int XIALIAO_STATUS_INIT = 0; //未发货
+        public static readonly int XIALIAO_STATUS_PROCESSING = 1;//部分发货
+        public static readonly int XIALIAO_STATUS_COMPLETED = 2;//发货已完成
+
+        public static readonly int FAHUO_STATUS_INIT = 0; //未付款
+        public static readonly int FAHUO_STATUS_PROCESSING = 1;//部分付款
+        public static readonly int FAHUO_STATUS_COMPLETED = 2;//付款已完成
+
     }
 }

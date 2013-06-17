@@ -87,6 +87,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dao\XialiaoOrderDao.cs" />
+    <Compile Include="dao\XialiaoOrderDaoImpl.cs" />
+    <Compile Include="domain\XialiaoOrder.cs" />
+    <Compile Include="domain\XialiaoOrderItem.cs" />
+    <Compile Include="domain\XialiaoOrderStats.cs" />
+    <Compile Include="frame\pdm\xialiao\XialiaoOrderFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frame\pdm\xialiao\XialiaoOrderFrm.Designer.cs">
+      <DependentUpon>XialiaoOrderFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Resources\CrystalReportOrderItem.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -379,6 +390,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ReportOrderStats.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frame\pdm\xialiao\XialiaoOrderFrm.resx">
+      <DependentUpon>XialiaoOrderFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\CrystalReportOrderItem.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReportOrderItem.cs</LastGenOutput>

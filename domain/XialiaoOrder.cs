@@ -5,7 +5,7 @@ using System.Text;
 
 namespace haisan.domain
 {
-    public class Order
+    public class XialiaoOrder
     {
         private int id;
 
@@ -21,26 +21,12 @@ namespace haisan.domain
             get { return sn; }
             set { sn = value; }
         }
-        private Company company;
+        private Order order;
 
-        internal  Company Company
+        public Order Order
         {
-            get { return company; }
-            set { company = value; }
-        }
-        private string wayOfPayment;
-
-        public string WayOfPayment
-        {
-            get { return wayOfPayment; }
-            set { wayOfPayment = value; }
-        }
-        private string phone;
-
-        public string Phone
-        {
-            get { return phone; }
-            set { phone = value; }
+            get { return order; }
+            set { order = value; }
         }
         private DateTime createDate;
 
@@ -55,13 +41,6 @@ namespace haisan.domain
         {
             get { return operatr; }
             set { operatr = value; }
-        }
-        private decimal totalNumber;
-
-        public decimal TotalNumber
-        {
-            get { return totalNumber; }
-            set { totalNumber = value; }
         }
         private int totalPackages;
 
@@ -91,44 +70,45 @@ namespace haisan.domain
             get { return totalCost; }
             set { totalCost = value; }
         }
-        private decimal advancesReceived;
+        private int status;
 
-        public decimal AdvancesReceived
+        public int Status
         {
-            get { return advancesReceived; }
-            set { advancesReceived = value; }
+            get { return status; }
+            set { status = value; }
         }
 
-        private LinkedList<OrderItem> orderItems = new LinkedList<OrderItem>();
+        private LinkedList<XialiaoOrderItem> xialiaoOrderItems = new LinkedList<XialiaoOrderItem>();
 
-        internal LinkedList<OrderItem> OrderItems
+        internal LinkedList<XialiaoOrderItem> XialiaoOrderItems
         {
-            get { return orderItems; }
-            set { orderItems = value; }
+            get { return xialiaoOrderItems; }
+            set { xialiaoOrderItems = value; }
+        }
+        private LinkedList<XialiaoOrderStats> xialiaoOrderstats = new LinkedList<XialiaoOrderStats>();
+
+        internal LinkedList<XialiaoOrderStats> XialiaoOrderstats
+        {
+            get { return xialiaoOrderstats; }
+            set { xialiaoOrderstats = value; }
         }
 
-        private LinkedList<OrderStats> orderStats = new LinkedList<OrderStats>();
+        private decimal totalNumber;
 
-        internal LinkedList<OrderStats> OrderStats
+        public decimal TotalNumber
         {
-            get { return orderStats; }
-            set { orderStats = value; }
+            get { return totalNumber; }
+            set { totalNumber = value; }
         }
 
-        public Order(int id)
+        public XialiaoOrder()
+        {
+            id = 0;
+        }
+
+        public XialiaoOrder(int id)
         {
             this.id = id;
-        }
-
-        public Order()
-        {
-        }
-
-
-        public override string ToString()
-        {
-            Console.WriteLine("will return sn: " + sn);
-            return sn;
         }
     }
 }

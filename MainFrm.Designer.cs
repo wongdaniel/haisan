@@ -63,6 +63,7 @@
             this.辅助XToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.短信YToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助ZToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -75,7 +76,6 @@
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
             this.currentTimeLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -298,21 +298,22 @@
             // 进货订单KToolStripMenuItem
             // 
             this.进货订单KToolStripMenuItem.Name = "进货订单KToolStripMenuItem";
-            this.进货订单KToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-            this.进货订单KToolStripMenuItem.Text = "进货订单(&K)";
+            this.进货订单KToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.进货订单KToolStripMenuItem.Text = "销售订单(&K)";
             this.进货订单KToolStripMenuItem.Click += new System.EventHandler(this.进货订单KToolStripMenuItem_Click);
             // 
             // 进货入单LToolStripMenuItem
             // 
             this.进货入单LToolStripMenuItem.Name = "进货入单LToolStripMenuItem";
-            this.进货入单LToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-            this.进货入单LToolStripMenuItem.Text = "进货入单(&L)";
+            this.进货入单LToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.进货入单LToolStripMenuItem.Text = "下料加工单(&L)";
+            this.进货入单LToolStripMenuItem.Click += new System.EventHandler(this.进货入单LToolStripMenuItem_Click);
             // 
             // 进货退货MToolStripMenuItem
             // 
             this.进货退货MToolStripMenuItem.Name = "进货退货MToolStripMenuItem";
-            this.进货退货MToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-            this.进货退货MToolStripMenuItem.Text = "进货退货(&M)";
+            this.进货退货MToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.进货退货MToolStripMenuItem.Text = "销售\\发货单(&M)";
             // 
             // 财务VToolStripMenuItem
             // 
@@ -345,6 +346,13 @@
             this.帮助ZToolStripMenuItem.Name = "帮助ZToolStripMenuItem";
             this.帮助ZToolStripMenuItem.Size = new System.Drawing.Size(63, 21);
             this.帮助ZToolStripMenuItem.Text = "帮 助(&Z)";
+            // 
+            // 测试ToolStripMenuItem
+            // 
+            this.测试ToolStripMenuItem.Name = "测试ToolStripMenuItem";
+            this.测试ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.测试ToolStripMenuItem.Text = "测试功能";
+            this.测试ToolStripMenuItem.Click += new System.EventHandler(this.测试ToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 
@@ -434,13 +442,6 @@
             // 
             this.currentTimeLabel.Name = "currentTimeLabel";
             this.currentTimeLabel.Size = new System.Drawing.Size(0, 17);
-            // 
-            // 测试ToolStripMenuItem
-            // 
-            this.测试ToolStripMenuItem.Name = "测试ToolStripMenuItem";
-            this.测试ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.测试ToolStripMenuItem.Text = "测试功能";
-            this.测试ToolStripMenuItem.Click += new System.EventHandler(this.测试ToolStripMenuItem_Click);
             // 
             // MainFrm
             // 

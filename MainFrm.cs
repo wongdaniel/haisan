@@ -24,6 +24,7 @@ using haisan.frame.document.warehouse;
 using haisan.frame.document.department;
 using haisan.frame.document.employee;
 using haisan.frame.test;
+using haisan.frame.pdm.xialiao;
 
 namespace haisan
 {
@@ -331,6 +332,17 @@ namespace haisan
         {
             ShowDWGFrm showFrm = new ShowDWGFrm();
             showFrm.Show();
+        }
+
+        private void 进货入单LToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string title = getTitleFromMenuItem(sender);
+            logDao.saveLog(Parameter.user, title);
+
+            XialiaoOrderFrm xiaFrm = new XialiaoOrderFrm();
+            xiaFrm.MdiParent = this;
+            xiaFrm.Text = title;
+            xiaFrm.Show();
         }
     }
 }

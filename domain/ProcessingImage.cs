@@ -58,6 +58,25 @@ namespace haisan.domain
             set { right = value; }
         }
 
+        public ProcessingImage(int id, Image image)
+        {
+            this.id = id;
+            this.image = image;
+        }
+
+        public ProcessingImage(int id, Image image, bool up, bool down, bool left, bool right)
+        {
+            this.id = id;
+            this.image = image;
+            this.up = up;
+            this.down = down;
+            this.left = left;
+            this.right = right;
+        }
+
+        public ProcessingImage()
+        {
+        }
 
     }
 }
