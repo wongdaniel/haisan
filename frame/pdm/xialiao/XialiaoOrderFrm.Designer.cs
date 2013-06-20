@@ -54,6 +54,7 @@
             this.报表预览VToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.取消退出EToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.comboBoxOrderSN = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.textBoxTotalCost = new System.Windows.Forms.TextBox();
@@ -68,19 +69,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridViewItem = new System.Windows.Forms.DataGridView();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.dataGridViewItemStats = new System.Windows.Forms.DataGridView();
-            this.ColumnProcessingName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnStatsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnXialiaoStatsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnThicknessStats = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnProcessingDiagram = new System.Windows.Forms.DataGridViewImageColumn();
-            this.ColumnDWG = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnUnitStats = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnNumberStats = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnUnitPriceStats = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnCostStats = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCategoryStone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnLength = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -104,7 +92,19 @@
             this.ColumnNumber3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnXialiaoItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dataGridViewItemStats = new System.Windows.Forms.DataGridView();
+            this.ColumnProcessingName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnStatsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnXialiaoStatsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnThicknessStats = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnProcessingDiagram = new System.Windows.Forms.DataGridViewImageColumn();
+            this.ColumnDWG = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnUnitStats = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnNumberStats = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnUnitPriceStats = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnCostStats = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -368,6 +368,16 @@
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(390, 25);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(20, 23);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // comboBoxOrderSN
             // 
             this.comboBoxOrderSN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -549,114 +559,6 @@
             this.dataGridViewItem.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewItem_CellValueChanged);
             this.dataGridViewItem.Resize += new System.EventHandler(this.XialiaoOrderFrm_Resize);
             // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(905, 145);
-            this.tabControl1.TabIndex = 0;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.dataGridViewItemStats);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(897, 119);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "按加工名称统计";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // dataGridViewItemStats
-            // 
-            this.dataGridViewItemStats.AllowUserToAddRows = false;
-            this.dataGridViewItemStats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewItemStats.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColumnProcessingName,
-            this.ColumnStatsID,
-            this.ColumnXialiaoStatsID,
-            this.ColumnThicknessStats,
-            this.ColumnProcessingDiagram,
-            this.ColumnDWG,
-            this.ColumnUnitStats,
-            this.ColumnNumberStats,
-            this.ColumnUnitPriceStats,
-            this.ColumnCostStats});
-            this.dataGridViewItemStats.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewItemStats.Location = new System.Drawing.Point(3, 3);
-            this.dataGridViewItemStats.Name = "dataGridViewItemStats";
-            this.dataGridViewItemStats.RowTemplate.Height = 23;
-            this.dataGridViewItemStats.Size = new System.Drawing.Size(891, 113);
-            this.dataGridViewItemStats.TabIndex = 0;
-            this.dataGridViewItemStats.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewItemStats_CellClick);
-            this.dataGridViewItemStats.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewItemStats_CellValueChanged);
-            // 
-            // ColumnProcessingName
-            // 
-            this.ColumnProcessingName.HeaderText = "加工名称";
-            this.ColumnProcessingName.Name = "ColumnProcessingName";
-            this.ColumnProcessingName.ReadOnly = true;
-            // 
-            // ColumnStatsID
-            // 
-            this.ColumnStatsID.HeaderText = "ColumnStatsID";
-            this.ColumnStatsID.Name = "ColumnStatsID";
-            this.ColumnStatsID.Visible = false;
-            // 
-            // ColumnXialiaoStatsID
-            // 
-            this.ColumnXialiaoStatsID.HeaderText = "ColumnXialiaoStatsID";
-            this.ColumnXialiaoStatsID.Name = "ColumnXialiaoStatsID";
-            this.ColumnXialiaoStatsID.Visible = false;
-            // 
-            // ColumnThicknessStats
-            // 
-            this.ColumnThicknessStats.HeaderText = "厚度";
-            this.ColumnThicknessStats.Name = "ColumnThicknessStats";
-            this.ColumnThicknessStats.ReadOnly = true;
-            // 
-            // ColumnProcessingDiagram
-            // 
-            this.ColumnProcessingDiagram.HeaderText = "图片展示";
-            this.ColumnProcessingDiagram.Name = "ColumnProcessingDiagram";
-            this.ColumnProcessingDiagram.ReadOnly = true;
-            this.ColumnProcessingDiagram.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnProcessingDiagram.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // ColumnDWG
-            // 
-            this.ColumnDWG.HeaderText = "ColumnDWG";
-            this.ColumnDWG.Name = "ColumnDWG";
-            this.ColumnDWG.ReadOnly = true;
-            this.ColumnDWG.Visible = false;
-            // 
-            // ColumnUnitStats
-            // 
-            this.ColumnUnitStats.HeaderText = "单位";
-            this.ColumnUnitStats.Name = "ColumnUnitStats";
-            this.ColumnUnitStats.ReadOnly = true;
-            // 
-            // ColumnNumberStats
-            // 
-            this.ColumnNumberStats.HeaderText = "统计数量";
-            this.ColumnNumberStats.Name = "ColumnNumberStats";
-            this.ColumnNumberStats.ReadOnly = true;
-            // 
-            // ColumnUnitPriceStats
-            // 
-            this.ColumnUnitPriceStats.HeaderText = "单价";
-            this.ColumnUnitPriceStats.Name = "ColumnUnitPriceStats";
-            this.ColumnUnitPriceStats.ReadOnly = true;
-            // 
-            // ColumnCostStats
-            // 
-            this.ColumnCostStats.HeaderText = "金额";
-            this.ColumnCostStats.Name = "ColumnCostStats";
-            this.ColumnCostStats.ReadOnly = true;
-            // 
             // ColumnCategoryStone
             // 
             this.ColumnCategoryStone.HeaderText = "石材名称";
@@ -800,15 +702,113 @@
             this.ColumnXialiaoItemID.Name = "ColumnXialiaoItemID";
             this.ColumnXialiaoItemID.Visible = false;
             // 
-            // button1
+            // tabControl1
             // 
-            this.button1.Location = new System.Drawing.Point(390, 25);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(20, 23);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(905, 145);
+            this.tabControl1.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.dataGridViewItemStats);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(897, 119);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "按加工名称统计";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewItemStats
+            // 
+            this.dataGridViewItemStats.AllowUserToAddRows = false;
+            this.dataGridViewItemStats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewItemStats.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnProcessingName,
+            this.ColumnStatsID,
+            this.ColumnXialiaoStatsID,
+            this.ColumnThicknessStats,
+            this.ColumnProcessingDiagram,
+            this.ColumnDWG,
+            this.ColumnUnitStats,
+            this.ColumnNumberStats,
+            this.ColumnUnitPriceStats,
+            this.ColumnCostStats});
+            this.dataGridViewItemStats.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewItemStats.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewItemStats.Name = "dataGridViewItemStats";
+            this.dataGridViewItemStats.RowTemplate.Height = 23;
+            this.dataGridViewItemStats.Size = new System.Drawing.Size(891, 113);
+            this.dataGridViewItemStats.TabIndex = 0;
+            this.dataGridViewItemStats.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewItemStats_CellClick);
+            this.dataGridViewItemStats.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewItemStats_CellValueChanged);
+            // 
+            // ColumnProcessingName
+            // 
+            this.ColumnProcessingName.HeaderText = "加工名称";
+            this.ColumnProcessingName.Name = "ColumnProcessingName";
+            this.ColumnProcessingName.ReadOnly = true;
+            // 
+            // ColumnStatsID
+            // 
+            this.ColumnStatsID.HeaderText = "ColumnStatsID";
+            this.ColumnStatsID.Name = "ColumnStatsID";
+            this.ColumnStatsID.Visible = false;
+            // 
+            // ColumnXialiaoStatsID
+            // 
+            this.ColumnXialiaoStatsID.HeaderText = "ColumnXialiaoStatsID";
+            this.ColumnXialiaoStatsID.Name = "ColumnXialiaoStatsID";
+            this.ColumnXialiaoStatsID.Visible = false;
+            // 
+            // ColumnThicknessStats
+            // 
+            this.ColumnThicknessStats.HeaderText = "厚度";
+            this.ColumnThicknessStats.Name = "ColumnThicknessStats";
+            this.ColumnThicknessStats.ReadOnly = true;
+            // 
+            // ColumnProcessingDiagram
+            // 
+            this.ColumnProcessingDiagram.HeaderText = "图片展示";
+            this.ColumnProcessingDiagram.Name = "ColumnProcessingDiagram";
+            this.ColumnProcessingDiagram.ReadOnly = true;
+            this.ColumnProcessingDiagram.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnProcessingDiagram.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // ColumnDWG
+            // 
+            this.ColumnDWG.HeaderText = "ColumnDWG";
+            this.ColumnDWG.Name = "ColumnDWG";
+            this.ColumnDWG.ReadOnly = true;
+            this.ColumnDWG.Visible = false;
+            // 
+            // ColumnUnitStats
+            // 
+            this.ColumnUnitStats.HeaderText = "单位";
+            this.ColumnUnitStats.Name = "ColumnUnitStats";
+            this.ColumnUnitStats.ReadOnly = true;
+            // 
+            // ColumnNumberStats
+            // 
+            this.ColumnNumberStats.HeaderText = "统计数量";
+            this.ColumnNumberStats.Name = "ColumnNumberStats";
+            this.ColumnNumberStats.ReadOnly = true;
+            // 
+            // ColumnUnitPriceStats
+            // 
+            this.ColumnUnitPriceStats.HeaderText = "单价";
+            this.ColumnUnitPriceStats.Name = "ColumnUnitPriceStats";
+            this.ColumnUnitPriceStats.ReadOnly = true;
+            // 
+            // ColumnCostStats
+            // 
+            this.ColumnCostStats.HeaderText = "金额";
+            this.ColumnCostStats.Name = "ColumnCostStats";
+            this.ColumnCostStats.ReadOnly = true;
             // 
             // XialiaoOrderFrm
             // 

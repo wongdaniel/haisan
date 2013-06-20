@@ -18,6 +18,8 @@ namespace haisan.dao
         DataSet getOrderStats(Order order);
         Order loadOrderById(int id);
         OrderItem parseOrderItem(DataSet dataset, int index);
+        OrderItem getOrderItemById(int id);
+        OrderStats getOrderStatsById(int id);
         void fillOrderStats(Order order);
 
     }

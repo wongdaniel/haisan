@@ -16,6 +16,7 @@ namespace haisan.dao
         private static Database database = Database.getInstance();
         private static BaseDao baseDao = BaseDaoImpl.getInstance();
         private static PurchaseOrderDao purchaseOrderDao = PurchaseOrderDaoImpl.getInstance();
+        private static UserDao userDao = UserDaoImpl.getInstance();
 
         private static XialiaoOrderDaoImpl xialiaoOrderDaoImpl = null;
 
@@ -60,6 +61,18 @@ namespace haisan.dao
             return orders;
         }
 
+        public XialiaoOrder getXialiaoOrderById(int id)
+        {
+            XialiaoOrder xialiaoOrder = loadXialiaoOrderById(id);
+            if (null == xialiaoOrder)
+                return null;
+
+            fillXialiaoOrderItemsForGET(xialiaoOrder);
+            fillXialiaoOrderStatsForGET(xialiaoOrder);
+
+            return xialiaoOrder;
+        }
+
         public XialiaoOrder getXialiaoOrderByOrderId(int id)
         {
             XialiaoOrder xialiaoOrder = loadXialiaoOrderByOrderId(id);
@@ -98,6 +111,41 @@ namespace haisan.dao
 
             return xialiaoOrder;
         }
+
+        public XialiaoOrder loadXialiaoOrderById(int id)
+        {
+            XialiaoOrder xialiaoOrder = new XialiaoOrder();
+            string sql = "SELECT * FROM tb_xialiao_order where id = " + id;
+            try
+            {
+                DataSet dataset = database.RunProcReturn(sql, "tb_xialiao_order");
+                int count = 0;
+                if (null != dataset && (count = dataset.Tables[0].Rows.Count) > 0)
+                {
+                    int index = 0;
+                    xialiaoOrder.Id = getIntValue(dataset, index, "id");
+                    xialiaoOrder.Sn = getValue(dataset, index, "sn");
+                    xialiaoOrder.Order = purchaseOrderDao.loadOrderById(getIntValue(dataset, index, "order_id"));
+                    xialiaoOrder.CreateDate = getDateTime(dataset, index, "createDate");
+                    xialiaoOrder.Operatr = userDao.getUserById(getIntValue(dataset, index, "operator"));
+
+                    xialiaoOrder.TotalPackages = getIntValue(dataset, index, "total_packages");
+                    xialiaoOrder.TotalNumber = getDecimalValue(dataset, index, "total_number");
+                    xialiaoOrder.Payment = getDecimalValue(dataset, index, "payment");
+                    xialiaoOrder.ProcessingCharges = getDecimalValue(dataset, index, "processing_charges");
+                    xialiaoOrder.TotalCost = getDecimalValue(dataset, index, "total_cost");
+                    xialiaoOrder.Status = getIntValue(dataset, index, "status");
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+
+            return xialiaoOrder;
+        }
+
 
         private void fillXialiaoOrderItems(XialiaoOrder xialiaoOrder)
         {
@@ -140,6 +188,48 @@ namespace haisan.dao
             }
 
         }
+
+
+        private void fillXialiaoOrderItemsForGET(XialiaoOrder xialiaoOrder)
+        {
+            string sql = "SELECT * FROM tb_xialiao_order_item WHERE xialiao_order_id = " + xialiaoOrder.Id;
+
+            try
+            {
+                DataSet dataset = database.RunProcReturn(sql, "tb_xialiao_order_item");
+                int count = 0;
+                if (null != dataset && (count = dataset.Tables[0].Rows.Count) > 0)
+                {
+                    int i = 0;
+                    for (i = 0; i < count; i++)
+                    {
+                        OrderItem item = purchaseOrderDao.getOrderItemById(getIntValue(dataset, i, "order_item_id"));
+                        item.Order = xialiaoOrder.Order;
+
+                        XialiaoOrderItem xialiaoOrderItem = new XialiaoOrderItem(getIntValue(dataset, i, "id"));
+                        xialiaoOrderItem.OrderItem = item;
+
+                        xialiaoOrderItem.OriginalPackage = getIntValue(dataset, i, "original_package");
+
+                        xialiaoOrderItem.RemainPackage = getIntValue(dataset, i, "remain_package");
+                        xialiaoOrderItem.UsePackage = getIntValue(dataset, i, "use_package"); 
+
+                        xialiaoOrderItem.WorkingNumber1 = getDecimalValue(dataset, i, "working_number_1");
+                        xialiaoOrderItem.WorkingNumber2 = getDecimalValue(dataset, i, "working_number_2");
+                        xialiaoOrderItem.WorkingNumber3 = getDecimalValue(dataset, i, "working_number_3");
+
+                        xialiaoOrder.XialiaoOrderItems.AddLast(xialiaoOrderItem);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Util.showError(e.Message);
+                Console.WriteLine("178 purchaseDaoImpl: " + e.StackTrace);
+            }
+
+        }
+
 
         private decimal computeWorkingNumberX(XialiaoOrderItem xialiaoOrderItem, TypeOfProcess workingNameX, ProcessingImage workingDiagramX)
         {
@@ -216,6 +306,38 @@ namespace haisan.dao
             
         }
 
+        private void fillXialiaoOrderStatsForGET(XialiaoOrder xialiaoOrder)
+        {
+            
+            string sql = "SELECT * FROM tb_xialiao_order_stats WHERE xialiao_order_id = " + xialiaoOrder.Id;
+
+            try
+            {
+                DataSet dataset = database.RunProcReturn(sql, "tb_xialiao_order_stats");
+                int count = 0;
+                if (null != dataset && (count = dataset.Tables[0].Rows.Count) > 0)
+                {
+                    int i = 0;
+                    for (i = 0; i < count; i++)
+                    {
+
+                        XialiaoOrderStats stats = new XialiaoOrderStats(getIntValue(dataset, i, "id"));
+                        stats.XialiaoOrder = xialiaoOrder;
+                        stats.OrderStats = purchaseOrderDao.getOrderStatsById(getIntValue(dataset, i, "order_stats_id"));
+
+                        stats.TotalNumber = getDecimalValue(dataset, i, "total_number");
+                        stats.AmountOfMoney = getDecimalValue(dataset, i, "amount_of_money");
+                        xialiaoOrder.XialiaoOrderstats.AddLast(stats);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Util.showError(e.Message);
+                Console.WriteLine("178 purchaseDaoImpl: " + e.StackTrace);
+            }
+
+        }
 
         public MessageLocal saveOrUpdateXialiaoOrder(XialiaoOrder xialiaoOrder)
         {
@@ -280,6 +402,21 @@ namespace haisan.dao
             msg.IsSucess = true;
 
             return msg;
+        }
+
+        public DataSet getXialiaoOrder(string sn, string customName, DateTime begin, DateTime end)
+        {
+            string sql = "SELECT * FROM tb_xialiao_order_view WHERE (sn LIKE @sn AND name LIKE @name AND " +
+                   "(createDate BETWEEN @begin AND @end))";
+
+            LinkedList<SqlParameter> prams = new LinkedList<SqlParameter>();
+
+            prams.AddLast(database.MakeInParam("@sn", SqlDbType.NVarChar, 20, "%" + sn + "%"));
+            prams.AddLast(database.MakeInParam("@name", SqlDbType.NVarChar, 20, "%" + customName + "%"));
+            prams.AddLast(database.MakeInParam("@begin", SqlDbType.DateTime, 0, begin));
+            prams.AddLast(database.MakeInParam("@end", SqlDbType.DateTime, 0, end));
+
+            return database.RunProcReturn(sql, prams.ToArray<SqlParameter>(), "tb_xialiao_order_view");
         }
 
 

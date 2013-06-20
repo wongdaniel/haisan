@@ -103,11 +103,13 @@ namespace haisan.domain
 
         public XialiaoOrder()
         {
+            sn = "";
             id = 0;
         }
 
         public XialiaoOrder(int id)
         {
+            sn = ""; 
             this.id = id;
         }
     }

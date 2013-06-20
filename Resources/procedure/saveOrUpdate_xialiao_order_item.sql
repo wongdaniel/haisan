@@ -13,6 +13,9 @@ CREATE PROCEDURE saveOrUpdate_xialiao_order_item
 @message nvarchar(50) output
 AS 
 
+DECLARE @_total_package int
+DECLARE @_use_package int
+
 IF NOT EXISTS(SELECT * FROM tb_xialiao_order WHERE id = @xialiao_order_id) BEGIN
 	SET @message = '更新下料订单明细失败，该订单【'+CAST(@xialiao_order_id AS varchar(20))+'】已不存在于系统'
 	RETURN -1
@@ -23,6 +26,20 @@ IF NOT EXISTS(SELECT * FROM tb_order_item WHERE id = @order_item_id) BEGIN
 	RETURN -1
 END
 
+IF (@id > 0) BEGIN
+SELECT @_total_package = package, @_use_package = total_use_package FROM tb_order_item_view AS toiv LEFT JOIN 
+                (SELECT sum(use_package) AS total_use_package, order_item_id FROM tb_xialiao_order_item WHERE order_item_id = @order_item_id AND id != @id GROUP BY order_item_id) AS txoi 
+                ON toiv.id = txoi.order_item_id
+END ELSE BEGIN
+SELECT @_total_package = package, @_use_package = total_use_package FROM tb_order_item_view AS toiv LEFT JOIN 
+                (SELECT sum(use_package) AS total_use_package, order_item_id FROM tb_xialiao_order_item WHERE order_item_id = @order_item_id  GROUP BY order_item_id) AS txoi 
+                ON toiv.id = txoi.order_item_id
+END
+
+if(@use_package > (@_total_package - @_use_package)) BEGIN
+	SET @message = '本次下料订单件数超过剩余的订单件数'
+	RETURN -1	
+END
 
 IF (@id > 0) BEGIN
 	IF NOT EXISTS(SELECT * FROM tb_xialiao_order_item WHERE id = @id) BEGIN

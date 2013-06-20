@@ -563,9 +563,9 @@ namespace haisan.frame.pdm.xialiao
 
         private void 查询订单QToolStripMenuItem_Click(object sender, EventArgs e)
         {
-       //     QueryPurchaseOrderFrm queryFrm = new QueryPurchaseOrderFrm(this);
-        //    queryFrm.Text = "查询订单";
-        //    queryFrm.ShowDialog();
+            QueryXialiaoOrderFrm queryFrm = new QueryXialiaoOrderFrm(this);
+            queryFrm.Text = "查询下料订单";
+            queryFrm.ShowDialog();
         }
 
         public void disableCellValueChanged()
@@ -588,6 +588,18 @@ namespace haisan.frame.pdm.xialiao
         public void enableCellValueValidating()
         {
             this.dataGridViewItem.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridViewItem_CellValidating);
+        }
+
+        public void disableTextChanged()
+        {
+            this.comboBoxOrderSN.TextChanged -= new System.EventHandler(this.comboBoxOrderSN_TextChanged);
+            this.textBoxCompany.TextChanged -= new System.EventHandler(this.textBoxCompany_TextChanged);
+        }
+
+        public void enableTextChanged()
+        {
+            this.comboBoxOrderSN.TextChanged += new System.EventHandler(this.comboBoxOrderSN_TextChanged);
+            this.textBoxCompany.TextChanged += new System.EventHandler(this.textBoxCompany_TextChanged);
         }
 
         private void 新增订单NToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -632,19 +644,19 @@ namespace haisan.frame.pdm.xialiao
         private void 删除订单DToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            if (ILLEGAEL_ORDERID == orderID)
+            if (ILLEGAEL_ORDERID == xialiaoOrderId)
             {
-                MessageBox.Show("没有可以供删除的订单!", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("没有可以供删除的下料订单!", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            DialogResult dr = MessageBox.Show("将删除编号为[" + textBoxSN.Text + "]的订单!", "警告",
+            DialogResult dr = MessageBox.Show("将删除编号为[" + textBoxSN.Text + "]的下料订单!", "警告",
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
 
             if (dr == DialogResult.OK)
             {
                 this.Enabled = false;
-                baseDao.deleteEntities("tb_order", orderID.ToString());
+                baseDao.deleteEntities("tb_xialiao_order", orderID.ToString());
                 this.Enabled = true;
                 clearAllField();
             }
@@ -747,6 +759,15 @@ namespace haisan.frame.pdm.xialiao
             comboBoxGetStyle.SelectedIndex = comboBoxGetStyle.FindString(xialiaoOrder.Order.WayOfPayment); // 如果是任意填写的会咋样？
             if (-1 == comboBoxGetStyle.SelectedIndex)
                 comboBoxGetStyle.Text = xialiaoOrder.Order.WayOfPayment;
+
+            Console.WriteLine("xialiaoOrder.sn:["+xialiaoOrder.Sn+"]");
+
+            if (!"".Equals(xialiaoOrder.Sn))
+            {
+                Console.WriteLine("xialiaoOrder.Sn is not null");
+                comboBoxOrderSN.Items.Add(xialiaoOrder.Order);
+                comboBoxOrderSN.SelectedIndex = 0;
+            }
 
             textBoxPhone.Text = xialiaoOrder.Order.Phone;
             label1CreateDate.Text = xialiaoOrder.CreateDate.ToShortDateString();

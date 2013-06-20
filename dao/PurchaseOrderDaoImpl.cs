@@ -148,6 +148,32 @@ namespace haisan.dao
             }
         }
 
+        public OrderStats getOrderStatsById(int id)
+        {
+            SqlParameter[] prams = { database.MakeInParam("@id", SqlDbType.Int, 0, id), };
+
+            string sql = "SELECT tos.*, tt.name AS name1, tt.unit AS unit1 FROM tb_order_stats AS tos, tb_typeOfProcess AS tt " +
+                " WHERE tos.id = @id AND tos.type_of_process = tt.id ";
+            try
+            {
+                DataSet dataset = database.RunProcReturn(sql, prams, "tb_order_stats");
+                int count = 0;
+                if (null != dataset && (count = dataset.Tables[0].Rows.Count) > 0)
+                {
+                    int i = 0;
+                    OrderStats stats = parseOrderStats(dataset, i);
+                    return stats;
+                }
+            }
+            catch (Exception e)
+            {
+                Util.showError(e.Message);
+            }
+
+            return null;
+        }
+
+
         private OrderStats parseOrderStats(DataSet dataset, int index)
         {
             OrderStats stats = new OrderStats();
@@ -207,6 +233,29 @@ namespace haisan.dao
             return database.RunProcReturn("get_reportOfOrderStats", prams, "ReportOrderStats", CommandType.StoredProcedure);
         }
 
+        public OrderItem getOrderItemById(int id)
+        {
+            string sql = "SELECT * FROM tb_order_item_view WHERE id = " + id;
+            try
+            {
+                DataSet dataset = database.RunProcReturn(sql, "tb_order_item_view");
+
+                int count = 0;
+                if (null != dataset && (count = dataset.Tables[0].Rows.Count) > 0)
+                {
+                    int i = 0;
+                    OrderItem item = parseOrderItem(dataset, i);
+                    return item;
+                }
+            }
+            catch (Exception e)
+            {
+                Util.showError(e.Message);
+                Console.WriteLine("227 purchaseDaoImpl: " + e.StackTrace);
+            }
+
+            return null;
+        }
 
         public OrderItem parseOrderItem(DataSet dataset, int index)
         {

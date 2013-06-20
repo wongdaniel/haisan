@@ -92,6 +92,12 @@
     <Compile Include="domain\XialiaoOrder.cs" />
     <Compile Include="domain\XialiaoOrderItem.cs" />
     <Compile Include="domain\XialiaoOrderStats.cs" />
+    <Compile Include="frame\pdm\xialiao\QueryXialiaoOrderFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frame\pdm\xialiao\QueryXialiaoOrderFrm.Designer.cs">
+      <DependentUpon>QueryXialiaoOrderFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="frame\pdm\xialiao\XialiaoOrderFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -390,6 +396,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ReportOrderStats.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frame\pdm\xialiao\QueryXialiaoOrderFrm.resx">
+      <DependentUpon>QueryXialiaoOrderFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frame\pdm\xialiao\XialiaoOrderFrm.resx">
       <DependentUpon>XialiaoOrderFrm.cs</DependentUpon>
     </EmbeddedResource>

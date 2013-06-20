@@ -12,6 +12,8 @@ namespace haisan.dao
     {
         LinkedList<Order> getAllOrders(Company company);
         XialiaoOrder getXialiaoOrderByOrderId(int id);
+        XialiaoOrder getXialiaoOrderById(int id);
         MessageLocal saveOrUpdateXialiaoOrder(XialiaoOrder xialiaoOrder);
+        DataSet getXialiaoOrder(string sn, string customName, DateTime begin, DateTime end);
     }
 }
